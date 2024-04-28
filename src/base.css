@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+@font-face {
+  font-family: "MonoRegular";
+  src: url("/Font-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "MonoBold";
+  src: url("/Font-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "MonoItalic";
+  src: url("/Font-Italic.woff") format("woff");
+}
+
+/* 
+ * Can override starlight styles here 
+ * https://github.com/withastro/starlight/blob/main/packages/starlight/style/props.css
+ */
+:root {
+  --__sl-font: "Source Sans 3", sans-serif;
+  --sl-line-height: 1.4;
+}
+:root[data-theme="light"] {
+  --sl-icon-color: #333;
+  --sl-shadow-md: 1px 1px #222, 2px 2px #222, 3px 3px #222, 4px 4px #222,
+    5px 5px #222;
+  --sl-shadow-lg: var(--sl-shadow-md);
+}
+:root[data-theme="dark"] {
+  --sl-icon-color: #fff;
+}
+
+/* Override to center content body at larger widths */
+@media (min-width: 72rem) {
+  [data-has-sidebar][data-has-toc] .main-pane > main {
+    --sl-content-margin-inline: auto auto;
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Starlight component style overrides */
+
+.site-title img {
+  max-width: 88%;
+}
+
+.pagination-links > a,
+starlight-menu-button > button,
+dialog {
+  border-radius: 0;
+  background-color: #f4f4f4;
+}
+
+.dropdown {
+  margin: 2px 10px 0px 6px;
+}

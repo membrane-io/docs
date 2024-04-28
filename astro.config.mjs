@@ -11,6 +11,12 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Membrane",
+      customCss: ["./src/base.css"],
+      logo: {
+        light: "./src/assets/title-dark.svg",
+        dark: "./src/assets/title-light.svg",
+        replacesTitle: true,
+      },
       social: {
         github: "https://github.com/withastro/starlight",
         twitter: "https://twitter.com/membraneio",
@@ -22,6 +28,10 @@ export default defineConfig({
             {
               label: "Introduction to Membrane",
               link: "/getting-started/intro-to-membrane/",
+            },
+            {
+              label: "Installation",
+              link: "/getting-started/install/",
             },
           ],
         },
@@ -43,6 +53,6 @@ export default defineConfig({
         },
       ],
     }),
-    tailwind(),
+    tailwind({ applyBaseStyles: false }),
   ],
 });
