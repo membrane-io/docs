@@ -1,13 +1,12 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLinksValidator from "starlight-links-validator";
-
 import tailwind from "@astrojs/tailwind";
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
-
   // This should be handled by a rewrite rule instead of being allowed to redirect
   redirects: {
     "/": "/getting-started/intro-to-membrane/",
@@ -92,6 +91,9 @@ export default defineConfig({
         },
       ],
     }),
-    tailwind({ applyBaseStyles: false }),
+    tailwind({
+      applyBaseStyles: false,
+    }),
   ],
+  adapter: vercel(),
 });
