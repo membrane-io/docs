@@ -21,6 +21,8 @@
   --__sl-font: "Source Sans 3", sans-serif;
   --sl-line-height: 1.4;
 }
+
+/* Override icon colors and add Membrane's distinctive box-shadow */
 :root[data-theme="light"] {
   --sl-icon-color: #333;
   --sl-shadow-md: 1px 1px #222, 2px 2px #222, 3px 3px #222, 4px 4px #222,
@@ -48,13 +50,19 @@
 
 /* Starlight component style overrides */
 
+/* Hack to ensure logo is never larger than sidebar */
 .site-title img {
   max-width: 88%;
 }
 
+/* 
+  Tweak big box buttons and modals to use distinctive Membrane box styling 
+  Also ensures colors work well with dark mode
+*/
 .pagination-links > a,
 starlight-menu-button > button,
 dialog {
+  border-radius: 0;
   background-color: var(--sl-color-bg-nav);
   border-color: var(--sl-color-hairline-light) !important;
   &:hover {
@@ -62,12 +70,12 @@ dialog {
   }
 }
 
-.pagination-links > a,
-starlight-menu-button > button,
-dialog {
-  border-radius: 0;
-}
-
+/* Minor stylistic flair for mobile dropdown */
 .dropdown {
   margin: 2px 10px 0px 6px;
+}
+
+/* Reduces the size of nested menus in sidebar make it less noisy */
+.sidebar-content details details > summary span {
+  font-size: var(--sl-text-sm);
 }

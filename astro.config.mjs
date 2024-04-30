@@ -81,9 +81,37 @@ export default defineConfig({
         },
         {
           label: "Reference",
-          autogenerate: {
-            directory: "reference",
-          },
+          items: [
+            {
+              label: "VSCode Extension",
+              items: [
+                {
+                  label: "Commands",
+                  link: "/reference/vscode/commands/",
+                },
+                {
+                  label: "Settings",
+                  link: "/reference/vscode/settings/",
+                },
+              ],
+            },
+            {
+              label: "Browser Extension",
+              link: "/reference/browser/",
+            },
+            {
+              label: "Mctl (CLI)",
+              link: "/reference/cli/",
+            },
+            {
+              label: "Membrane Types",
+              link: "/reference/types/",
+            },
+            {
+              label: "API",
+              link: "/reference/cli/",
+            },
+          ],
         },
         {
           label: "FAQ",
