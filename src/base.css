@@ -29,6 +29,10 @@
 }
 :root[data-theme="dark"] {
   --sl-icon-color: #fff;
+  --sl-shadow-md: 1px 1px var(--sl-color-gray-4), 2px 2px var(--sl-color-gray-4),
+    3px 3px var(--sl-color-gray-4), 4px 4px var(--sl-color-gray-4),
+    5px 5px var(--sl-color-gray-4);
+  --sl-shadow-lg: var(--sl-shadow-md);
 }
 
 /* Override to center content body at larger widths */
@@ -51,8 +55,17 @@
 .pagination-links > a,
 starlight-menu-button > button,
 dialog {
+  background-color: var(--sl-color-bg-nav);
+  border-color: var(--sl-color-hairline-light) !important;
+  &:hover {
+    background-color: var(--sl-color-bg-inline-code);
+  }
+}
+
+.pagination-links > a,
+starlight-menu-button > button,
+dialog {
   border-radius: 0;
-  background-color: #f4f4f4;
 }
 
 .dropdown {
