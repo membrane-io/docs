@@ -2,6 +2,15 @@
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
+## Getting started
+
+To make changes to the docs, first clone the repo and then run the following commands:
+
+```
+npm install
+npm run dev
+```
+
 ## Contributing to Content
 
 Documentation content is stored as `src/content/docs`. When adding a new file you may also need to update the `sidebar` property of `astro.config.mjs`.
