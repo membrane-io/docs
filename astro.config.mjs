@@ -9,7 +9,7 @@ export default defineConfig({
   output: "hybrid",
   // This should be handled by a rewrite rule instead of being allowed to redirect
   redirects: {
-    "/": "/getting-started/intro-to-membrane/",
+    "/": "/getting-started/intro/",
   },
   image: {
     remotePatterns: [
@@ -20,7 +20,6 @@ export default defineConfig({
     ],
   },
   integrations: [
-    starlightLinksValidator(),
     starlight({
       title: "Membrane",
       customCss: ["./src/base.css"],
@@ -33,17 +32,26 @@ export default defineConfig({
         github: "https://github.com/withastro/starlight",
         twitter: "https://twitter.com/membraneio",
       },
+      plugins: [starlightLinksValidator()],
       sidebar: [
         {
           label: "Getting Started",
           items: [
             {
-              label: "Introduction to Membrane",
-              link: "/getting-started/intro-to-membrane/",
+              label: "Introduction",
+              link: "/getting-started/intro/",
             },
             {
               label: "Installation",
               link: "/getting-started/install/",
+            },
+            {
+              label: "Extension Tour",
+              link: "/getting-started/tour/",
+            },
+            {
+              label: "Create a Program",
+              link: "/getting-started/first-program/",
             },
           ],
         },
@@ -52,7 +60,7 @@ export default defineConfig({
           items: [
             // Each item here is one entry in the navigation menu.
             {
-              label: "State",
+              label: "Stateful Programs",
               link: "/guides/state/",
             },
             {
