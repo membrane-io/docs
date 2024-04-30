@@ -6,9 +6,19 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "hybrid",
+
   // This should be handled by a rewrite rule instead of being allowed to redirect
   redirects: {
     "/": "/getting-started/intro-to-membrane/",
+  },
+  image: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.r2.dev",
+      },
+    ],
   },
   integrations: [
     starlightLinksValidator(),
