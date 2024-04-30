@@ -11,7 +11,11 @@ title: Installation
 
 Install the extension via [VSCode's marketplace website](https://marketplace.visualstudio.com/items?itemName=membrane.membrane) or by searching `Membrane` in the extensions market place directly in vscode.
 
-![extension-store](/extension-store.png)
+<!-- <video class="aspect-video !m-8" src="https://pub-9f5707ce32c7495d9687b939883b271d.r2.dev/membrane-install.mp4" muted autoplay loop></video> -->
+
+<video class="aspect-video !m-8" src="/cloud-assets/membrane-install.mp4" muted autoplay loop></video>
+
+---
 
 ## Membrane CLI (`mctl`)
 

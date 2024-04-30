@@ -54,11 +54,11 @@ export default defineConfig({
             // Each item here is one entry in the navigation menu.
             {
               label: "State",
-              link: "/guides/basic/",
+              link: "/guides/state/",
             },
             {
               label: "HTTP Endpoints",
-              link: "/guides/endpoint/",
+              link: "/guides/endpoints/",
             },
             {
               label: "Email handlers",
@@ -76,7 +76,9 @@ export default defineConfig({
         },
         {
           label: "Concepts",
-          items: [],
+          autogenerate: {
+            directory: "concepts",
+          },
         },
         {
           label: "Reference",
