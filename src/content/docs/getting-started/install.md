@@ -9,15 +9,21 @@ title: Installation
 
 ## VSCode Extension
 
+Membrane's primary interface is its VSCode extension. It handles deploying programs, listing which programs are running, displaying logs, and more.
+
 Install the extension via [VSCode's marketplace website](https://marketplace.visualstudio.com/items?itemName=membrane.membrane) or by searching `Membrane` in the extensions market place directly in vscode.
 
-<!-- <video class="aspect-video !m-8" src="https://pub-9f5707ce32c7495d9687b939883b271d.r2.dev/membrane-install.mp4" muted autoplay loop></video> -->
-
 <video class="aspect-video !m-8" src="/cloud-assets/membrane-install.mp4" muted autoplay loop></video>
+
+### Welcome Screen
+
+When the extension starts it displays a welcome screen. This screen aids in signing in, opening Membrane's [Program Explorer]() and [Program Logs]() panels, and giving a deeper tour of features. It also links off to an interactive tutorial program that comes pre-installed in every user's workspace.
 
 ---
 
 ## Membrane CLI (`mctl`)
+
+Membrane also includes a CLI tool called `mctl`. The CLI is for more advanced use-cases and isn't required when first starting out. Feel free to skip ahead to the next section.
 
 If you're on osx you can install `mctl` via homebrew
 
