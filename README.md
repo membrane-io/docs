@@ -2,7 +2,8 @@
 
 [<img src="https://astro.badg.es/v2/built-with-starlight/tiny.svg" align="right" />](https://starlight.astro.build)
 
-Note that these docs are still a work in progress.
+> [!NOTE]  
+> These docs are a work in progress
 
 ## Getting started
 
