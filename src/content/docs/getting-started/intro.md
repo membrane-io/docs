@@ -3,6 +3,10 @@ title: Introduction to Membrane
 description: An overview of Membrane and its uses
 ---
 
+:::note
+These docs are still a work-in-progress. If you have any questions, please [reach out to us on discord](https://discord.gg/sbRcqC7QxE)
+:::
+
 :::caution[TODO]
 Add a visualization that communicates what membrane is in a few seconds.
 :::
@@ -30,6 +34,14 @@ Check out [The Program Directory](https://github.com/membrane-io/directory) for 
 
 More information in the [programs]() section.
 
+## Durable State
+
+Membrane programs are durable. This means you don't need to store data in a database or file to make it persist, the state of your program (the JS heap) is transparently and efficiently persisted every time it changes.
+
+To keep data around, put it in the [`state`]() object and that's it.
+
+Promises can be `await`'ed indefinitely without worrying about execution timeouts.
+
 ## The Membrane Graph
 
 As mentioned above, each running program exposes a graph. The combination of these graphs is what we call the user's Membrane Graph.
@@ -46,11 +58,3 @@ The graph guarantees that programs (especially ones you didn't write) can do wha
 else. It also enables visibility into everything a program has done. Nothing is opaque in Membrane.
 
 Membrane programs can't directly make network requests. Instead, they interact with the world via graph nodes. Even `fetch` uses the graph behind the scene.
-
-## Durable Programs
-
-Membrane programs are durable. This means you don't need to store data in a database or file to make it persist, the state of your program (the JS heap) is transparently and efficiently persisted every time it changes.
-
-To keep data around, put it in the [`state`]() object and that's it.
-
-Promises can be `await`'ed indefinitely without worrying about execution timeouts.
