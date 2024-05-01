@@ -56,42 +56,58 @@ export default defineConfig({
           ],
         },
         {
-          label: "Guides",
+          label: "Features",
           items: [
             // Each item here is one entry in the navigation menu.
             {
-              label: "Stateful Programs",
-              link: "/guides/state/",
+              label: "Durable State",
+              link: "/feature/state/",
             },
             {
               label: "HTTP Endpoints",
-              link: "/guides/endpoints/",
+              link: "/feature/endpoints/",
             },
             {
               label: "Email handlers",
-              link: "/guides/email/",
+              link: "/feature/email/",
             },
             {
               label: "Timers",
-              link: "/guides/timers/",
+              link: "/feature/timers/",
             },
             {
               label: "Events",
-              link: "/guides/events/",
+              link: "/feature/events/",
             },
           ],
         },
         {
           label: "Concepts",
-          autogenerate: {
-            directory: "concepts",
-          },
+          items: [
+            {
+              label: "Mental model",
+              link: "/concept/mental-model/",
+            },
+            {
+              label: "Programs",
+              link: "/concept/programs/",
+            },
+            {
+              label: "The Graph",
+              link: "/concept/the-graph/",
+            },
+            {
+              label: "Drivers",
+              link: "/concept/drivers/",
+            },
+          ],
         },
         {
           label: "Reference",
           items: [
             {
               label: "VSCode Extension",
+              collapsed: true,
               items: [
                 {
                   label: "Commands",
