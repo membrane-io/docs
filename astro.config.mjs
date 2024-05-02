@@ -62,23 +62,23 @@ export default defineConfig({
           items: [
             {
               label: "Durable State",
-              link: "/feature/state/",
+              link: "/features/state/",
             },
             {
               label: "HTTP Endpoints",
-              link: "/feature/endpoints/",
+              link: "/features/endpoints/",
             },
             {
               label: "Email handlers",
-              link: "/feature/email/",
+              link: "/features/email/",
             },
             {
               label: "Timers",
-              link: "/feature/timers/",
+              link: "/features/timers/",
             },
             {
               label: "Events",
-              link: "/feature/events/",
+              link: "/features/events/",
             },
           ],
         },
