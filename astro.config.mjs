@@ -58,7 +58,6 @@ export default defineConfig({
         {
           label: "Features",
           items: [
-            // Each item here is one entry in the navigation menu.
             {
               label: "Durable State",
               link: "/feature/state/",
@@ -106,6 +105,14 @@ export default defineConfig({
           label: "Reference",
           items: [
             {
+              label: "Membrane module",
+              link: "/reference/types/",
+            },
+            {
+              label: "Mctl (CLI)",
+              link: "/reference/cli/",
+            },
+            {
               label: "VSCode Extension",
               collapsed: true,
               items: [
@@ -122,18 +129,6 @@ export default defineConfig({
             {
               label: "Browser Extension",
               link: "/reference/browser/",
-            },
-            {
-              label: "Mctl (CLI)",
-              link: "/reference/cli/",
-            },
-            {
-              label: "Membrane Types",
-              link: "/reference/types/",
-            },
-            {
-              label: "API",
-              link: "/reference/cli/",
             },
           ],
         },
