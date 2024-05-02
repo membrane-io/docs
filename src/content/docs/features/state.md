@@ -1,3 +1,3 @@
 ---
-title: Stateful programs
+title: Durable State
 ---
