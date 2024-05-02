@@ -36,4 +36,8 @@ Most of our image and video assets should be served from a CDN. When you run the
 
 Note that when files are uploaded to the CDN, they're actually named based on a SHA256 has of their name. If you open `cloud-assets/manifest.json` you'll see a list of all the assets in the CDN as well as their hashed names.
 
-To upload a new cloud asset, just drop it in the `cloud-assets` directory and run `npm run upload cloud-assets/<filename>`
+To upload a new cloud asset, just drop it in the `cloud-assets` directory and run
+
+```
+npm run upload cloud-assets/<filename>
+```
