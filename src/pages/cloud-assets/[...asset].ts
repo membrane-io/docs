@@ -9,6 +9,7 @@
 
 import type { APIRoute } from "astro";
 import type { ReadStream } from "node:fs";
+import manifest from "cloud-assets/manifest.json";
 
 export const prerender = false;
 
@@ -54,7 +55,9 @@ async function staticFileResponse(filePath: string) {
 export const GET: APIRoute = async ({ redirect, url }) => {
   // TODO: This should be updated to be a custom URL
   const ASSET_PREFIX = "https://pub-9f5707ce32c7495d9687b939883b271d.r2.dev";
-  const asset_url = ASSET_PREFIX + url.pathname.replace("/cloud-assets", "");
+  const asset_url = `${ASSET_PREFIX}/${
+    manifest.assets[url.pathname.replace("/cloud-assets/", "")]
+  }`;
 
   // During development we want to iterate on asset files locally
   //

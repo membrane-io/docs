@@ -10,4 +10,5 @@
       "cloud-assets/*": ["cloud-assets/*"],
     }
   },
+  "include": ["src/**/*", "cloud-assets/manifest.json", "scripts/*"]
 }

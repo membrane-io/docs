@@ -24,6 +24,8 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "mime": "^4.0.3"
+    "mime": "^4.0.3",
+    "wrangler": "^3.53.0",
+    "zx": "^8.0.2"
   }
 }
