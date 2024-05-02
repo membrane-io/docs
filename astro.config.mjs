@@ -25,7 +25,7 @@ export default defineConfig({
     starlight({
       title: "Membrane",
       editLink: {
-        baseUrl: "https://github.com/membrane-io/docs/edit/main/docs",
+        baseUrl: "https://github.com/membrane-io/docs/edit/main",
       },
       customCss: ["./src/base.css"],
       logo: {
