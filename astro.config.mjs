@@ -24,6 +24,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Membrane",
+      favicon: "/favicon.png",
       editLink: {
         baseUrl: "https://github.com/membrane-io/docs/edit/main",
       },
