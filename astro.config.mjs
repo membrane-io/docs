@@ -24,6 +24,9 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Membrane",
+      editLink: {
+        baseUrl: "https://github.com/membrane-io/docs/edit/main/docs",
+      },
       customCss: ["./src/base.css"],
       logo: {
         light: "./src/assets/title-dark.svg",
