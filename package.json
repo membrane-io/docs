@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "upload": "node scripts/upload-assets.mjs"
+    "upload": "NODE_NO_WARNINGS=1 node scripts/upload-asset.mjs",
+    "download": "NODE_NO_WARNINGS=1 node scripts/download-asset.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
@@ -27,8 +28,8 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@clack/prompts": "^0.7.0",
     "mime": "^4.0.3",
-    "wrangler": "^3.53.0",
-    "zx": "^8.0.2"
+    "wrangler": "^3.53.0"
   }
 }

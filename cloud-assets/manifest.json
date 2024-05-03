@@ -1,7 +1,9 @@
 {
   "assets": {
-    "membrane-install.mp4": "a919980375a43f8b29b005e4d8f313fd8055d2f55f18bca95f8d3be771ec19ab.mp4",
-    "workspace-preview.png": "bb26a6f7f4ae0de52de0877fab716b74351ac61f2706c6ac3938491e57fcf85d.png",
-    "move-panel.mp4": "be4213f280d5c24f5e395d6bad322218b3227aa0c0cf33afa3d30424b875873c.mp4"
+    "membrane-install.mp4": "membrane-install-aac607de032bc5d63a182d34103d53f55403079e.mp4",
+    "workspace-preview.png": "workspace-preview-2cc38ed43db7e49e86acd862025016b6fe1a7898.png",
+    "move-panel.mp4": "move-panel-1e41799e93e29a3b47159a4213dff4586f1344da.mp4",
+    "first-program.mp4": "first-program-54a930bf3524c06bf4a91f72bb660ea25068ee70.mp4",
+    "new-program-menu.png": "new-program-menu-d5f1cb8a26c4c9335f8ed73988e875163e3800ec.png"
   }
 }

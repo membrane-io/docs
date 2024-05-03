@@ -1,14 +1,16 @@
-import "zx/globals";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import { writeFile } from "node:fs/promises";
-import { join, extname } from "node:path";
+import { join, parse } from "node:path";
 import { fileURLToPath } from "node:url";
 import manifest from "../cloud-assets/manifest.json" assert { type: "json" };
+import { promisify } from "node:util";
+import { exec as execCallback } from "node:child_process";
+const exec = promisify(execCallback);
 
 const hashFile = (path) =>
   new Promise((resolve, reject) => {
-    const hash = crypto.createHash("sha256");
+    const hash = crypto.createHash("sha1");
     const stream = fs.createReadStream(path);
 
     stream.on("data", (chunk) => hash.update(chunk));
@@ -21,20 +23,26 @@ const hashFile = (path) =>
  * @param filePath {string} - The path to a file in the cloud-assets directory
  */
 export default async function uploadAsset(filePath) {
+  if (filePath.endsWith("manifest.json")) {
+    console.warn("Skipping manifest file upload");
+    return;
+  }
   const asset = filePath.startsWith("cloud-assets")
     ? filePath
     : join("cloud-assets", filePath);
-  const ext = extname(filePath);
+  const { name, ext } = parse(filePath);
   return hashFile(asset).then(async (hash) => {
     const file = filePath.replace("cloud-assets/", "");
-    const hashFile = hash + ext;
+    const hashFile = `${name}-${hash}${ext}`;
 
     if (manifest.assets[file] === hashFile) {
       console.log("File already uploaded");
       process.exit(0);
     }
 
-    await $`wrangler r2 object put docs-assets/${hashFile} --file=${asset}`;
+    await exec(
+      `wrangler r2 object put docs-assets/${hashFile} --file=${asset}`
+    );
     await writeFile(
       "cloud-assets/manifest.json",
       JSON.stringify(
