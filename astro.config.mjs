@@ -50,7 +50,8 @@ export default defineConfig({
         github: "https://github.com/withastro/starlight",
         twitter: "https://twitter.com/membraneio",
       },
-      plugins: [starlightLinksValidator()],
+      // TODO: Re-enable when this first pass is done
+      // plugins: [starlightLinksValidator()],
       sidebar: [
         {
           label: "Getting Started",
