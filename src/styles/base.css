@@ -80,7 +80,12 @@ dialog {
   font-size: var(--sl-text-sm);
 }
 
-.sl-container .twoslash .twoslash-popup-container {
-  background: var(--sl-color-bg-inline-code);
-  /* border-color: var(--sl-color-hairline-light); */
+.sl-container .twoslash {
+  .twoslash-popup-container {
+    background: var(--sl-color-bg-inline-code);
+    /* border-color: var(--sl-color-hairline-light); */
+  }
+  .twoslash-popup-docs {
+    color: unset;
+  }
 }

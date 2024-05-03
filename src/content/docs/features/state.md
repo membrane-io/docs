@@ -6,11 +6,17 @@ One of the fundamental features that separates Membrane from other serverless ru
 
 ## Basic Example
 
-```typescript
+```ts twoslash
 // @module: esnext
 // @filename: membrane.d.ts
+type State = import("./index").State;
 declare module "membrane" {
-  export const state: state;
+  /**
+   * This object is automatically persisted by Membrane.
+   * Its type is defined by the exported `State` interface
+   * below.
+   */
+  export const state: State;
 }
 
 // @filename: index.ts
