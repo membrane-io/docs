@@ -79,3 +79,8 @@ dialog {
 .sidebar-content details details > summary span {
   font-size: var(--sl-text-sm);
 }
+
+.sl-container .twoslash .twoslash-popup-container {
+  background: var(--sl-color-bg-inline-code);
+  /* border-color: var(--sl-color-hairline-light); */
+}

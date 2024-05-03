@@ -1,0 +1,52 @@
+pre:has(code) {
+  position: relative;
+}
+
+pre button.copy {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 32px;
+  width: 32px;
+  padding: 4px;
+  display: flex;
+  border-radius: 4px;
+  background-color: var(--astro-code-color-background);
+
+  :root[data-theme="light"] &:hover {
+    background-color: var(--sl-color-accent-low);
+  }
+  :root[data-theme="dark"] &:hover {
+    background-color: var(--sl-color-bg-inline-code);
+  }
+
+  & span {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  & .ready {
+    cursor: pointer;
+    background-color: var(--sl-color-text-accent);
+    mask-image: url(../assets/icons/clipboard.svg);
+  }
+
+  & .success {
+    display: none;
+    background-color: var(--sl-color-text-accent);
+    mask-image: url(../assets/icons/copy-success.svg);
+  }
+
+  &.copied {
+    & .success {
+      display: block;
+    }
+
+    & .ready {
+      display: none;
+    }
+  }
+}

@@ -3,6 +3,8 @@ import starlight from "@astrojs/starlight";
 import starlightLinksValidator from "starlight-links-validator";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
+import { transformerTwoslash } from "@shikijs/twoslash";
+import { addCopyButton } from "shiki-transformer-copy-button";
 
 import preact from "@astrojs/preact";
 
@@ -21,6 +23,11 @@ export default defineConfig({
       },
     ],
   },
+  markdown: {
+    shikiConfig: {
+      transformers: [transformerTwoslash(), addCopyButton({ toggle: 1000 })],
+    },
+  },
   integrations: [
     starlight({
       title: "Membrane",
@@ -28,7 +35,12 @@ export default defineConfig({
       editLink: {
         baseUrl: "https://github.com/membrane-io/docs/edit/main",
       },
-      customCss: ["./src/base.css"],
+      expressiveCode: false,
+      customCss: [
+        "./src/styles/base.css",
+        "@shikijs/twoslash/style-rich.css",
+        "./src/styles/copy-button.css",
+      ],
       logo: {
         light: "./src/assets/title-dark.svg",
         dark: "./src/assets/title-light.svg",
