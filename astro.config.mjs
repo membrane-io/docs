@@ -85,6 +85,10 @@ export default defineConfig({
               link: "/features/endpoints/",
             },
             {
+              label: "Program Connections",
+              link: "/features/connections/",
+            },
+            {
               label: "Email handlers",
               link: "/features/email/",
             },
