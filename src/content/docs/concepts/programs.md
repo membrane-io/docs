@@ -1,8 +1,8 @@
 ---
-title: Structure of a Program
+title: Programs
 ---
 
-A `program` is TypeScript or JavaScript code that runs in Membrane's serverless cloud runtime. Unlike traditional serverless services, it's [stateful](/features/state/) and consists of multiple handlers instead of a single function.
+A `program` is TypeScript or JavaScript code that runs in Membrane's serverless cloud runtime. Unlike traditional serverless runtimes, it's [stateful](/features/state/) and consists of multiple handlers instead of a single function.
 
 A Membrane program consists of:
 
