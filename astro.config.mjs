@@ -120,20 +120,16 @@ export default defineConfig({
           label: "Concepts",
           items: [
             {
-              label: "Mental model",
-              link: "/concept/mental-model/",
-            },
-            {
               label: "Programs",
-              link: "/concept/programs/",
+              link: "/concepts/programs/",
             },
             {
               label: "The Graph",
-              link: "/concept/the-graph/",
+              link: "/concepts/the-graph/",
             },
             {
               label: "Drivers",
-              link: "/concept/drivers/",
+              link: "/concepts/drivers/",
             },
           ],
         },
