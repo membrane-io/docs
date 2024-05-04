@@ -22,6 +22,7 @@ declare module "membrane" {
 // @filename: index.ts
 // ---cut---
 import { state } from "membrane";
+//       ^^^^^
 
 export interface State {
   count: number;
