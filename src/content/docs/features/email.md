@@ -1,8 +1,8 @@
 ---
-title: Programs that send and receive email
+title: Email Handlers
 ---
 
-Membrane programs can receive emails similarly to how they handle [HTTP endpoints](/features/endpoints/). All you need to do is export an `email` function from the root of your program and use its the program's unique email address.
+Membrane programs are capable of sending and receiving emails. Recieving an email works similar to how [HTTP endpoints](/features/endpoints/) are handled. All you need to do is export an `email` function from the root of your program and use the program's unique email address.
 
 ## Basic Example
 
