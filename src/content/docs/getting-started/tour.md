@@ -4,7 +4,7 @@ title: Extension Tour
 
 When you open the extension and log in you should be greeted with this view.
 
-![Workspace Preview](/cloud-assets/workspace-preview.png)
+![workspace-preview](/cloud-assets/workspace-preview.png)
 
 On the left is the [Explorer Panel]() where you can see what programs are deployed to your workspace, create new programs, explore a program's graph, update a program's schema and more.
 
