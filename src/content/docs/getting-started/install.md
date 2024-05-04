@@ -13,7 +13,7 @@ Membrane's primary interface is its VSCode extension. It handles deploying progr
 
 Install the extension via [VSCode's marketplace website](https://marketplace.visualstudio.com/items?itemName=membrane.membrane) or by searching `Membrane` in the extensions market place directly in vscode.
 
-<video class="aspect-video !m-8" src="/cloud-assets/membrane-install.mp4" muted autoplay loop></video>
+<video src="/cloud-assets/membrane-install.mp4" muted autoplay loop></video>
 
 ### Welcome Screen
 

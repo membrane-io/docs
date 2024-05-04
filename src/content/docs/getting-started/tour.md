@@ -16,4 +16,4 @@ Along the button, under the welcome screen, is the [Logs Panel](). The logs pane
 
 Some users prefer having their explorer panel on the right side of the screen so they can still use the file explorer, search, and other features of VSCode without having to continually switch panels.
 
-<video class="aspect-video !m-8" src="/cloud-assets/move-panel.mp4" muted autoplay loop/>
+<video  src="/cloud-assets/move-panel.mp4" muted autoplay loop/>

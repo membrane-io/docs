@@ -55,6 +55,13 @@
   max-width: 88%;
 }
 
+/* Add some better default styling to videos */
+.sl-markdown-content video {
+  max-width: 720px;
+  margin: theme(margin.8);
+  aspect-ratio: 16 / 9;
+}
+
 /* 
   Tweak big box buttons and modals to use distinctive Membrane box styling 
   Also ensures colors work well with dark mode
