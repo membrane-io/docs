@@ -5,6 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 import { transformerTwoslash } from "@shikijs/twoslash";
 import { addCopyButton } from "shiki-transformer-copy-button";
+import { popoverTransformer } from "./src/popover-transformer.mjs";
 
 import preact from "@astrojs/preact";
 
@@ -25,10 +26,22 @@ export default defineConfig({
   },
   markdown: {
     shikiConfig: {
-      transformers: [transformerTwoslash(), addCopyButton({ toggle: 1000 })],
+      transformers: [
+        transformerTwoslash(),
+        addCopyButton({ toggle: 1000 }),
+        popoverTransformer(),
+      ],
     },
   },
   integrations: [
+    {
+      name: "shiki-popover",
+      hooks: {
+        "astro:config:setup": ({ config, addWatchFile }) => {
+          addWatchFile(new URL("./src/popover-transformer.mjs", config.root));
+        },
+      },
+    },
     starlight({
       title: "Membrane",
       favicon: "/favicon.png",

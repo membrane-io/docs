@@ -81,11 +81,7 @@ dialog {
 }
 
 .sl-container .twoslash {
-  .twoslash-popup-container {
-    background: var(--sl-color-bg-inline-code);
-    /* border-color: var(--sl-color-hairline-light); */
-  }
-  .twoslash-popup-docs {
-    color: unset;
-  }
+  overflow-y: hidden;
+  --twoslash-popup-bg: var(--sl-color-bg-inline-code);
+  --twoslash-docs-color: var(--sl-color-text);
 }
