@@ -2,12 +2,14 @@
 title: Structure of a Program
 ---
 
+A `program` is TypeScript or JavaScript code that runs in Membrane's serverless cloud runtime. Unlike traditional serverless services, it's [stateful](/features/state/) and consists of multiple handlers instead of a single function.
+
 A Membrane program consists of:
 
 - **Code**: TypeScript/JavaScript handlers for fields, actions and events.
 - **Schema**: nodes exposed in the graph. The program's own API.
 - **Dependencies**: nodes used by the program.
-- **An HTTP endpoint**: receive request on the program's own URL.
+- **Implicit Handlers**: optional functions that recieve HTTP requests, emails, etc.
 
 ## Graph and Schema
 

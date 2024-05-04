@@ -2,7 +2,7 @@
 title: Durable State
 ---
 
-One of the fundamental features that separates Membrane from other serverless runtimes is that it's _stateful_. That means you can store state in one call to a program and use it again in a subsequent call.
+One of the fundamental features that separates Membrane from other serverless runtimes is that it's _stateful_. That means you can store state in one call to a [program](/concepts/programs/) and use it again in a subsequent call.
 
 ## Basic Example
 
