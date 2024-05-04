@@ -2,7 +2,7 @@
 title: Program Dependencies
 ---
 
-Like other JavaScript runtimes, you can install a dependency from NPM via `npm`, `yarn`, etc and directly import that dependency in your program.
+Like other JavaScript runtimes, you can install a dependency from NPM via `npm`, `yarn`, etc and directly import that dependency in your program. That's not the only way to share code though!
 
 <!-- TODO: ## Add an NPM Dependency -->
 
