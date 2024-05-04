@@ -8,18 +8,27 @@
  */
 
 import type { APIRoute } from "astro";
-import manifest from "cloud-assets/manifest.json";
+import manifest from "~/cloud-assets/manifest.json";
+import { imageConfig, getConfiguredImageService } from "astro:assets";
+import mime from "mime/lite";
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ redirect, url }) => {
+export const GET: APIRoute = async ({ url, redirect }) => {
   // TODO: This should be updated to be a custom URL
-  const ASSET_PREFIX = "https://pub-9f5707ce32c7495d9687b939883b271d.r2.dev";
-  const asset_url = `${ASSET_PREFIX}/${
-    manifest.assets[url.pathname.replace("/cloud-assets/", "")]
-  }`;
+  const ASSET_HOST = "https://pub-9f5707ce32c7495d9687b939883b271d.r2.dev";
+  const ASSET_PATH =
+    manifest.assets[
+      url.pathname.split("cloud-assets/")[1] as keyof typeof manifest.assets
+    ];
+  if (!ASSET_PATH) {
+    return new Response("asset not found", { status: 404 });
+  }
+
+  const asset_url = new URL(ASSET_PATH, ASSET_HOST);
+  asset_url.search = url.search;
 
   // In production let's pull directly from the CDN
   // Preferably this isn't called at all and is just handled by a rewrite rule
-  return redirect(asset_url);
+  return fetch(asset_url);
 };

@@ -3,7 +3,7 @@ import fs from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { join, parse } from "node:path";
 import { fileURLToPath } from "node:url";
-import manifest from "../cloud-assets/manifest.json" assert { type: "json" };
+import manifest from "../src/cloud-assets/manifest.json" assert { type: "json" };
 import { promisify } from "node:util";
 import { exec as execCallback } from "node:child_process";
 const exec = promisify(execCallback);
@@ -20,19 +20,16 @@ const hashFile = (path) =>
 
 /**
  *  Uploads a file from the cloud-assets directory to the docs-assets bucket in R2
- * @param filePath {string} - The path to a file in the cloud-assets directory
+ * @param file {string} - The path to a file in the cloud-assets directory
  */
-export default async function uploadAsset(filePath) {
-  if (filePath.endsWith("manifest.json")) {
+export default async function uploadAsset(file) {
+  if (file.endsWith("manifest.json")) {
     console.warn("Skipping manifest file upload");
     return;
   }
-  const asset = filePath.startsWith("cloud-assets")
-    ? filePath
-    : join("cloud-assets", filePath);
-  const { name, ext } = parse(filePath);
+  const asset = join("src", "cloud-assets", file);
+  const { name, ext } = parse(file);
   return hashFile(asset).then(async (hash) => {
-    const file = filePath.replace("cloud-assets/", "");
     const hashFile = `${name}-${hash}${ext}`;
 
     if (manifest.assets[file] === hashFile) {
@@ -44,7 +41,7 @@ export default async function uploadAsset(filePath) {
       `wrangler r2 object put docs-assets/${hashFile} --file=${asset}`
     );
     await writeFile(
-      "cloud-assets/manifest.json",
+      "src/cloud-assets/manifest.json",
       JSON.stringify(
         {
           assets: {

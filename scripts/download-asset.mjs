@@ -1,4 +1,4 @@
-import manifest from "../cloud-assets/manifest.json" assert { type: "json" };
+import manifest from "../src/cloud-assets/manifest.json" assert { type: "json" };
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
 import https from "node:https";
@@ -26,7 +26,7 @@ export default function downloadAsset(filePath) {
     throw new Error(`No asset found for ${filePath}`);
   }
   const url = `https://pub-9f5707ce32c7495d9687b939883b271d.r2.dev/${asset}`;
-  const path = join("cloud-assets", file);
+  const path = join("src", "cloud-assets", file);
   return downloadFile(url, path);
 }
 
