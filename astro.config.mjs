@@ -15,6 +15,7 @@ export default defineConfig({
   // This should be handled by a rewrite rule instead of being allowed to redirect
   redirects: {
     "/": "/getting-started/intro/",
+    "/discord/": "https://discord.gg/sbRcqC7QxE",
   },
   image: {
     remotePatterns: [

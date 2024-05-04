@@ -4,7 +4,7 @@ description: An overview of Membrane and its uses
 ---
 
 :::note
-These docs are still a work-in-progress. If you have any questions, please [reach out to us on discord](https://discord.gg/sbRcqC7QxE)
+These docs are still a work-in-progress. If you have any questions, please [reach out to us on discord](/discord/)
 :::
 
 :::caution[TODO]
