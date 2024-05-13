@@ -7,8 +7,6 @@ import { transformerTwoslash } from "@shikijs/twoslash";
 import { addCopyButton } from "shiki-transformer-copy-button";
 import { popoverTransformer } from "./src/popover-transformer.mjs";
 
-import preact from "@astrojs/preact";
-
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
@@ -174,7 +172,6 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    preact(),
   ],
   adapter: vercel(),
 });

@@ -3,14 +3,10 @@
  *
  * During production we don't actually want this route to be called at all. What we really want
  * is for a rewrite rule to trigger that points to the CDN directly.
- *
- * TODO: Write a script that syncs the contents of the `cloud-assets` directory with the CDN
  */
 
 import type { APIRoute } from "astro";
 import manifest from "~/cloud-assets/manifest.json";
-import { imageConfig, getConfiguredImageService } from "astro:assets";
-import mime from "mime/lite";
 
 export const prerender = false;
 
