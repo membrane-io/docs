@@ -12,7 +12,7 @@
     "download": "NODE_NO_WARNINGS=1 node scripts/download-asset.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
+    "@astrojs/check": "^0.7.0",
     "@astrojs/starlight": "^0.21.5",
     "@astrojs/starlight-tailwind": "^2.0.2",
     "@astrojs/tailwind": "^5.1.0",
