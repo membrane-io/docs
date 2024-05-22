@@ -21,7 +21,7 @@ When the extension starts it displays a welcome screen. This screen aids in sign
 
 ---
 
-## Membrane CLI (`mctl`)
+# Membrane CLI
 
 Membrane also includes a CLI tool called `mctl`. The CLI is for more advanced use-cases and isn't required when first starting out. Feel free to skip ahead to the next section.
 
