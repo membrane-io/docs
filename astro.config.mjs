@@ -7,6 +7,9 @@ import { transformerTwoslash } from "@shikijs/twoslash";
 import { addCopyButton } from "shiki-transformer-copy-button";
 import { popoverTransformer } from "./src/popover-transformer.mjs";
 
+import { fromMarkdown } from "mdast-util-from-markdown";
+import { toHast, defaultHandlers } from "mdast-util-to-hast";
+
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
@@ -26,7 +29,36 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       transformers: [
-        transformerTwoslash(),
+        transformerTwoslash({
+          rendererRich: {
+            jsdoc: true,
+            renderMarkdown(code) {
+              // Implementation from https://github.com/shikijs/shiki/blob/a46ca6b96f3e9526b967669c56e180ca21b7b9ad/packages/vitepress-twoslash/src/renderer-floating-vue.ts#L153
+              const mdast = fromMarkdown(code);
+              return toHast(mdast, {
+                handlers: {
+                  code: (state, node) => {
+                    const lang = node.lang || "";
+                    if (lang) {
+                      return {
+                        type: "element",
+                        tagName: "code",
+                        properties: {},
+                        children: this.codeToHast(node.value, {
+                          ...this.options,
+                          transformers: [],
+                          lang,
+                          structure: "inline",
+                        }).children,
+                      };
+                    }
+                    return defaultHandlers.code(state, node);
+                  },
+                },
+              }).children;
+            },
+          },
+        }),
         addCopyButton({ toggle: 1000 }),
         popoverTransformer(),
       ],
