@@ -11,7 +11,51 @@ This program receives an email and uses the `email` program to forward the email
 ```ts twoslash
 // @module: esnext
 // @filename: membrane.d.ts
+declare namespace email {
+  namespace values {
+    interface Root {
+      gref?: handles.Root;
+    }
+  }
+  namespace handles {
+    interface Root extends Field<values.Root> {
+      gref: Scalar<Root> & (() => Scalar<Root>);
+      send: (args: { subject: string; body: string }) => Promise<void>;
+      endpoint: Action<string> &
+        ((args: {
+          method: string;
+          path: string;
+          body?: string;
+          query?: string;
+          headers: string;
+        }) => Action<string>);
+      email: Action<string> &
+        ((args: {
+          replyTo?: string;
+          text: string;
+          from: string;
+          to: string;
+          cc?: string;
+          subject: string;
+          html: string;
+          id: string;
+          inReplyTo?: string;
+          replyText?: string;
+          attachments?: Json;
+        }) => Action<string>);
+    }
+  }
+
+  type Root = handles.Root;
+}
 declare module "membrane" {
+  export const nodes: {
+    /**
+     * Note that this node will only be present if the email
+     * program is [added as a connection](/features/connections/).
+     */
+    readonly email: email.Root;
+  };
   namespace resolvers {
     export interface Root {
       email(args: {
@@ -31,8 +75,9 @@ declare module "membrane" {
   }
 }
 
-// ---cut---
 import type { resolvers } from "membrane";
+// ---cut---
+import { nodes } from "membrane";
 
 // Handler to receive a emails
 export const email: resolvers.Root["email"] = (args) => {
@@ -40,6 +85,7 @@ export const email: resolvers.Root["email"] = (args) => {
 
   // Send yourself an email
   await nodes.email.send({
+    //        ^^^^^
     subject: "Received a new email from Membrane!",
     body: `
       Program ${to} recieved an email from ${from} titled ${subject}
