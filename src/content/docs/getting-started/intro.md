@@ -11,7 +11,7 @@ These docs are still a work-in-progress. If you have any questions, please [reac
 Add a visualization that communicates what membrane is in a few seconds.
 :::
 
-[Membrane](https://membrane.io) is a serverless [TypeScript](https://www.typescriptlang.org/) runtime for building automations and integrations that are deployed and managed directly from [VSCode](https://code.visualstudio.com/).
+[Membrane](https://membrane.io) is a serverless JavaScript and [TypeScript](https://www.typescriptlang.org/) runtime for building automations and integrations that are deployed and managed directly from [VSCode](https://code.visualstudio.com/).
 
 Cron-jobs, workflows, Discord bots, polling websites, handling webhooks, are perfect use-cases for Membrane.
 
