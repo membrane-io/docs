@@ -9,6 +9,7 @@ import { popoverTransformer } from "./src/popover-transformer.mjs";
 
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { toHast, defaultHandlers } from "mdast-util-to-hast";
+import cliHelpLang from "./cli-help.tmLanguage.json";
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,6 +29,7 @@ export default defineConfig({
   },
   markdown: {
     shikiConfig: {
+      langs: [cliHelpLang],
       transformers: [
         transformerTwoslash({
           rendererRich: {
@@ -70,6 +72,7 @@ export default defineConfig({
       hooks: {
         "astro:config:setup": ({ config, addWatchFile }) => {
           addWatchFile(new URL("./src/popover-transformer.mjs", config.root));
+          addWatchFile(new URL("./cli-help.tmLanguage.json", config.root));
         },
       },
     },

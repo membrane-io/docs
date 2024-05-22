@@ -1,0 +1,69 @@
+{
+  "displayName": "CLI Help",
+  "scopeName": "source.cli-help",
+  "name": "cli-help",
+  "patterns": [
+    {
+      "name": "keyword.cli-help",
+      "match": "^[A-Z][A-Z\\s]+:$"
+    },
+    {
+      "name": "string.cli-help",
+      "match": "\\s-[a-zA-Z]"
+    },
+    {
+      "name": "string.cli-help",
+      "match": "\\s--[a-zA-Z0-9\\-]+"
+    },
+    {
+      "comment": "Otional arguments",
+      "name": "comment.cli-help",
+      "begin": "\\[",
+      "end": "\\]"
+    },
+    {
+      "name": "string.cli-help",
+      "match": "^\\s{2}\\b[a-z][a-z\\-]+\\b"
+    },
+    {
+      "name": "entity.name.type",
+      "begin": "<",
+      "end": ">"
+    },
+    {
+      "name": "string.quoted.double.cli-help",
+      "begin": "\"",
+      "end": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.cli-help"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.cli-help"
+        }
+      }
+    },
+    {
+      "name": "string.quoted.single.cli-help",
+      "begin": "`",
+      "end": "`",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.cli-help"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.cli-help"
+        }
+      }
+    },
+    {
+      "name": "comment.cli-help",
+      "match": "#.*$"
+    }
+  ],
+  "repository": {}
+}
