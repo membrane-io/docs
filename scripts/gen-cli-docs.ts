@@ -7,7 +7,7 @@ const cliFilePath = join(Deno.cwd(), "src/content/docs/reference/cli.md");
 
 let cliDocs = await Deno.readTextFile(cliFilePath);
 
-const [_, usage, subcommands] = cliDocs.split(/<!-- .* -->\s*/);
+const [_, usage] = cliDocs.split(/<!-- .* -->\s*/);
 
 // Update main CLI output
 
@@ -17,6 +17,8 @@ const newUsage = usage.replace(
 );
 
 cliDocs = cliDocs.replace(usage, newUsage);
+
+// Generate subcommand usage
 
 // Iterate over subcommands and update their output
 const commands = await Promise.all(
