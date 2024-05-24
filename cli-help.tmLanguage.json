@@ -9,7 +9,7 @@
     },
     {
       "name": "string.cli-help",
-      "match": "\\s-[a-zA-Z]"
+      "match": "\\s-[a-zA-Z0-9@?]"
     },
     {
       "name": "string.cli-help",
@@ -23,7 +23,7 @@
     },
     {
       "name": "string.cli-help",
-      "match": "^\\s{2}\\b[a-z][a-z\\-]+\\b"
+      "match": "^\\s{4}\\b[a-z][a-z\\-]+\\b"
     },
     {
       "name": "entity.name.type",
