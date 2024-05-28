@@ -10,5 +10,5 @@
       "cloud-assets/*": ["cloud-assets/*"],
     }
   },
-  "include": ["src/**/*", "scripts/*"]
+  "include": ["src/**/*"]
 }
