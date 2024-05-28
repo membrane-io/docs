@@ -23,8 +23,7 @@ Nodes are referred to by the program's name followed by a colon and then a path 
 
 ## Fields
 
-Types can define fields, which represent values which can be read from it. Continuing with more
-examples from the [github driver](https://github.com/membrane-io/membrane-driver-github):
+Types can define fields, which represent values which can be read from it. Continuing with more examples from the [github driver](https://github.com/membrane-io/membrane-driver-github):
 
 - `github:status` field of type `String` via the `status` field of the `Root` type.
 - `github:users` field of type `UserCollection` via the `users` field of the `Root` type.
@@ -38,10 +37,8 @@ We call these references "handles" or "grefs" (short for graph reference).
 
 ## Actions
 
-Types can also define actions. Which are essentially functions that can be invoked in the context of a graph node.
-Importantly, actions are graph nodes as well so they can be passed around and referenced just like fields.
+Types can also define actions. Which are essentially functions that can be invoked in the context of a graph node. Importantly, actions are graph nodes as well so they can be passed around and referenced just like fields.
 
 ## Events
 
-Programs can subscribe an action to handle an event. When an event is emitted, the action will be invoked with an
-additional parameter called `event`.
+Programs can subscribe an action to handle an event. When an event is emitted, the action will be invoked with an additional parameter called `event`.

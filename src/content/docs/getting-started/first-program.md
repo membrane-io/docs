@@ -6,7 +6,7 @@ Creating a new program is easy. Just open up the extension, click the `NEW` butt
 
 <video src="/cloud-assets/first-program.mp4" muted autoplay loop></video>
 
-In this video we create a program called `new-program`, open its logs, and invoke its `run` [`action`]() by clicking the `invoke` helper above the action. The results of the invocation can be seen in the logs.
+In this video we create a program called `new-program`, open its logs, and invoke its `run` [`action`](/concepts/the-graph#actions) by clicking the `invoke` helper above the action. The results of the invocation can be seen in the logs.
 
 ## Exploring the tutorial program
 
