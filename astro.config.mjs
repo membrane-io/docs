@@ -171,10 +171,6 @@ export default defineConfig({
           label: "Reference",
           items: [
             {
-              label: "Membrane module",
-              link: "/reference/types/",
-            },
-            {
               label: "Mctl (CLI)",
               link: "/reference/cli/",
             },
@@ -191,10 +187,6 @@ export default defineConfig({
                   link: "/reference/vscode/settings/",
                 },
               ],
-            },
-            {
-              label: "Browser Extension",
-              link: "/reference/browser/",
             },
           ],
         },
