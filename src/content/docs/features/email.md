@@ -12,7 +12,7 @@ Membrane also supports sms! To send yourself a text programmatically, add the `s
 
 ## Basic Example
 
-This program receives an email and uses the `email` program to forward the email to the currently signed in user's inbox. In order to run this program make sure you [add `email` as a dependency](/features/connections/#add-a-program-connection)
+This program receives an email and uses the `email` program to forward the email to the currently signed in user's inbox. In order to run this program make sure you [add `email` as a dependency](/features/connections/#add-a-program-connection).
 
 ```ts twoslash
 // @module: esnext
