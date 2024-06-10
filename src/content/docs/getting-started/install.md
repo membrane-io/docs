@@ -22,11 +22,8 @@ The welcome screen also links to an interactive `getting-started` tutorial progr
 
 Membrane also includes a CLI tool called `mctl`. The CLI is for more advanced use cases and isn't required when first starting out. Feel free to skip ahead to the next section.
 
-If you're on osx you can install `mctl` via homebrew:
+You can install `mctl` for any platform via npm:
 
 ```sh
-brew tap membrane-io/mctl
-brew install mctl
+npm install -g @membrane/mctl
 ```
-
-For other platforms, refer to the [releases page](https://github.com/membrane-io/mctl-releases/releases).
