@@ -2,13 +2,7 @@
 title: HTTP Endpoints
 ---
 
-<!--
-TODO: Show the following:
-
-- Copying the endpoint URL from gaze
-- How to programmatically get the endpoint
-- An example of the request logs
- -->
+<!-- TODO: add how to programmatically get the endpoint -->
 
 Every Membrane program has its own URL and can handle requests made to that URL. This provides a simple mechanism for calling into your membrane programs from the outside world.
 
@@ -48,6 +42,10 @@ export const endpoint: resolvers.Root["endpoint"] = (req) => {
   }
 };
 ```
+
+You can copy a program's endpoint by right clicking on it in the Explorer panel. When your program endpoint receives a request it gets logged, so you can inspect it in the Logs panel.
+
+<video src="/cloud-assets/copy-endpoint.mp4" muted autoplay loop></video>
 
 :::note
 Currently the endpoint function must return a string. We're working to improve this.

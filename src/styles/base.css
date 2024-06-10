@@ -55,11 +55,15 @@
   max-width: 88%;
 }
 
-/* Add some better default styling to videos */
-.sl-markdown-content video {
+/* Add some better default styling to videos, images */
+.sl-markdown-content video,
+.sl-markdown-content img {
+  width: 100%;
   max-width: 720px;
-  margin: theme(margin.8);
+  border: 0;
+  margin: 16px 0 32px 0;
   aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 /* 

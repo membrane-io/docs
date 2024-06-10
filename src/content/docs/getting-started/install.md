@@ -8,8 +8,6 @@ Membrane's primary interface is the Membrane Web IDE (fork of VS Code). The IDE 
 
 Visit [membrane.io/ide](https://www.membrane.io/ide) to sign up and open your Membrane workspace.
 
-<!-- TODO: add gif of web IDE startup -->
-
 ### Welcome screen
 
 When the IDE starts up you'll see Membrane's Program Explorer and Program Logs panels and a welcome screen. The welcome screen provides a tour of the Explorer and Logs.
