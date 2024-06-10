@@ -4,16 +4,22 @@ description: An overview of Membrane and its uses
 ---
 
 :::note
-These docs are still a work-in-progress. If you have any questions, please [reach out to us on discord](/discord/)
+These docs are a work-in-progress. Feel free to open a PR [on GitHub](https://github.com/membrane-io/docs) for fixes/improvements. If you have any questions, please [reach out to us on discord](/discord/).
 :::
+
+[Membrane](https://membrane.io) is a serverless JavaScript and TypeScript runtime for building automations and integrations. Membrane programs are deployed and managed directly through the [Membrane Web IDE](/getting-started/install#membrane-web-ide).
+
+Membrane significantly lowers friction to run cron jobs and workflows, create Discord and Slack bots, poll websites, handle webhooks, and more.
 
 <!-- TODO: Add a visualization that communicates what membrane is in a few seconds -->
 
-[Membrane](https://membrane.io) is a serverless JavaScript and [TypeScript](https://www.typescriptlang.org/) runtime for building automations and integrations that are deployed and managed directly from [VSCode](https://code.visualstudio.com/).
+## Where to start
 
-Cron-jobs, workflows, Discord bots, polling websites, handling webhooks, are perfect use-cases for Membrane.
+If you'd like to read more about Membrane's features and architecture before diving in, start with [Durable State](/features/state). Or if you'd prefer to browse examples first, head to [membrane.io](https://www.membrane.io/example-sms-reminders) or check out our [directory](https://github.com/membrane-io/directory) of examples and API drivers on GitHub.
 
-## Features
+<!-- TODO: keeping this content below here only so that I can transfer it to other sections. I think the intro should be short and sweet. -->
+
+<!-- ## Features
 
 - Durable JavaScript/TypeScript engine. Membrane programs can run forever and the program state is transparently persisted between runs.
 - Data Graph. A powerful abstraction that's used for communication between programs and the outside world.
@@ -55,4 +61,4 @@ The Membrane Graph is a powerful abstraction with many benefits:
 The graph guarantees that programs (especially ones you didn't write) can do what they say they do, and nothing
 else. It also enables visibility into everything a program has done. Nothing is opaque in Membrane.
 
-Membrane programs can't directly make network requests. Instead, they interact with the world via graph nodes. Even `fetch` uses the graph behind the scene.
+Membrane programs can't directly make network requests. Instead, they interact with the world via graph nodes. Even `fetch` uses the graph behind the scene. -->
