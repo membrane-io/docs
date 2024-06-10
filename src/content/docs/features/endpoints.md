@@ -10,7 +10,7 @@ TODO: Show the following:
 - An example of the request logs
  -->
 
-Every program has its own URL and can handle requests made to that URL. This provides a simple mechanism for calling into your membrane programs from the outside world.
+Every Membrane program has its own URL and can handle requests made to that URL. This provides a simple mechanism for calling into your membrane programs from the outside world.
 
 ```ts twoslash
 // @module: esnext
