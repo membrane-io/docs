@@ -113,7 +113,7 @@ export default defineConfig({
               link: "/getting-started/install/",
             },
             {
-              label: "Create a Program",
+              label: "Create a program",
               link: "/getting-started/first-program/",
             },
           ],
@@ -126,7 +126,7 @@ export default defineConfig({
               link: "/features/state/",
             },
             {
-              label: "HTTP Endpoints",
+              label: "HTTP endpoints",
               link: "/features/endpoints/",
             },
             {
@@ -157,6 +157,10 @@ export default defineConfig({
             {
               label: "The Graph",
               link: "/concepts/the-graph/",
+            },
+            {
+              label: "Schema",
+              link: "/concepts/schema/",
             },
             {
               label: "Drivers",

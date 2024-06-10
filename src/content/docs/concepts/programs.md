@@ -2,63 +2,33 @@
 title: Programs
 ---
 
-A _program_ is TypeScript or JavaScript code that runs in Membrane's serverless cloud runtime. Unlike traditional serverless runtimes, it is [stateful](/features/state/) and includes multiple handlers instead of a single function.
+Membrane is similar to an operating system; you deploy programs to the Membrane engine, and it takes care of persistence, communication, logging, resources, etc.
+
+A Membrane _program_ is TypeScript or JavaScript code that runs in Membrane's serverless cloud runtime. Unlike traditional serverless runtimes, it is [stateful](/features/state/) and includes multiple handlers instead of a single function.
 
 A Membrane program consists of:
 
-- **Code**: TypeScript/JavaScript handlers for fields, actions and events
+- **Code**: TypeScript/JavaScript functions for fields, actions and events
 - **Schema**: nodes exposed in [the graph](/concepts/the-graph)—the program's own API
-- **Dependencies**: nodes used by the program
-- **Implicit Handlers**: optional functions that recieve HTTP requests, emails, etc.
+- **Connections**: other programs—nodes—used by the program
+- **Implicit Handlers**: optional functions, e.g. to receive [HTTP requests](/features/endpoints)
 
-## Graph and Schema
+In Membrane, you build custom functionality (bots, workflows, etc.) by writing programs. Programs can reference each other's nodes to create powerful abstractions.
 
-Programs that expose data and functionality do so by exposing a _graph_ of nodes.
+## Example: GitHub notifications in Discord
 
-To expose a graph, programs declare a _schema_ that determines the shape of its nodes and how they relate to each other. A schema is composed of types, and each type is composed of _fields_, _actions_ and _events_.
+As a starting user, you'll first install [drivers](/concepts/drivers) to talk to APIs for apps you already use, then write programs using the nodes exposed by those drivers to build something useful to you or your team. You can also always use `fetch` and/or build your own drivers if you want.
 
-- **Fields**: queryable nodes and values
-- **Actions**: invocable functions on a node
-- **Events**: subscribable notifications
+For example, you could write a program that listens to a GitHub repo and sends you messages in Discord when there are new commits (this program [already exists](https://github.com/membrane-io/example-github-discord-tracker/tree/901e198ae309294024d6a0eee4fd37b67b865b1a), if you're interested).
 
-A program's schema must always define a type named `Root` which serves as the entry point into the rest of its graph. You can add types to a program's schema through the Explorer panel.
+Or maybe you'd like the notification in Slack, or via email, or even via text. You can edit the program however you'd like—a Membrane program exposes the full power of whatever you can code, but lowers friction with built-in persistence and utilities out of the box.
 
-<!-- TODO: video of adding a type -->
+## Code organization
 
-## Code
+A Membrane program contains at least three files:
 
-Core program logic lives in a `your-program/index.ts` or `your-program/index.js` file that exports resolver functions.
+1. **`index.ts|js`:** contains core logic and exports resolver functions
+2. **`memconfig.json`:** describes your schema with all fields, actions, events, and connections. It's automatically generated, so you should never have to edit this file by hand
+3. **`memconfig.lock`:** tracks versions of nodes in your graph. It's also automatically generated, and you should never have to edit it manually
 
-## Dependencies
-
-Programs declare ahead of time the nodes needed from the graph.
-
-These handles are then available as variables in the `nodes` object from the `membrane` module. To add a dependency to a program, drag it from the Explorer panel into the schema viewer.
-
-<!-- TODO: video of adding a dependency -->
-
-## State object
-
-Programs have a `state` object that persists state between updates (i.e. deploying your program on save) and invocations (i.e. running your program manually or on a timer). `state` is imported from the `membrane` module.
-
-:::note
-Technically, since the entire JS heap is continually persisted, you could just use module-level variables to store
-state. But since each update creates a new ES Module, prior values are not accessible from newer modules, hence the need
-for `state` to share state across different version of the program's code (i.e. different ESM modules).
-:::
-
-## Endpoint
-
-Each Membrane program has its own publicly available domain name which they can use to respond to HTTP requests.
-
-To access a program's endpoint URL, right click on the program in the Explorer panel.
-
-<!-- TODO: video of accessing the endpoint URL -->
-
-<!-- TODO: uncomment and expand section when Chrome extension is re-deployed -->
-<!-- ## Expressions
-
-Programs can declare that they recognize certain text expressions and are able to turn them into corresponding node
-handles.
-
-This is what allows the browser plugin to scan a web page and find the corresponding handles. -->
+Your program's directory may also include a `README.md`, `package.json` with npm dependencies, `.git`, and whatever other helpers and structure you'd like.
