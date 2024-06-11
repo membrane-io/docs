@@ -12,7 +12,7 @@ As a mental model, you can think of all your different Membrane programs as node
 
 The Membrane Graph is a powerful abstraction that:
 
-- Unifies how data is read regardless of its source, be it an API or npm package
+- Unifies how data is read regardless of its source, be it an API or your own data
 - Abstracts away particularities of individual APIs like pagination, data formats, headers, webhook models, URL encoding, etc.
 - Provides a way to declaratively reference data in a fine-grained way
 - Allows for easy understanding of the flow of events and data
