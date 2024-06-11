@@ -43,10 +43,14 @@ export const endpoint: resolvers.Root["endpoint"] = (req) => {
 };
 ```
 
-You can copy a program's endpoint by right clicking on it in the Explorer panel. When your program endpoint receives a request it gets logged, so you can inspect it in the Logs panel.
-
-<video src="/cloud-assets/copy-endpoint.mp4" muted autoplay loop></video>
-
 :::note
 Currently the endpoint function must return a string. We're working to improve this.
 :::
+
+## Accessing an endpoint URL
+
+To access a program's endpoint URL in your code, call `await nodes.process.endpointUrl`.
+
+You can also copy a program's endpoint by right clicking on it in the Explorer panel. When your program endpoint receives a request it will be logged, so you can inspect it in the Logs panel.
+
+<video src="/cloud-assets/copy-endpoint.mp4" muted autoplay loop></video>
