@@ -2,7 +2,7 @@
 title: Membrane Control CLI (mctl)
 ---
 
-Nearly any operation that can be performed in the vscode extension can also be completed in the CLI.
+Nearly any operation that can be performed in the Membrane Web IDE can also be completed in the CLI.
 
 See the [installation page](/getting-started/install/#membrane-cli) for setup instructions.
 
@@ -55,14 +55,14 @@ SUBCOMMANDS:
     workspace-path           Prints the path to the workspace
 ```
 
-
 <!-- SUBCOMMANDS -->
+
 ## Subcommands
 
 ### action
 
 ```cli-help
-mctl-action 
+mctl-action
 Invokes an action on a node
 
 USAGE:
@@ -75,11 +75,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### assign
 
 ```cli-help
-mctl-assign 
+mctl-assign
 Assigns a program to a particular mnode (admin only)
 
 USAGE:
@@ -93,11 +92,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### auth-token
 
 ```cli-help
-mctl-auth-token 
+mctl-auth-token
 Prints the auth token from the config file
 
 USAGE:
@@ -107,11 +105,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### clone
 
 ```cli-help
-mctl-clone 
+mctl-clone
 Clones an existing program creating a brand new one in your workspace and updates it
 
 USAGE:
@@ -125,11 +122,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### create
 
 ```cli-help
-mctl-create 
+mctl-create
 Create a new program
 
 USAGE:
@@ -142,11 +138,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### details
 
 ```cli-help
-mctl-details 
+mctl-details
 Fetches the detail of an item by its "seq" number
 
 USAGE:
@@ -154,17 +149,16 @@ USAGE:
 
 ARGS:
     <PID>    Program id to stream the logs of
-    <SEQ>    
+    <SEQ>
 
 OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### exit-node
 
 ```cli-help
-mctl-exit-node 
+mctl-exit-node
 Starts an HTTP exit node. Outgoing traffic from all programs will be routed through this computer
 
 USAGE:
@@ -176,11 +170,10 @@ OPTIONS:
                                        auth headers
 ```
 
-
 ### get-transpiled-source
 
 ```cli-help
-mctl-get-transpiled-source 
+mctl-get-transpiled-source
 Downloads the transpiled source code of a running program
 
 USAGE:
@@ -194,11 +187,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### git-clone
 
 ```cli-help
-mctl-git-clone 
+mctl-git-clone
 Clones a program from a github repo to your workspace
 
 USAGE:
@@ -212,11 +204,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### ide
 
 ```cli-help
-mctl-ide 
+mctl-ide
 Opens your Membrane workspace in Visual Studio Code ensuring the extension is installed
 
 USAGE:
@@ -226,11 +217,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### kill
 
 ```cli-help
-mctl-kill 
+mctl-kill
 Kill a running program
 
 USAGE:
@@ -243,11 +233,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### login
 
 ```cli-help
-mctl-login 
+mctl-login
 Log into your account
 
 USAGE:
@@ -257,11 +246,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### logs
 
 ```cli-help
-mctl-logs 
+mctl-logs
 Stream the logs of a program
 
 USAGE:
@@ -274,11 +262,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### ps
 
 ```cli-help
-mctl-ps 
+mctl-ps
 List running programs
 
 USAGE:
@@ -290,11 +277,10 @@ OPTIONS:
         --names-only    Only print program names
 ```
 
-
 ### query
 
 ```cli-help
-mctl-query 
+mctl-query
 Queries a program
 
 USAGE:
@@ -308,11 +294,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### repl
 
 ```cli-help
-mctl-repl 
+mctl-repl
 Enter into a program's REPL mode
 
 USAGE:
@@ -326,11 +311,10 @@ OPTIONS:
     -h, --help                       Print help information
 ```
 
-
 ### resolve-types
 
 ```cli-help
-mctl-resolve-types 
+mctl-resolve-types
 Updates memconfig.lock with the most recent types
 
 USAGE:
@@ -343,11 +327,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### tag
 
 ```cli-help
-mctl-tag 
+mctl-tag
 Tags a gref so it can be used like `#tag:`
 
 USAGE:
@@ -361,11 +344,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### test
 
 ```cli-help
-mctl-test 
+mctl-test
 Runs all tests actions in a program
 
 USAGE:
@@ -378,11 +360,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### update
 
 ```cli-help
-mctl-update 
+mctl-update
 Update a new program
 
 USAGE:
@@ -393,14 +374,13 @@ ARGS:
 
 OPTIONS:
     -h, --help                       Print help information
-        --no-restore <NO_RESTORE>    
+        --no-restore <NO_RESTORE>
 ```
-
 
 ### workspace-init
 
 ```cli-help
-mctl-workspace-init 
+mctl-workspace-init
 Initializes a directory to be a Membrane workspace
 
 USAGE:
@@ -410,11 +390,10 @@ OPTIONS:
     -h, --help    Print help information
 ```
 
-
 ### workspace-path
 
 ```cli-help
-mctl-workspace-path 
+mctl-workspace-path
 Prints the path to the workspace
 
 USAGE:
@@ -425,4 +404,3 @@ OPTIONS:
 ```
 
 <!-- END -->
-

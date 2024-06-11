@@ -6,6 +6,8 @@ One fundamental feature that separates Membrane from other serverless runtimes i
 
 Programs have a `state` object that persists state between updates (i.e. deploying your program on save) and invocations (i.e. running your program manually or on a timer). To keep data around, put it in the `state` object, and that's it.
 
+You can think of it as: JavaScript objects as the database.
+
 ## Basic Example
 
 ```ts twoslash
@@ -39,7 +41,7 @@ export function count() {
 
 ## What durable state unlocks
 
-Persistent `state` means you can store state in one call to a Membrane [program](/concepts/programs/) and use it again in a subsequent call. You don't need to store data in a database or file to persist it—instead, the state of your program (the JS heap) is transparently and efficiently persisted every time it changes.
+Persistent `state` means you can store state in one call to a Membrane program and use it again in a subsequent call. You don't need to store data in a database or file to persist it—instead, the state of your program (the JS heap) is transparently and efficiently persisted every time it changes.
 
 :::note
 Technically, since the entire JS heap is continually persisted, you could just use module-level variables to store

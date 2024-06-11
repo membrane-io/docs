@@ -2,7 +2,7 @@
 title: Timers
 ---
 
-Membrane [programs](/concepts/programs/) can be invoked manually or automatically, on a timer. Membrane supports three types of timers:
+Membrane programs can be invoked manually or automatically, on a timer. Membrane supports three types of timers:
 
 1. Delays
 2. Scheduled
