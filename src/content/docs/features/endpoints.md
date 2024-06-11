@@ -2,8 +2,6 @@
 title: HTTP Endpoints
 ---
 
-<!-- TODO: add how to programmatically get the endpoint -->
-
 Every Membrane program has its own URL and can handle requests made to that URL. This provides a simple mechanism for calling into your membrane programs from the outside world.
 
 ```ts twoslash
