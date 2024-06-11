@@ -2,11 +2,17 @@
 title: Email Handlers
 ---
 
-Membrane programs are capable of sending and receiving emails. Recieving an email works similar to how [HTTP endpoints](/features/endpoints/) are handled. All you need to do is export an `email` function from the root of your program and use the program's unique email address.
+All Membrane programs are capable of sending and receiving emails. Receiving an email works similarly to how [HTTP endpoints](/features/endpoints/) are handled. All you need to do is export an `email` function from the root of your program and use the program's unique email address.
+
+<!-- TODO: create reference section for `sms` and link to that instead -->
+
+:::tip
+Membrane also supports sms! To send yourself a text programmatically, add the `sms` program—installed in your workspace by default—as a connection and call `nodes.sms.send({ message: "hi from Membrane" })`. Don't forget to configure `sms` with your phone number first!
+:::
 
 ## Basic Example
 
-This program receives an email and uses the `email` program to forward the email to the currently signed in user's inbox. In order to run this program make sure you [add `email` as a dependency](/features/dependencies/#add-a-program-dependency)
+This program receives an email and uses the `email` program to forward the email to the currently signed in user's inbox. In order to run this program make sure you [add `email` as a dependency](/features/connections/#add-a-program-connection).
 
 ```ts twoslash
 // @module: esnext

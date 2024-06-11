@@ -94,6 +94,7 @@ export default defineConfig({
         replacesTitle: true,
       },
       social: {
+        discord: "https://discord.gg/sbRcqC7QxE",
         github: "https://github.com/withastro/starlight",
         twitter: "https://twitter.com/membraneio",
       },
@@ -112,11 +113,7 @@ export default defineConfig({
               link: "/getting-started/install/",
             },
             {
-              label: "Extension Tour",
-              link: "/getting-started/tour/",
-            },
-            {
-              label: "Create a Program",
+              label: "Create a program",
               link: "/getting-started/first-program/",
             },
           ],
@@ -129,7 +126,7 @@ export default defineConfig({
               link: "/features/state/",
             },
             {
-              label: "HTTP Endpoints",
+              label: "HTTP endpoints",
               link: "/features/endpoints/",
             },
             {
@@ -162,6 +159,10 @@ export default defineConfig({
               link: "/concepts/the-graph/",
             },
             {
+              label: "Schema",
+              link: "/concepts/schema/",
+            },
+            {
               label: "Drivers",
               link: "/concepts/drivers/",
             },
@@ -171,22 +172,12 @@ export default defineConfig({
           label: "Reference",
           items: [
             {
-              label: "Mctl (CLI)",
-              link: "/reference/cli/",
+              label: "IDE",
+              link: "/reference/ide/",
             },
             {
-              label: "VSCode Extension",
-              collapsed: true,
-              items: [
-                {
-                  label: "Commands",
-                  link: "/reference/vscode/commands/",
-                },
-                {
-                  label: "Settings",
-                  link: "/reference/vscode/settings/",
-                },
-              ],
+              label: "mctl (CLI)",
+              link: "/reference/cli/",
             },
           ],
         },

@@ -2,16 +2,20 @@
 title: Creating your first program
 ---
 
-Creating a new program is easy. Just open up the extension, click the `NEW` button, and select which type of program you'd like to create.
+Creating a new Membrane program is easy.
 
-<video src="/cloud-assets/first-program.mp4" muted autoplay loop></video>
+1. Open the [Membrane IDE](https://membrane.io/ide)
+2. Click the `NEW` button and select which type of program you'd like to create
+3. Invoke your new program
 
-In this video we create a program called `new-program`, open its logs, and invoke its `run` [`action`](/concepts/the-graph#actions) by clicking the `invoke` helper above the action. The results of the invocation can be seen in the logs.
+<video src="/cloud-assets/new-program.mp4" muted autoplay loop></video>
+
+In this video we create a program called `new-program`, open its logs, and invoke its `run` [action](/concepts/the-graph#actions) by selecting the program in the Explorer panel. The results of the invocation can be seen in the logs.
 
 ## Exploring the tutorial program
 
-When you first sign in, Membrane automatically installs a few programs in your workspace. One of those programs is called `getting-started`. This is a guided tutorial to walk you though some of usages of Membrane. Let's open up the tutorial.
+When you first sign in, Membrane automatically installs a few programs in your workspace. One of those programs is `getting-started`, a guided tutorial to walk you through core Membrane features.
 
-<video src="/cloud-assets/go-to-code.mp4" muted autoplay loop></video>
+<video src="/cloud-assets/getting-started.mp4" muted autoplay loop></video>
 
-Follow along the tutorial program to learn more about using Membrane or continue to the next sections to learn more about its features in depth.
+If you haven't already, we recommend going through the tutorial program to learn more about using Membrane. Or, continue to the next sections to learn more about Membrane features in depth.
