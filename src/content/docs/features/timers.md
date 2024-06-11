@@ -12,9 +12,9 @@ To set up a timer, navigate to the Explorer panel, click on any program, find th
 
 <!-- TODO: add video of creating a timer from the explorer -->
 
-## Setting up timers programmatically
+## Setting up timers in code
 
-You can also set up timers in a Membrane program's code. These three commands correspond to the three types of timers listed above:
+You can also set up timers programmatically in Membrane. These three methods can be chained to actions, corresponding to the three types of timers listed above:
 
 1. `.$invokeIn()`
 2. `.$invokeAt()`
