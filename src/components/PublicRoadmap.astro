@@ -1,0 +1,54 @@
+---
+interface Task {
+  id: string;
+  name: string;
+  description: string;
+  status: string;
+}
+
+const PUBLIC_ROADMAP_ENDPOINT = "https://depth-108-knife-781-buy-129-bat.hook.membrane.io/";
+const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json());
+
+import { Badge } from '@astrojs/starlight/components'
+import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schemas/badge';
+---
+
+<ul class="list">
+  {tasks.map(({ id, name, description, status }) => {
+    let variant: BadgeComponentProps["variant"] = 'tip';
+    if (status === 'in-progress') variant = 'caution';
+    if (status === 'done') variant = 'success';
+    
+    return (<li id={id}>
+      <article class="row">
+        <Badge text={status} variant={variant} class="badge" />
+        <p><strong>{name}</strong></p>
+        <p>{description}</p>
+      </article>
+    </li>)
+})}
+</ul>
+
+<style>
+  .list {
+    padding: 0;
+  }
+  
+  .list li {
+    list-style: none;
+  }
+  
+  .row {
+    position: relative;
+    padding: 16px;
+    padding-right: 80px;
+    border: 1px solid #eaeaea;
+    margin-bottom: 16px;
+  }
+
+  .badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+</style>
