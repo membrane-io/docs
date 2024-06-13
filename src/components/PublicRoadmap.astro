@@ -25,7 +25,7 @@ import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schema
       <article class="row">
         <Badge text={status} variant={variant} class="badge" />
         <p class="title"><strong>{name}</strong></p>
-        <p>{description}</p>
+        <pre class="description">{description}</pre>
       </article>
     </li>)
 })}
@@ -43,7 +43,7 @@ import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schema
   .row {
     position: relative;
     padding: 16px;
-    padding-right: 120px;
+    padding-right: 124px;
     border: 1px solid #eaeaea;
     margin-bottom: 16px;
   }
@@ -56,5 +56,11 @@ import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schema
 
   .title {
     text-wrap: balance;
+  }
+
+  .row > .description {
+    border: none;
+    padding: 0;
+    white-space: pre-wrap;
   }
 </style>
