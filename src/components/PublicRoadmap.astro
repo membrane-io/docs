@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 interface Task {
   id: string;
   name: string;
@@ -9,7 +11,7 @@ interface Task {
 const PUBLIC_ROADMAP_ENDPOINT = "https://depth-108-knife-781-buy-129-bat.hook.membrane.io/";
 const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json());
 
-import { Badge } from '@astrojs/starlight/components'
+import { Badge } from '@astrojs/starlight/components';
 import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schemas/badge';
 ---
 
