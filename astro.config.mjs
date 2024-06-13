@@ -185,15 +185,15 @@ export default defineConfig({
               label: "mctl (CLI)",
               link: "/reference/cli/",
             },
-            {
-              label: "Public roadmap",
-              link: "/reference/roadmap/",
-            },
           ],
         },
         {
           label: "FAQ",
           link: "/faq/",
+        },
+        {
+          label: "Public roadmap",
+          link: "/roadmap/",
         },
       ],
     }),

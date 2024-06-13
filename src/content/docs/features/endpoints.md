@@ -29,8 +29,6 @@ declare module "membrane" {
 }
 
 // ---cut---
-import type { resolvers } from "membrane";
-
 export const endpoint: resolvers.Root["endpoint"] = (req) => {
   switch (`${req.method} ${req.path}`) {
     case "GET /":
