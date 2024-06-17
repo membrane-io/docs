@@ -14,6 +14,7 @@ import cliHelpLang from "./cli-help.tmLanguage.json";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "hybrid",
   // This should be handled by a rewrite rule instead of being allowed to redirect
   redirects: {
     "/": "/getting-started/intro/",
@@ -196,5 +197,5 @@ export default defineConfig({
     }),
     react(),
   ],
-  output: "hybrid",
+  adapter: vercel(),
 });
