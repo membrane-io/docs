@@ -5,7 +5,7 @@ description: Membrane's public roadmap, fetched dynamically from a Membrane prog
 
 export const prerender = false;
 
-import PublicRoadmap from "../../components/PublicRoadmap.astro";
+import PublicRoadmap from "../../components/PublicRoadmap";
 
 This roadmap is generated dynamically from a [Membrane program we wrote](https://github.com/membrane-io/operations/tree/main/public-roadmap) to fetch tasks from our `public-roadmap` list in [Height](https://height.app/product).
 
@@ -13,4 +13,4 @@ That program uses the [height driver](https://github.com/membrane-io/membrane-dr
 
 ## What's ahead
 
-<PublicRoadmap />
+<PublicRoadmap client:only />

@@ -5,10 +5,19 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "cloud-assets/*": ["cloud-assets/*"],
-    }
+      "~/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "cloud-assets/*": [
+        "cloud-assets/*"
+      ]
+    },
+    "jsxImportSource": "react"
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }

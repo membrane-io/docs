@@ -19,6 +19,7 @@
  */
 :root {
   --__sl-font: "Source Sans 3", sans-serif;
+  --__sl-mono-font: "MonoRegular", monospace;
   --sl-line-height: 1.4;
 }
 

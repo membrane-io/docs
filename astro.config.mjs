@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLinksValidator from "starlight-links-validator";
+import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 import { transformerTwoslash } from "@shikijs/twoslash";
@@ -200,5 +201,6 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
+    react(),
   ],
 });
