@@ -15,10 +15,10 @@ import cliHelpLang from "./cli-help.tmLanguage.json";
 export default defineConfig({
   output: "hybrid", // default to static, but allow SSR opt-in per page
   adapter: vercel({
-    isr: {
-      // caches server rendered pages on first request and saves for 1 day
-      expiration: 60 * 60 * 24,
-    },
+    // isr: {
+    //   // caches server rendered pages on first request and saves for 1 day
+    //   expiration: 60 * 60 * 24,
+    // },
   }),
   // This should be handled by a rewrite rule instead of being allowed to redirect
   redirects: {
