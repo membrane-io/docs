@@ -8,8 +8,6 @@ interface Task {
   name: string;
   description: string;
   status: string;
-  numUpvotes: number;
-  hasUpvoted: boolean;
 }
 
 const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json());
