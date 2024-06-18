@@ -1,0 +1,22 @@
+export const prerender = false;
+
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import PublicRoadmap from "../components/PublicRoadmap.astro";
+
+<StarlightPage
+  frontmatter={{
+    title: "Public roadmap",
+    description:
+      "Membrane's public roadmap, fetched dynamically from a Membrane program",
+  }}
+>
+
+This roadmap is generated dynamically from a [Membrane program we wrote](https://github.com/membrane-io/operations/tree/main/public-roadmap) to fetch tasks from our `public-roadmap` list in [Height](https://height.app/product).
+
+That program uses the [height driver](https://github.com/membrane-io/membrane-driver-height), which simplifies interacting with Height's API. Feel free to fork the program! Or if you'd like to set up something similar for a different tool (e.g. [Linear](https://linear.app/)), reach out to us [on Discord](https://discord.gg/sbRcqC7QxE)—we'd be happy to help.
+
+## What's ahead
+
+<PublicRoadmap />
+
+</StarlightPage>

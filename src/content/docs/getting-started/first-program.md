@@ -10,7 +10,7 @@ Creating a new Membrane program is easy.
 
 <video src="/cloud-assets/new-program.mp4" muted autoplay loop></video>
 
-In this video we create a program called `new-program`, open its logs, and invoke its `run` [action](/concepts/the-graph#actions) by selecting the program in the Explorer panel. The results of the invocation can be seen in the logs.
+In this video we create a program called `new-program`, open its logs, and invoke its `run` [action](/concepts/schema#actions) by selecting the program in the Explorer panel. The results of the invocation can be seen in the logs.
 
 ## Exploring the tutorial program
 
