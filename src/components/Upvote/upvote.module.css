@@ -1,0 +1,17 @@
+.upvote {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: transparent;
+  border: 1px solid var(--sl-color-text);
+  border-radius: 4px;
+  font-family: var(--__sl-font-mono);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 100ms, border-color 100ms;
+}
+
+.hasUpvoted {
+  border-color: var(--sl-color-text-accent);
+  background-color: #dedcff;
+}
