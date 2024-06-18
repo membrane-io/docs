@@ -2,25 +2,20 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLinksValidator from "starlight-links-validator";
 import tailwind from "@astrojs/tailwind";
+import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
 import { transformerTwoslash } from "@shikijs/twoslash";
 import { addCopyButton } from "shiki-transformer-copy-button";
-import { popoverTransformer } from "./src/popover-transformer.mjs";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { toHast, defaultHandlers } from "mdast-util-to-hast";
-import cliHelpLang from "./cli-help.tmLanguage.json";
 
-import react from "@astrojs/react";
+import { popoverTransformer } from "./src/popover-transformer.mjs";
+import cliHelpLang from "./cli-help.tmLanguage.json";
 
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid", // default to static, but allow SSR opt-in per page
-  adapter: vercel({
-    isr: {
-      // cache server rendered pages on first request and save for 1 hour
-      expiration: 60 * 60,
-    },
-  }),
+  adapter: vercel(),
   redirects: {
     "/": "/getting-started/intro/",
   },
