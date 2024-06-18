@@ -16,7 +16,7 @@ const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json(
 ---
 
 <ul class="list">
-  {tasks.map(({ id, name, description, status, numUpvotes, hasUpvoted }) => {
+  {tasks.map(({ id, name, description, status }) => {
     let variant: BadgeComponentProps["variant"] = 'tip';
     if (status === 'in-progress') variant = 'caution';
     if (status === 'done') variant = 'success';
@@ -26,7 +26,7 @@ const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json(
         <Badge text={status} variant={variant} class="badge" />
         <p class="title"><strong>{name}</strong></p>
         <pre class="description">{description}</pre>
-        <Upvote id={id} numUpvotes={numUpvotes} hasUpvoted={hasUpvoted} client:load>
+        <Upvote id={id} client:load>
           <Icon name="up-caret" size="1.25rem" />
         </Upvote>
       </article>
