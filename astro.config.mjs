@@ -15,7 +15,12 @@ import cliHelpLang from "./cli-help.tmLanguage.json";
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid", // default to static, but allow SSR opt-in per page
-  adapter: vercel(),
+  adapter: vercel({
+    isr: {
+      // cache server rendered pages on first request and save for 1 hour
+      expiration: 60 * 60,
+    },
+  }),
   redirects: {
     "/": "/getting-started/intro/",
   },

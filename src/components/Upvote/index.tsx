@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./upvote.module.css";
 
 export const PUBLIC_ROADMAP_ENDPOINT =
@@ -7,15 +7,26 @@ export const PUBLIC_ROADMAP_ENDPOINT =
 interface UpvoteProps {
   children: React.ReactNode;
   id: string;
-  numUpvotes: number;
-  hasUpvoted: boolean;
 }
 
-const Upvote = ({ children, id, numUpvotes, hasUpvoted }: UpvoteProps) => {
-  const [didUpvote, setDidUpvote] = useState(hasUpvoted);
-  const [upvotes, setUpvotes] = useState(numUpvotes);
+const Upvote = ({ children, id }: UpvoteProps) => {
+  const [didUpvote, setDidUpvote] = useState(false);
+  const [upvotes, setUpvotes] = useState<number | null>(null);
+
+  useEffect(() => {
+    async function fetchUpvotes() {
+      const response = await fetch(`${PUBLIC_ROADMAP_ENDPOINT}/upvotes/${id}`);
+      const { hasUpvoted, numUpvotes } = await response.json();
+      setDidUpvote(hasUpvoted);
+      setUpvotes(numUpvotes);
+    }
+
+    fetchUpvotes();
+  }, []);
 
   async function handleUpvote() {
+    if (upvotes === null) return;
+
     setDidUpvote(!didUpvote);
     setUpvotes(didUpvote ? upvotes - 1 : upvotes + 1);
 
