@@ -6,10 +6,11 @@ import vercel from "@astrojs/vercel/serverless";
 import { transformerTwoslash } from "@shikijs/twoslash";
 import { addCopyButton } from "shiki-transformer-copy-button";
 import { popoverTransformer } from "./src/popover-transformer.mjs";
-
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { toHast, defaultHandlers } from "mdast-util-to-hast";
 import cliHelpLang from "./cli-help.tmLanguage.json";
+
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -197,5 +198,6 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
+    react(),
   ],
 });
