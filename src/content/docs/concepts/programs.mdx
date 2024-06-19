@@ -2,6 +2,8 @@
 title: Programs
 ---
 
+import { FileTree } from '@astrojs/starlight/components';
+
 Membrane is similar to an operating system; you deploy programs to the Membrane engine, and it takes care of persistence, communication, logging, resources, etc.
 
 A Membrane _program_ is TypeScript or JavaScript code that runs in Membrane's serverless cloud runtime. Unlike traditional serverless runtimes, it is [stateful](/features/state/) and includes multiple handlers instead of a single function.
@@ -26,6 +28,13 @@ Or maybe you'd like the notification in Slack, or via email, or even via text. Y
 ## Code organization
 
 A Membrane program contains at least three files:
+
+<FileTree>
+- your-program/
+  - index.ts
+  - memconfig.json
+  - memconfig.lock
+</FileTree>
 
 1. **`index.ts|js`:** contains core logic and exports resolver functions
 2. **`memconfig.json`:** describes your schema with all fields, actions, events, and connections. It's automatically generated, so you should never have to edit this file by hand

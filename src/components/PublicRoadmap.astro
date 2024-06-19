@@ -1,4 +1,10 @@
 ---
+import { Badge, Icon } from '@astrojs/starlight/components';
+import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schemas/badge';
+
+import Upvote, { PUBLIC_ROADMAP_ENDPOINT } from './Upvote';
+import Feedback from './Feedback';
+
 interface Task {
   id: string;
   name: string;
@@ -6,16 +12,12 @@ interface Task {
   status: string;
 }
 
-const PUBLIC_ROADMAP_ENDPOINT = "https://board-414-play-563-abroad-64-hat.hook.membrane.io";
 const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json());
-
-import { Badge } from '@astrojs/starlight/components';
-import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schemas/badge';
 ---
 
 <ul class="list">
   {tasks.map(({ id, name, description, status }) => {
-    let variant: BadgeComponentProps["variant"] = 'tip';
+    let variant: BadgeComponentProps["variant"] = 'note';
     if (status === 'in-progress') variant = 'caution';
     if (status === 'done') variant = 'success';
     
@@ -24,6 +26,14 @@ import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schema
         <Badge text={status} variant={variant} class="badge" />
         <p class="title"><strong>{name}</strong></p>
         <pre class="description">{description}</pre>
+        <div class="actions">
+          <Upvote id={id} client:load>
+            <Icon name="up-caret" size="1.25rem" />
+          </Upvote>
+          <Feedback id={id} client:load>
+            <Icon name="right-arrow" size="1.25rem" />
+          </Feedback>
+        </div>
       </article>
     </li>)
 })}
@@ -43,7 +53,7 @@ import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schema
     padding: 16px;
     padding-right: 124px;
     border: 1px solid #eaeaea;
-    margin-bottom: 16px;
+    margin: 16px 0;
   }
 
   .badge {
@@ -59,6 +69,13 @@ import { type BadgeComponentProps } from 'node_modules/@astrojs/starlight/schema
   .row > .description {
     border: none;
     padding: 0;
+    margin: 16px 0;
     white-space: pre-wrap;
+  }
+
+  .row > .actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 </style>
