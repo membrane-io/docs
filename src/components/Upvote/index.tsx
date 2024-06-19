@@ -31,10 +31,9 @@ const Upvote = ({ children, id }: UpvoteProps) => {
     setUpvotes(didUpvote ? upvotes - 1 : upvotes + 1);
 
     await fetch(
-      `${PUBLIC_ROADMAP_ENDPOINT}/${didUpvote ? "downvote" : "upvote"}`,
+      `${PUBLIC_ROADMAP_ENDPOINT}/${didUpvote ? "downvote" : "upvote"}/${id}`,
       {
         method: "POST",
-        body: JSON.stringify({ id }),
         headers: { "Content-Type": "application/json" },
       }
     );

@@ -11,7 +11,12 @@
   transition: background-color 100ms, border-color 100ms;
 }
 
-.hasUpvoted {
+[data-theme="light"] .hasUpvoted {
   border-color: var(--sl-color-text-accent);
   background-color: #dedcff;
+}
+
+[data-theme="dark"] .hasUpvoted {
+  border-color: var(--sl-color-text-accent);
+  background-color: #4339ff;
 }
