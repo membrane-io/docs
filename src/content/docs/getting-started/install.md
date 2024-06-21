@@ -12,7 +12,13 @@ Visit [membrane.io/ide](https://www.membrane.io/ide) to sign up and open your Me
 
 When the IDE starts up you'll see Membrane's Program Explorer and Program Logs panels and a welcome screen. The welcome screen provides a tour of the Explorer and Logs.
 
-The welcome screen also links to an interactive `getting-started` tutorial program that comes pre-installed in every user's workspace. We highly recommend going through that hands-on tutorial as your first Membrane program!
+The welcome screen also links to an interactive `getting-started` tutorial program that comes pre-installed in every user's workspace.
+
+<video src="/cloud-assets/getting-started.mp4" muted autoplay loop></video>
+
+:::tip
+We highly recommend going through the `getting-started` tutorial as your first Membrane program. It's a hands-on way to learn core features and concepts by doing.
+:::
 
 ---
 
