@@ -186,12 +186,16 @@ export default defineConfig({
           ],
         },
         {
-          label: "FAQ",
-          link: "/faq/",
+          label: "Examples",
+          link: "/examples/",
         },
         {
           label: "Public roadmap",
           link: "/roadmap/",
+        },
+        {
+          label: "FAQ",
+          link: "/faq/",
         },
       ],
     }),

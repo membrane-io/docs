@@ -3,7 +3,7 @@ import fs from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { join, parse } from "node:path";
 import { fileURLToPath } from "node:url";
-import manifest from "../src/cloud-assets/manifest.json" assert { type: "json" };
+import manifest from "../src/cloud-assets/manifest.json" with { type: "json" };
 import { promisify } from "node:util";
 import { exec as execCallback } from "node:child_process";
 const exec = promisify(execCallback);
