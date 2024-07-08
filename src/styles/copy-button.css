@@ -4,11 +4,11 @@ pre:has(code) {
 
 pre button.copy {
   position: absolute;
-  right: 16px;
-  top: 16px;
-  height: 32px;
-  width: 32px;
-  padding: 4px;
+  right: 10px;
+  top: 10px;
+  height: 24px;
+  width: 24px;
+  padding: 0;
   display: flex;
   border-radius: 4px;
   background-color: var(--astro-code-color-background);
