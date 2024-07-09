@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/events/:path*",
+      "destination": "https://app.posthog.com/:path*"
+    }
+  ]
+}
