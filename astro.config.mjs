@@ -130,6 +130,10 @@ export default defineConfig({
               link: "/features/state/",
             },
             {
+              label: "Observability",
+              link: "/features/observability/",
+            },
+            {
               label: "HTTP endpoints",
               link: "/features/endpoints/",
             },
