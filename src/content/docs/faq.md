@@ -18,4 +18,4 @@ or browser programs in a couple of fundamental ways:
 
 ## Do NPM modules work?
 
-Many NPM modules can be used in membrane, but not all of them, especially if they depend on specific Node.js APIs. We strive to provide a compatibility layer, but it's still work-in-progress.
+Many NPM modules can be used in Membrane, but not all of them, especially if they depend on specific Node.js APIs. We strive to provide a compatibility layer, but it's still work-in-progress.
