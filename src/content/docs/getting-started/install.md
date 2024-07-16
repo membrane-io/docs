@@ -8,16 +8,16 @@ Membrane's primary interface is the Membrane Web IDE (fork of VS Code). The IDE 
 
 Visit [membrane.io/ide](https://www.membrane.io/ide) to sign up and open your Membrane workspace.
 
-### Welcome screen
+### Orienting yourself in the IDE
 
-When the IDE starts up you'll see Membrane's Program Explorer and Program Logs panels and a welcome screen. The welcome screen provides a tour of the Explorer and Logs.
+When the IDE starts up, you'll see Membrane's Program Explorer (sidebar), Program Logs (bottombar), and a welcome/start screen (active tab). The welcome tab provides a quick tour of the Explorer and Logs.
 
-The welcome screen also links to an interactive `getting-started` tutorial program that comes pre-installed in every user's workspace.
+The welcome tab also links to an interactive `getting-started` tutorial that comes pre-installed in your workspace. We recorded a [video walk-through of the tutorial](https://share.descript.com/view/Smb0rEUzMkk) if you'd like to follow along with each step.
 
 <video src="/cloud-assets/getting-started.mp4" muted autoplay loop></video>
 
 :::tip
-We highly recommend going through the `getting-started` tutorial as your first Membrane program. It's a hands-on way to learn core features and concepts by doing.
+We recommend going through the `getting-started` tutorial as your first Membrane program (with our [video recording](https://share.descript.com/view/Smb0rEUzMkk), if you'd like). It's a hands-on way to learn core features and concepts by doing.
 :::
 
 ---
