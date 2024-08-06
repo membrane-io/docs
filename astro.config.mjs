@@ -106,6 +106,10 @@ export default defineConfig({
       plugins: [starlightLinksValidator()],
       sidebar: [
         {
+          label: "↖ membrane.io",
+          link: "https://membrane.io",
+        },
+        {
           label: "Getting Started",
           items: [
             {
