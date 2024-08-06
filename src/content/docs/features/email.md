@@ -4,6 +4,8 @@ title: Email Handlers
 
 All Membrane programs are capable of sending and receiving emails. Receiving an email works similarly to how [HTTP endpoints](/features/endpoints/) are handled. All you need to do is export an `email` function from the root of your program and use the program's unique email address.
 
+To get a program's email address, right click the program name from the Membrane Explorer home and select "Copy Email Address" from the context menu.
+
 <!-- TODO: create reference section for `sms` and link to that instead -->
 
 :::tip
@@ -85,7 +87,7 @@ import type { resolvers } from "membrane";
 // ---cut---
 import { nodes } from "membrane";
 
-// Handler to receive a emails
+// Handler to receive emails
 export const email: resolvers.Root["email"] = (args) => {
   const { to, from, subject, text } = args;
 
@@ -102,4 +104,16 @@ export const email: resolvers.Root["email"] = (args) => {
     `,
   });
 };
+```
+
+## Attachments
+
+Email handlers support receiving attachments via the `attachments` property on the object passed to the function. `attachments` is an array of attachment objects with a `downloadUrl` and `name`.
+
+You can access attachment data by `fetch`'ing from the `downloadUrl` and parsing like so:
+
+```js
+const { name, downloadUrl } = attachments[0];
+const data = await fetch(downloadUrl);
+const buffer = await data.bytes(); // OR: await data.arrayBuffer()
 ```
