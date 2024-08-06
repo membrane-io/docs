@@ -16,6 +16,8 @@ or browser programs in a couple of fundamental ways:
 1. All communication happens through the graph
    - Even `fetch` is implemented using graph nodes
 
-## Do NPM modules work?
+## Do npm modules work?
 
-Many NPM modules can be used in Membrane, but not all of them, especially if they depend on specific Node.js APIs. We strive to provide a compatibility layer, but it's still work-in-progress.
+Many npm modules can be used in Membrane, but not all of them, especially if they depend on specific Node.js APIs that we don't yet support. Please reach out if you find a package that fails to load due to missing functionality, we would be more than happy to implement it.
+
+To use an npm package, create a `package.json` file, add any packages to `dependencies`, and save the program. We'd like to close any runtime support gaps, so feel free to reach out at `contact@membrane.io` if you run into compatibility issues.

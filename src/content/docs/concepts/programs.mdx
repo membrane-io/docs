@@ -2,7 +2,7 @@
 title: Programs
 ---
 
-import { FileTree } from '@astrojs/starlight/components';
+import { FileTree } from "@astrojs/starlight/components";
 
 Membrane is similar to an operating system; you deploy programs to the Membrane engine, and it takes care of persistence, communication, logging, resources, etc.
 
@@ -21,7 +21,7 @@ In Membrane, you build custom functionality (bots, workflows, etc.) by writing p
 
 As a starting user, you'll first install [drivers](/concepts/drivers) to talk to APIs for apps you already use, then write programs using the nodes exposed by those drivers to build something useful to you or your team. You can also always use `fetch` and/or build your own drivers if you want.
 
-For example, you could write a program that listens to a GitHub repo and sends you messages in Discord when there are new commits (this program [already exists](https://github.com/membrane-io/example-github-discord-tracker/tree/901e198ae309294024d6a0eee4fd37b67b865b1a), if you're interested).
+For example, you could write a program that listens to a GitHub repo and sends you messages in Discord when there are new commits (this program <a href="https://github.com/membrane-io/example-github-discord-tracker/tree/901e198ae309294024d6a0eee4fd37b67b865b1a" target="_blank">already exists</a>, if you're interested).
 
 Or maybe you'd like the notification in Slack, or via email, or even via text. You can edit the program however you'd like—a Membrane program exposes the full power of whatever you can code, but lowers friction with built-in persistence and utilities out of the box.
 
@@ -30,10 +30,7 @@ Or maybe you'd like the notification in Slack, or via email, or even via text. Y
 A Membrane program contains at least three files:
 
 <FileTree>
-- your-program/
-  - index.ts
-  - memconfig.json
-  - memconfig.lock
+  - your-program/ - index.ts - memconfig.json - memconfig.lock
 </FileTree>
 
 1. **`index.ts|js`:** contains core logic and exports resolver functions
