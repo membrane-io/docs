@@ -12,6 +12,6 @@ If you do create a driver, feel free to submit a PR to our directory! We'd love 
 
 ## Installing drivers
 
-To install a driver in your Membrane graph, click the `New` button in the Explorer panel and select `Program Registry`. This will display all drivers and examples in the directory.
+To install a driver in your Membrane graph, click the `New` button in the Navigator panel and select `Program Registry`. This will display all drivers and examples in the directory.
 
 <video src="/cloud-assets/directory.mp4" muted autoplay loop></video>

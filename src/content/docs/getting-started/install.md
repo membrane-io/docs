@@ -10,7 +10,7 @@ Visit <a href="https://membrane.io/ide" target="_blank">membrane.io/ide</a> to s
 
 ### Orienting yourself in the IDE
 
-When the IDE starts up, you'll see Membrane's Program Explorer (sidebar), Program Logs (bottombar), and a welcome/start screen (active tab). The welcome tab provides a quick tour of the Explorer and Logs.
+When the IDE starts up, you'll see Membrane's Program Navigator (sidebar), Program Logs (bottombar), and a welcome/start screen (active tab). The welcome tab provides a quick tour of the Navigator and Logs.
 
 The welcome tab also links to an interactive `getting-started` tutorial that comes pre-installed in your workspace. We recorded a <a href="https://share.descript.com/view/Smb0rEUzMkk" target="_blank">video walk-through of the tutorial</a> if you'd like to follow along with each step.
 
