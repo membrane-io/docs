@@ -146,8 +146,12 @@ export default defineConfig({
               link: "/features/connections/",
             },
             {
-              label: "Email handlers",
+              label: "Email",
               link: "/features/email/",
+            },
+            {
+              label: "SMS",
+              link: "/features/sms/",
             },
             {
               label: "Timers",
