@@ -146,8 +146,12 @@ export default defineConfig({
               link: "/features/connections/",
             },
             {
-              label: "Email handlers",
+              label: "Email",
               link: "/features/email/",
+            },
+            {
+              label: "SMS",
+              link: "/features/sms/",
             },
             {
               label: "Timers",
@@ -184,7 +188,11 @@ export default defineConfig({
           label: "Reference",
           items: [
             {
-              label: "IDE",
+              label: "Core library",
+              link: "/reference/core/",
+            },
+            {
+              label: "Membrane IDE",
               link: "/reference/ide/",
             },
             {
