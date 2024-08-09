@@ -184,7 +184,11 @@ export default defineConfig({
           label: "Reference",
           items: [
             {
-              label: "IDE",
+              label: "Core library",
+              link: "/reference/core/",
+            },
+            {
+              label: "Membrane IDE",
               link: "/reference/ide/",
             },
             {
