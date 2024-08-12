@@ -19,7 +19,7 @@ const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json(
   {tasks.map(({ id, name, description, status }) => {
     let variant: BadgeComponentProps["variant"] = 'note';
     if (status === 'in-progress') variant = 'caution';
-    if (status === 'done') variant = 'success';
+    if (status === 'considering') variant = 'tip';
     
     return (<li id={id}>
       <article class="row">
