@@ -5,7 +5,7 @@ title: Send & receive sms
 Membrane includes an `sms` program—installed in your workspace by default—for sending and receiving text messages programmatically.
 
 :::note
-You can only configure one phone number at the moment (to send texts to yourself), but we plan to remove that limitation. [Send us a note](mailto:contact@membrane.io) if that's something you'd like asap, and/or upvote it on our [public roadmap](/roadmap).
+You can only configure one phone number at the moment (to send texts to yourself), but we plan to remove that limitation. [Send us a note](mailto:contact@membrane.io) if that's something you'd like asap, and/or upvote it on our [public roadmap](https://docs.membrane.io/roadmap).
 :::
 
 ## Configure
