@@ -130,7 +130,7 @@ export default defineConfig({
           label: "Features",
           items: [
             {
-              label: "Durable State",
+              label: "Durable state",
               link: "/features/state/",
             },
             {
@@ -188,11 +188,11 @@ export default defineConfig({
           label: "Reference",
           items: [
             {
-              label: "Core library",
-              link: "/reference/core/",
+              label: "membrane module",
+              link: "/reference/membrane-module/",
             },
             {
-              label: "Membrane IDE",
+              label: "IDE",
               link: "/reference/ide/",
             },
             {
