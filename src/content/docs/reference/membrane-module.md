@@ -6,6 +6,10 @@ Programs can access most of Membrane's functionality by importing the `"membrane
 
 In your IDE, you can cmd+click `"membrane"` in an import statement to open the `membrane.d.ts` module for that program. You'll see the types documented on this page, plus additional types specific to that program's schema.
 
+:::note
+`membrane.d.ts` will update whenever you update your program's schema or connections.
+:::
+
 ## Exports
 
 ### state

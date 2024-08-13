@@ -35,7 +35,7 @@ export function count() {
 }
 ```
 
-You can also provide type information for `state` by exporting a `State` type or interface.
+You can also provide type information for `state` by exporting a `State` type or interface. The [membrane module](/reference/membrane-module) imports this type/interface to add type information to state.
 
 ```ts twoslash
 // @module: esnext
