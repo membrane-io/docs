@@ -2,7 +2,7 @@
 title: membrane module
 ---
 
-Membrane programs can import functions and types from the `"membrane"` module.
+Programs can access most of Membrane's functionality by importing the `"membrane"` module. It provides exports that can be used to store program state, communicate with other programs and more.
 
 In your IDE, you can cmd+click `"membrane"` in an import statement to open the `membrane.d.ts` module for that program. You'll see the types documented on this page, plus additional types specific to that program's schema.
 
