@@ -130,7 +130,7 @@ export default defineConfig({
           label: "Features",
           items: [
             {
-              label: "Durable State",
+              label: "Durable state",
               link: "/features/state/",
             },
             {
@@ -146,8 +146,12 @@ export default defineConfig({
               link: "/features/connections/",
             },
             {
-              label: "Email handlers",
+              label: "Email",
               link: "/features/email/",
+            },
+            {
+              label: "SMS",
+              link: "/features/sms/",
             },
             {
               label: "Timers",
@@ -183,6 +187,10 @@ export default defineConfig({
         {
           label: "Reference",
           items: [
+            {
+              label: "membrane module",
+              link: "/reference/membrane-module/",
+            },
             {
               label: "IDE",
               link: "/reference/ide/",

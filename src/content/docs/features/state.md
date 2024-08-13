@@ -28,14 +28,33 @@ declare module "membrane" {
 import { state } from "membrane";
 //       ^^^^^
 
-export interface State {
-  count: number;
-}
-
 state.count ??= 0;
 
 export function count() {
   state.count++;
+}
+```
+
+You can also provide type information for `state` by exporting a `State` type or interface. The [membrane module](/reference/membrane-module) imports this type/interface to add type information to state.
+
+```ts twoslash
+// @module: esnext
+// @filename: membrane.d.ts
+type State = import("./index").State;
+declare module "membrane" {
+  /**
+   * This object is automatically persisted by Membrane.
+   * Its type is defined by the exported `State` interface
+   * below.
+   */
+  export const state: State;
+}
+
+// @filename: index.ts
+// ---cut---
+export interface State {
+  //             ^^^^^
+  count: number;
 }
 ```
 
