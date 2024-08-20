@@ -63,7 +63,7 @@ if (import.meta.url.startsWith("file:")) {
     const path = process.argv[2];
     if (!path) {
       throw new Error(
-        "Must specifiy a file in the cloud-assets directory to upload"
+        "Must specify a file in the cloud-assets directory to upload"
       );
     }
     await uploadAsset(path);

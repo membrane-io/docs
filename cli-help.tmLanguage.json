@@ -16,7 +16,7 @@
       "match": "\\s--[a-zA-Z0-9\\-]+"
     },
     {
-      "comment": "Otional arguments",
+      "comment": "Optional arguments",
       "name": "comment.cli-help",
       "begin": "\\[",
       "end": "\\]"
