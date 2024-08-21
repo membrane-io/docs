@@ -24,7 +24,7 @@ There are three places to store assets depending on their size and purpose.
 
 ### `public`
 
-This is for small, raw assets to be bundled with the deployed site with no transformations. Avoid adding images here. This is for mimimal assets that we want included in the bundle.
+This is for small, raw assets to be bundled with the deployed site with no transformations. Avoid adding images here. This is for minimal assets that we want included in the bundle.
 
 ### `src/assets`
 

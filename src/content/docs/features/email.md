@@ -90,7 +90,7 @@ export const email: resolvers.Root["email"] = (args) => {
     //        ^^^^^
     subject: "Received a new email from Membrane!",
     body: `
-      Program ${to} recieved an email from ${from} titled ${subject}
+      Program ${to} received an email from ${from} titled ${subject}
       
       Contents below
       ---
