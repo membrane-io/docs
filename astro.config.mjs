@@ -99,7 +99,7 @@ export default defineConfig({
         replacesTitle: true,
       },
       social: {
-        discord: "https://discord.gg/sbRcqC7QxE",
+        discord: "https://discord.gg/4RHyJDV8kj",
         github: "https://github.com/withastro/starlight",
         twitter: "https://twitter.com/membraneio",
       },
