@@ -4,7 +4,7 @@ description: An overview of Membrane and its uses
 ---
 
 :::note
-These docs are open source. Feel free to open a PR <a href="https://github.com/membrane-io/docs" target="_blank">on GitHub</a> for fixes/improvements. If you have any questions, please <a href="https://discord.gg/sbRcqC7QxE" target="_blank">reach out to us on Discord</a>.
+These docs are open source. Feel free to open a PR <a href="https://github.com/membrane-io/docs" target="_blank">on GitHub</a> for fixes/improvements. If you have any questions, please <a href="https://discord.gg/4RHyJDV8kj" target="_blank">reach out to us on Discord</a>.
 :::
 
 <a href="https://www.membrane.io" target="_blank">membrane.io</a> is a serverless JavaScript and TypeScript runtime for building automations and integrations. Membrane programs are deployed and managed directly through the [Membrane Web IDE](/getting-started/install#membrane-web-ide).
