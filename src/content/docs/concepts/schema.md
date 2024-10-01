@@ -69,6 +69,9 @@ With ```secondary: true```, you can make the field the second portion of that pr
 }
 ```
 
+![Alt text](../../../assets/primary_secondary.png)
+*Caption for the image goes here.*
+
 ### Format
 The format hint allows you to format a string as a URL in the Navigator.
 ```json
