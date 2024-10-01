@@ -69,9 +69,10 @@ With ```secondary: true```, you can make a field the second portion of that prev
 }
 ```
 
+*Primary in blue, secondary in green.*
+
 ![Alt text](../../../assets/primary_secondary.png)
 
-*Primary in blue, secondary in green.*
 
 ### Format
 The format hint allows you to format a string as a URL in the Navigator.
