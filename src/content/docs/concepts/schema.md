@@ -38,6 +38,65 @@ represent a different node in the graph.
 
 We call these references _handles_ or _grefs_ (short for graph reference).
 
+## Hints
+
+Hints provide information on how fields should be displayed in the Navigator.
+
+### Preview
+The preview hint allows you to show the field as a preview for the object to which it belongs.
+
+With ```primary: true```, you can make the field the first portion of that preview
+```json
+{
+  "name": "name",
+  "type": "String",
+  "hints": {
+    "primary": true
+  },
+  "description": "An example of a type"
+}
+```
+
+With ```secondary: true```, you can make the field the second portion of that preview
+```json
+{
+  "name": "name",
+  "type": "String",
+  "hints": {
+    "secondary": true
+  },
+  "description": "An example of a type"
+}
+```
+
+### Format
+The format hint allows you to format a string as a URL in the Navigator.
+```json
+{
+  "name": "http://example.com",
+  "type": "String",
+  "hints": {
+    "format": "url"
+  },
+  "description": "An example of a type"
+}
+```
+
+### Hidden
+The hidden hint can be used to mark a field that should not be displayed in the Navigator.
+
+```json
+{
+  "name": "http://example.com",
+  "type": "String",
+  "hints": {
+    "hidden": true
+  },
+  "description": "An example of a type"
+}
+```
+
+
 ## Actions
 
 Actions are functions that can be invoked in the context of a graph node. Note that since actions are graph nodes too, they can be passed around and referenced just like fields.
