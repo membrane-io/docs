@@ -43,9 +43,9 @@ We call these references _handles_ or _grefs_ (short for graph reference).
 Hints provide information on how fields should be displayed in the Navigator.
 
 ### Preview
-The preview hint allows you to show the field as a preview for the object to which it belongs.
+The preview hint allows you to show a field as a preview for the object to which it belongs.
 
-With ```primary: true```, you can make the field the first portion of that preview
+With ```primary: true```, you can make a field the first portion of that preview
 ```json
 {
   "name": "name",
@@ -57,7 +57,7 @@ With ```primary: true```, you can make the field the first portion of that previ
 }
 ```
 
-With ```secondary: true```, you can make the field the second portion of that preview
+With ```secondary: true```, you can make a field the second portion of that preview
 ```json
 {
   "name": "name",
@@ -70,7 +70,8 @@ With ```secondary: true```, you can make the field the second portion of that pr
 ```
 
 ![Alt text](../../../assets/primary_secondary.png)
-*Caption for the image goes here.*
+
+*Primary in blue, secondary in green.*
 
 ### Format
 The format hint allows you to format a string as a URL in the Navigator.
