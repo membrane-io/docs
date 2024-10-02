@@ -46,26 +46,21 @@ Hints provide information on how fields should be displayed in the Navigator.
 With preview hints, you can mark fields as `primary` and `secondary` to use them as previews in the Navigator, e.g. in a list of paginated results.
 ```json
 {
-  "name": "name",
+  "name": "number",
   "type": "String",
+  "description": "The Pull Request number.",
   "hints": {
     "primary": true
-  },
-  "description": "An example of a type"
-}
-```
-
-With ```secondary: true```, you can make a field the second portion of that preview
-```json
+  }
+},
 {
-  "name": "name",
+  "name": "title",
   "type": "String",
+  "description": "The Pull Request title.",
   "hints": {
     "secondary": true
-  },
-  "description": "An example of a type"
+  }
 }
-```
 
 *Primary in blue, secondary in green.*
 
