@@ -78,14 +78,13 @@ With ```secondary: true```, you can make a field the second portion of that prev
 The format hint allows you to format a string as a URL in the Navigator.
 ```json
 {
-  "name": "http://example.com",
+  "name": "url",
   "type": "String",
+  "description": "The URL of the Pull Request",
   "hints": {
     "format": "url"
-  },
-  "description": "An example of a type"
+  }
 }
-```
 
 ### Hidden
 The hidden hint can be used to mark a field that should not be displayed in the Navigator.
