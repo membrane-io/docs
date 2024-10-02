@@ -92,14 +92,13 @@ The hidden hint can be used to mark a field that should not be displayed in the 
 
 ```json
 {
-  "name": "http://example.com",
+  "name": "phone_number",
   "type": "String",
+  "description": "The customer's phone number",
   "hints": {
     "hidden": true
-  },
-  "description": "An example of a type"
+  }
 }
-```
 
 
 ## Actions
