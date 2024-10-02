@@ -22,6 +22,7 @@ With preview hints, you can mark fields as `primary` and `secondary` to use them
     "secondary": true
   }
 }
+```
 
 *Primary in blue, secondary in green.*
 
