@@ -43,9 +43,7 @@ We call these references _handles_ or _grefs_ (short for graph reference).
 Hints provide information on how fields should be displayed in the Navigator.
 
 ### Preview
-The preview hint allows you to show a field as a preview for the object to which it belongs (image below).
-
-With ```primary: true```, you can make a field the first portion of that preview
+With preview hints, you can mark fields as `primary` and `secondary` to use them as previews in the Navigator, e.g. in a list of paginated results.
 ```json
 {
   "name": "name",
