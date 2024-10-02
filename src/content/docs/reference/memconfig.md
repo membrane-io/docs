@@ -40,6 +40,7 @@ The format hint allows you to format a string as a URL in the Navigator.
     "format": "url"
   }
 }
+```
 
 ### Hidden
 The hidden hint can be used to mark a field that should not be displayed in the Navigator.
