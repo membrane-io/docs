@@ -71,7 +71,7 @@ With ```secondary: true```, you can make a field the second portion of that prev
 
 *Primary in blue, secondary in green.*
 
-![Alt text](../../../assets/primary_secondary.png)
+![Paginated list of github PRs in the Membrane Navigator](../../../assets/primary_secondary.png)
 
 
 ### Format
