@@ -38,7 +38,6 @@ represent a different node in the graph.
 
 We call these references _handles_ or _grefs_ (short for graph reference).
 
-
 ## Actions
 
 Actions are functions that can be invoked in the context of a graph node. Note that since actions are graph nodes too, they can be passed around and referenced just like fields.
