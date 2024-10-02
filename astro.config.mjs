@@ -199,6 +199,10 @@ export default defineConfig({
               label: "mctl (CLI)",
               link: "/reference/cli/",
             },
+            {
+              label: "memconfig",
+              link: "/reference/memconfig/",
+            },
           ],
         },
         {
