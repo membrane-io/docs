@@ -80,22 +80,6 @@
   --sl-color-text-accent: #000;
 }
 
-/* /* Override icon colors and add Membrane's distinctive box-shadow */
-*/
-/* :root[data-theme="light"] { */
-/*   --sl-icon-color: #333; */
-/*   --sl-shadow-md: 1px 1px #222, 2px 2px #222, 3px 3px #222, 4px 4px #222, */
-/*     5px 5px #222; */
-/*   --sl-shadow-lg: var(--sl-shadow-md); */
-/* } */
-/* :root[data-theme="dark"] { */
-/*   --sl-icon-color: #fff; */
-/*   --sl-shadow-md: 1px 1px var(--sl-color-gray-4), 2px 2px var(--sl-color-gray-4), */
-/*     3px 3px var(--sl-color-gray-4), 4px 4px var(--sl-color-gray-4), */
-/*     5px 5px var(--sl-color-gray-4); */
-/*   --sl-shadow-lg: var(--sl-shadow-md); */
-/* } */
-
 /* Override to center content body at larger widths */
 @media (min-width: 72rem) {
   [data-has-sidebar][data-has-toc] .main-pane > main {
