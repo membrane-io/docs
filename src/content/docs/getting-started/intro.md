@@ -22,7 +22,7 @@ Check out our <a href="https://www.membrane.io">home page</a> for an overview of
 
 ## Community
 
-If you have any questions, comments, or ideas, come join us on <a href="https://discord.gg/4RHyJDV8kj" target="_blank">Discord</a> or reach out via `contact@membrane.io`.
+Come join us on <a href="https://discord.gg/4RHyJDV8kj" target="_blank">Membrane's Discord</a> or reach out via `contact@membrane.io`. We'll help you get set up and show you around.
 
 :::note
 These docs are open source. Feel free to open a PR <a href="https://github.com/membrane-io/docs" target="_blank">on GitHub</a>. 
