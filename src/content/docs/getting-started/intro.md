@@ -3,13 +3,9 @@ title: Introduction to Membrane
 description: An overview of Membrane and its uses
 ---
 
-:::note
-These docs are open source. Feel free to open a PR <a href="https://github.com/membrane-io/docs" target="_blank">on GitHub</a> for fixes/improvements. If you have any questions, please <a href="https://discord.gg/4RHyJDV8kj" target="_blank">reach out to us on Discord</a>.
-:::
-
-Membrane is a service that greatly simplify the process of building and deploying small applications using TypeScript.
-Some use cases for Membrane are automation using APIs, email, text messages, long-lived workflows, cronjobs, webhook
-handlers, scraping, chat bots, and many more.
+<a href="https://www.membrane.io">Membrane</a> is a service that greatly simplify the process of building and deploying
+small applications using TypeScript. Popular use-cases for Membrane are automation using APIs, email, text messages,
+long-lived workflows, cron jobs, webhook handlers, web scraping, chat bots, and many more.
 
 ## What's different?
 
@@ -23,4 +19,12 @@ Membrane's super powers come from a few features that makes it different to othe
 Check out our <a href="https://www.membrane.io">home page</a> for an overview of the main features and examples.
 
 <!-- TODO: Add a visualization that communicates what membrane is in a few seconds -->
+
+## Community
+
+If you have any questions, comments, or ideas, come join us on <a href="https://discord.gg/4RHyJDV8kj" target="_blank">Discord</a> or reach out via `contact@membrane.io`.
+
+:::note
+These docs are open source. Feel free to open a PR <a href="https://github.com/membrane-io/docs" target="_blank">on GitHub</a>. 
+:::
 
