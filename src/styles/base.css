@@ -20,7 +20,7 @@
 :root {
   --__sl-font: "Source Sans 3", sans-serif;
   --__sl-font-mono: "MonoRegular", monospace;
-  --sl-line-height: 1.4;
+  --sl-line-height: 1.5;
 }
 
 /* Dark mode colors. */
