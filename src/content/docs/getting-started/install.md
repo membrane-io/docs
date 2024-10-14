@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: Setup
 ---
 
 ## Membrane Web IDE

@@ -117,8 +117,8 @@ export default defineConfig({
               link: "/getting-started/intro/",
             },
             {
-              label: "Getting Started",
-              link: "/getting-started/install/",
+              label: "Setup",
+              link: "/getting-started/setup/",
             },
             {
               label: "Hello World",
