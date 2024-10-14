@@ -117,11 +117,11 @@ export default defineConfig({
               link: "/getting-started/intro/",
             },
             {
-              label: "Installation",
-              link: "/getting-started/install/",
+              label: "Setup",
+              link: "/getting-started/setup/",
             },
             {
-              label: "Create a program",
+              label: "Hello World",
               link: "/getting-started/first-program/",
             },
           ],

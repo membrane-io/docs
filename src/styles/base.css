@@ -20,22 +20,64 @@
 :root {
   --__sl-font: "Source Sans 3", sans-serif;
   --__sl-font-mono: "MonoRegular", monospace;
-  --sl-line-height: 1.4;
+  --sl-line-height: 1.5;
 }
 
-/* Override icon colors and add Membrane's distinctive box-shadow */
-:root[data-theme="light"] {
-  --sl-icon-color: #333;
-  --sl-shadow-md: 1px 1px #222, 2px 2px #222, 3px 3px #222, 4px 4px #222,
-    5px 5px #222;
-  --sl-shadow-lg: var(--sl-shadow-md);
-}
+/* Dark mode colors. */
 :root[data-theme="dark"] {
-  --sl-icon-color: #fff;
-  --sl-shadow-md: 1px 1px var(--sl-color-gray-4), 2px 2px var(--sl-color-gray-4),
-    3px 3px var(--sl-color-gray-4), 4px 4px var(--sl-color-gray-4),
-    5px 5px var(--sl-color-gray-4);
-  --sl-shadow-lg: var(--sl-shadow-md);
+  --sl-color-accent-low: #242424;
+  --sl-color-accent: #6a6a6a;
+  --sl-color-accent-high: #c8c8c8;
+  --sl-color-white: #eee;
+  --sl-color-gray-1: #ddd;
+  --sl-color-gray-2: #c2c2c2;
+  --sl-color-gray-3: #8b8b8b;
+  --sl-color-gray-4: #585858;
+  --sl-color-gray-5: #383838;
+  --sl-color-gray-6: #272727;
+  --sl-color-black: #181818;
+  --sl-color-blue-low: #000;
+
+  --sl-color-blue: #fff;
+  --sl-color-blue-low: #111;
+  --sl-color-blue-high: #fff;
+
+  --sl-color-purple: #fff;
+  --sl-color-purple-low: #111;
+  --sl-color-purple-high: #fff;
+
+  --sl-color-text-accent: #fff;
+  --sl-color-bg: #141414;
+  --sl-color-bg-nav: #141414;
+  --sl-color-bg-sidebar: #141414;
+  --sl-color-hairline-shade: #242424;
+  --sl-color-hairline: #242424;
+}
+
+/* Light mode colors. */
+:root[data-theme="light"] {
+  --sl-color-accent-low: #d7d7d7;
+  --sl-color-accent: #6b6b6b;
+  --sl-color-accent-high: #323232;
+  --sl-color-white: #181818;
+  --sl-color-gray-1: #272727;
+  --sl-color-gray-2: #383838;
+  --sl-color-gray-3: #585858;
+  --sl-color-gray-4: #8b8b8b;
+  --sl-color-gray-5: #c2c2c2;
+  --sl-color-gray-6: #eeeeee;
+  --sl-color-gray-7: #f6f6f6;
+  --sl-color-black: #ffffff;
+
+  --sl-color-blue: #000;
+  --sl-color-blue-low: #eee;
+  --sl-color-blue-high: #000;
+
+  --sl-color-purple: #000;
+  --sl-color-purple-low: #eee;
+  --sl-color-purple-high: #000;
+
+  --sl-color-text-accent: #000;
 }
 
 /* Override to center content body at larger widths */
