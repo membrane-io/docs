@@ -10,7 +10,7 @@ pre button.copy {
   width: 24px;
   padding: 0;
   display: flex;
-  border-radius: 4px;
+  border: none;
   background-color: var(--astro-code-color-background);
 
   :root[data-theme="light"] &:hover {

@@ -29,8 +29,6 @@ export const popoverTransformer = () => ({
           const anchor = document.querySelector('#${container.properties.id}');
           const tooltip = document.querySelector('#${tooltip.properties.id}');
 
-          console.log(tooltip)
-
           computePosition(anchor, tooltip, {
             placement: 'bottom-start',
             middleware: [

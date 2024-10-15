@@ -10,9 +10,8 @@ Membrane actions can be invoked manually or automatically, on a timer. We suppor
 
 To set up a timer, navigate to the Navigator panel, click on any program, find the [action](/concepts/schema#actions) you want to run, and click the clock icon to configure when the program should run. Right click a timer to delete.
 
-In this video, we add a cron timer, delete it, then add a delay and observe it firing.
-
-<video src="/cloud-assets/timers.mp4" muted autoplay loop></video>
+Example: add a cron, delete it, then add a delay and observe it firing.
+<video src="/cloud-assets/timers.mp4" muted autoplay controls></video>
 
 ## Setting timers in code
 

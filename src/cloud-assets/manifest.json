@@ -1,15 +1,13 @@
 {
   "assets": {
-    "welcome-screen.png": "welcome-screen-6601995f4dc6bca86580f0288581687c9733524f.png",
-    "move-explorer-right.mp4": "move-explorer-right-c90cd5cc68ef7078a886e33a3ea8a6796fe6807d.mp4",
-    "new-program.mp4": "new-program-ff2063a8720b912923c7b12b93f929f38c940e72.mp4",
     "getting-started.mp4": "getting-started-0d7d2e3260c2f6572fc75f208fd99241cf4b0347.mp4",
     "copy-endpoint.mp4": "copy-endpoint-2b2904c0592970fe882d4d1b10a73b7f4e35222e.mp4",
     "add-connection.mp4": "add-connection-e8ca80c323ebb3cb74666dc1568875361484e1c8.mp4",
     "schema.mp4": "schema-397c4c1317dd75e9c63a9485fb27eac45e5da504.mp4",
-    "directory.mp4": "directory-936fca04df04d6c36892059509696dd6db70729e.mp4",
     "gmail-to-slack.mp4": "gmail-to-slack-935c4de86aa0eb687cd5165cd2a17fa4b2e346f9.mp4",
     "timers.mp4": "timers-4853066e33ba9d22e8afe6082e9663078213d2b6.mp4",
-    "observability.mp4": "observability-edcb30e1db615228312bd76b2fcc68ae46f13776.mp4"
+    "observability.mp4": "observability-edcb30e1db615228312bd76b2fcc68ae46f13776.mp4",
+    "membrane-web-ide.png": "membrane-web-ide-a16e494a10a954a5f83176b6260699ee402a2ae5.png",
+    "blank-program.mp4": "blank-program-385c5cec9eca06163a9cb328998756d633624237.mp4"
   }
 }

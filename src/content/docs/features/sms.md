@@ -2,21 +2,25 @@
 title: Send & receive sms
 ---
 
-Membrane includes an `sms` program—installed in your workspace by default—for sending and receiving text messages programmatically.
+Membrane includes an `sms` program (pre-installed in your workspace) for sending and receiving text messages programmatically.
 
 :::note
-You can only configure one phone number at the moment (to send texts to yourself), but we plan to remove that limitation. [Send us a note](mailto:contact@membrane.io) if that's something you'd like asap, and/or upvote it on our [public roadmap](https://docs.membrane.io/roadmap).
+You can only configure one phone number at the moment (to send texts to yourself), but we plan to remove that limitation. [Send us a note](mailto:contact@membrane.io) if that's something you'd like asap, and/or upvote it on our [roadmap](https://docs.membrane.io/roadmap).
 :::
 
 ## Configure
 
-To configure your `sms` program, find the `sms` program in the Membrane Navigator, click the `configure` action, type in your phone number, and hit `Invoke`.
+To configure your `sms` program, find it in the Navigator, click the `configure` action, type in your phone number, and hit "Invoke".
 
 ## Send
 
-To send yourself a text manually, click on the `sms` program in the Membrane Navigator, click the `send` action, type in a `message`, and hit `Invoke`. Check your phone! (And Membrane Logs 👀).
+To send yourself a text manually, click on the `sms` program in the Navigator, click the `send` action, type in a `message`, and hit "Invoke". Check your phone! (And Membrane Logs 👀).
 
-To send yourself a text programmatically, add the `sms` program as a [connection](/features/connections) to any program and call `nodes.sms.send({ message: "[whatever]" })`.
+To send yourself a text programmatically, add the `sms` program as a [connection](/features/connections) to any program and call:
+
+```
+nodes.sms.send({ message: "whatever" });
+```
 
 ## Receive
 

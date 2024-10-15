@@ -15,7 +15,7 @@ interface Task {
 const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json());
 ---
 
-<ul class="list">
+<ul class="roadmap-list">
   {tasks.map(({ id, name, description, status }) => {
     let variant: BadgeComponentProps["variant"] = 'note';
     if (status === 'in-progress') variant = 'caution';
@@ -40,11 +40,11 @@ const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json(
 </ul>
 
 <style>
-  .list {
-    padding: 0;
+  .roadmap-list {
+    padding-left: 0;
   }
   
-  .list li {
+  .roadmap-list li {
     list-style: none;
   }
   
@@ -60,6 +60,9 @@ const tasks: Task[] = await fetch(PUBLIC_ROADMAP_ENDPOINT).then(res => res.json(
     position: absolute;
     top: 16px;
     right: 16px;
+    font-family: var(--__sl-font-mono);
+    font-size: var(--sl-text-sm);
+    border-radius: 0px;
   }
 
   .title {

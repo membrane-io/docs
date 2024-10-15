@@ -8,23 +8,24 @@ Membrane's primary interface is the Membrane Web IDE. The IDE is where you deplo
 
 Visit <a href="https://membrane.io/ide" target="_blank">membrane.io/ide</a> to get started.
 
-### Orienting yourself in the IDE
+### Orienting yourself
 
-When the IDE starts up, you'll see the Program Navigator (sidebar), Membrane Logs (bottombar), and a welcome/start screen (active tab). The welcome tab provides a quick tour of the Navigator and Logs.
+When the IDE starts up, you'll see the Program Navigator (sidebar), Membrane Logs (bottombar), and an open file, `hello-world/index.ts`.
 
-The welcome tab also links to an interactive `getting-started` tutorial that comes pre-installed in your workspace. We recorded a <a href="https://share.descript.com/view/Smb0rEUzMkk" target="_blank">video walk-through of the tutorial</a> if you'd like to follow along with each step.
+![Membrane Web IDE](/cloud-assets/membrane-web-ide.png)
 
-<video src="/cloud-assets/getting-started.mp4" muted autoplay loop></video>
+There are four Membrane programs pre-installed in your workspace:
 
-:::tip
-We recommend going through the `getting-started` tutorial as your first Membrane program (with our <a href="https://share.descript.com/view/Smb0rEUzMkk" target="_blank">video recording</a>, if you'd like). It's a hands-on way to learn core features and concepts by doing.
-:::
+1. [`http`](/features/endpoints/#http-program)
+2. [`email`](/features/email)
+3. [`sms`](/features/sms)
+4. [`hello-world`](/getting-started/hello-world)
 
----
+We'll cover each of these in subsequent sections. For now, continue to the next section to create your first program.
 
 ## Membrane CLI
 
-Membrane also includes a CLI tool called `mctl`. The CLI is for more advanced use cases and isn't required when first starting out. Feel free to skip ahead to the next section.
+Membrane also includes a CLI tool called [`mctl`](/reference/cli). The CLI is for more advanced use cases and isn't required when first starting out. Feel free to skip ahead to the next section.
 
 You can install `mctl` for any platform via npm:
 
