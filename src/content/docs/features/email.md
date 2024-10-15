@@ -100,7 +100,7 @@ export async function email({ to, from, subject, text, ...rest }) {
 
 ## Attachments
 
-Email handlers support receiving attachments via the `attachments` property on the object passed to the function. `attachments` is an array of attachment objects with a `downloadUrl` and `name`. Attachments are automatically deleted from our backend after 30 minutes of being received. Please reach out to `contact@membrane.io` if you need more time.
+Email handlers support receiving attachments via the `attachments` property on the object passed to the function. `attachments` is an array of attachment objects with a `downloadUrl` and `name`. Attachments are automatically deleted from our backend after 30 minutes of being received. Please reach out to [contact@membrane.io](mailto:contact@membrane.io) if you need more time.
 
 You can access attachment data by `fetch`'ing from the `downloadUrl` and parsing like so:
 

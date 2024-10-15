@@ -19,14 +19,14 @@ node_. This node serves as the entry point into the program—all references are
 
 Nodes are referred to by the program's name followed by a colon and then a path to the node from the `Root` type. For example:
 
-- `github:` refers to the root node of the <a href="https://github.com/membrane-io/membrane-driver-github" target="_blank">github driver</a>
-- `twitter:` refers to the root node of the <a href="https://github.com/membrane-io/membrane-driver-twitter" target="_blank">twitter driver</a>
+- `github:` refers to the root node of the <a href="https://membrane.io/share/membrane/github" target="_blank">github driver</a>
+- `twitter:` refers to the root node of the <a href="https://membrane.io/share/membrane/twitter" target="_blank">twitter driver</a>
 - `github:users.one(name:"membrane-io")` refers to a Github `User`
 - `github:users.one(name:"membrane-io").repos.one(name:"directory")` refers to a `Repository`
 
 ## Fields
 
-Fields are queryable nodes that hold values you can read. From the <a href="https://github.com/membrane-io/membrane-driver-github" target="_blank">github driver</a>:
+Fields are queryable nodes that hold values you can read. From the <a href="https://membrane.io/share/membrane/github" target="_blank">github driver</a>:
 
 - `github:status` is a field of type `String` via the `status` field on the `Root` type
 - `github:users` is a field of type `UserCollection` via the `users` field on the `Root` type

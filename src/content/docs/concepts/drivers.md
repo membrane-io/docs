@@ -2,7 +2,7 @@
 title: Drivers
 ---
 
-A _driver_ is a Membrane program whose sole responsibility is to expose the functionality of third-party APIs in your Membrane account so that other programs can easily make use of it. You can see all the drivers maintained by Membrane in our <a href="https://github.com/membrane-io/directory" target="_blank">directory</a>.
+A _driver_ is a Membrane program whose sole responsibility is to expose the functionality of third-party APIs in your Membrane account so that other programs can easily make use of it. You can see all the drivers maintained by the Membrane team in the IDE by clicking "FIND PROGRAMS" in the top right and searching "membrane".
 
 There's nothing fundamentally special about a driver. It's a program just like any other. That means you can create your own drivers for you or other Membrane users to use.
 
