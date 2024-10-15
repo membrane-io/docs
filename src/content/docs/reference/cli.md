@@ -4,7 +4,7 @@ title: Membrane Control CLI (mctl)
 
 Nearly any operation that can be performed in the Membrane Web IDE can also be completed in the CLI.
 
-See the [installation page](/getting-started/install/#membrane-cli) for setup instructions.
+See the [setup page](/getting-started/setup/#membrane-cli) for instructions.
 
 <!-- USAGE -->
 
