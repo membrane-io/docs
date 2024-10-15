@@ -4,7 +4,7 @@ title: Send & receive email
 
 All Membrane programs are capable of sending and receiving emails. Receiving an email works similarly to how [HTTP endpoints](/features/endpoints/) are handled. All you need to do is export an `email` function from the root of your program and use the program's unique email address.
 
-To get a program's email address, right click the program name from the Membrane Navigator home and select "Copy Email Address" from the context menu.
+To get a program's email address, click "Copy Email Address" above the `email` function signature. Or right-click the program name in the Navigator and select "Copy Email Address".
 
 ## Basic Example
 
@@ -82,9 +82,7 @@ import type { resolvers } from "membrane";
 import { nodes } from "membrane";
 
 // Handler to receive emails
-export const email: resolvers.Root["email"] = (args) => {
-  const { to, from, subject, text } = args;
-
+export async function email({ to, from, subject, text, ...rest }) {
   // Send yourself an email
   await nodes.email.send({
     //        ^^^^^
@@ -97,7 +95,7 @@ export const email: resolvers.Root["email"] = (args) => {
       ${text}
     `,
   });
-};
+}
 ```
 
 ## Attachments

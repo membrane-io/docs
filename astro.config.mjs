@@ -109,7 +109,7 @@ export default defineConfig({
           label: "Getting Started",
           items: [
             {
-              label: "Introduction",
+              label: "Intro",
               link: "/getting-started/intro/",
             },
             {
@@ -118,7 +118,7 @@ export default defineConfig({
             },
             {
               label: "Hello World",
-              link: "/getting-started/first-program/",
+              link: "/getting-started/hello-world/",
             },
           ],
         },
@@ -191,10 +191,6 @@ export default defineConfig({
               link: "/reference/membrane-module/",
             },
             {
-              label: "IDE",
-              link: "/reference/ide/",
-            },
-            {
               label: "mctl (CLI)",
               link: "/reference/cli/",
             },
@@ -209,7 +205,7 @@ export default defineConfig({
           link: "/examples/",
         },
         {
-          label: "Public roadmap",
+          label: "Roadmap",
           link: "/roadmap/",
         },
         {
@@ -219,6 +215,7 @@ export default defineConfig({
         {
           label: "membrane.io ↗",
           link: "https://membrane.io",
+          attrs: { target: "_blank" },
         },
       ],
     }),

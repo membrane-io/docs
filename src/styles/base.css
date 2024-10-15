@@ -72,28 +72,46 @@ html {
   --sl-color-text-accent: #000;
 }
 
-/* Starlight component style overrides */
-
 /* Hack to ensure logo is never larger than sidebar */
 .site-title img {
   max-width: 88%;
 }
 
+/* rm border radius from search bar, sidebar links */
+button[aria-label="Search"],
+li > a {
+  border-radius: 0;
+}
+
+/* Customize markdown lists */
+.sl-markdown-content > ul:not(.roadmap-list) {
+  list-style-type: square;
+  padding-left: 32px;
+}
+
+/*
+ * Hack: without this, inline code font-size is unexpectedly small,
+ * even though it is using var(--sl-text-sm) like other text 
+ */
+.sl-markdown-content code {
+  font-size: 1rem;
+}
+
 /* Add some better default styling to videos, images */
 .sl-markdown-content video,
 .sl-markdown-content img {
-  width: 100%;
+  width: calc(100% - 8px);
   max-width: 720px;
-  border: 0;
-  margin: 16px 0 32px 0;
-  aspect-ratio: 16 / 9;
   object-fit: cover;
+  padding: 8px;
+  margin: 16px 0 32px 0;
+  border: 1px solid var(--sl-color-accent-high);
+  box-shadow: 1px 1px var(--sl-color-accent-high),
+    2px 2px var(--sl-color-accent-high), 3px 3px var(--sl-color-accent-high),
+    4px 4px var(--sl-color-accent-high), 5px 5px var(--sl-color-accent-high);
 }
 
-/* 
-  Tweak big box buttons and modals to use distinctive Membrane box styling 
-  Also ensures colors work well with dark mode
-*/
+/* Customize pagination link buttons */
 .pagination-links > a,
 starlight-menu-button > button,
 dialog {
@@ -103,11 +121,6 @@ dialog {
   &:hover {
     background-color: var(--sl-color-bg-inline-code);
   }
-}
-
-/* Minor stylistic flair for mobile dropdown */
-.dropdown {
-  margin: 2px 10px 0px 6px;
 }
 
 .sl-container .twoslash {

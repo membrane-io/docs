@@ -4,7 +4,7 @@ title: Observability
 
 Membrane Logs are semantically rich, so every action, query, or event can be inspected with a click. In the screen recording below, we take a look at Logs for invoking actions, sending email, and receiving an HTTP GET request.
 
-<video src="/cloud-assets/observability.mp4" muted autoplay loop></video>
+<video src="/cloud-assets/observability.mp4" muted autoplay controls></video>
 
 ## Perfect observability
 

@@ -10,7 +10,7 @@ The schema is a set of types that represent nodes in the program's graph. Nodes 
 - **Actions**: invocable functions on a node
 - **Events**: subscribable notifications
 
-<video src="/cloud-assets/schema.mp4" muted autoplay loop></video>
+<video src="/cloud-assets/schema.mp4" muted autoplay controls></video>
 
 ## Root Type
 

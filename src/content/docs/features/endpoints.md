@@ -39,14 +39,24 @@ export const endpoint: resolvers.Root["endpoint"] = (req) => {
 };
 ```
 
+When your program endpoint receives a request it will be logged, so you can inspect it in the Logs panel.
+
 :::note
-Currently the endpoint function must return a string. We're working to improve this.
+Currently the endpoint function must return a string.
 :::
 
 ## Accessing an endpoint URL
 
-To access a program's endpoint URL in your code, call `await nodes.process.endpointUrl`.
+To access a program's endpoint URL in your code, call:
 
-You can also copy a program's endpoint by right clicking on it in the Navigator panel. When your program endpoint receives a request it will be logged, so you can inspect it in the Logs panel.
+```
+await nodes.process.endpointUrl
+```
 
-<video src="/cloud-assets/copy-endpoint.mp4" muted autoplay loop></video>
+To open an endpoint, click "Open Endpoint URL" above the `endpoint` function signature. You can also copy a program's endpoint by right clicking on it in the Navigator panel.
+
+<video src="/cloud-assets/copy-endpoint.mp4" muted autoplay controls></video>
+
+## http program
+
+There is also an `http` program pre-installed in your workspace. When you run `fetch` in a program, Membrane uses its HTTP program behind the scenes to make network calls. Read on to learn how to add connections to programs, including `http`.
