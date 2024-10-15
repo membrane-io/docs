@@ -1,7 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLinksValidator from "starlight-links-validator";
-import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
 import { transformerTwoslash } from "@shikijs/twoslash";
@@ -89,9 +88,10 @@ export default defineConfig({
       },
       expressiveCode: false,
       customCss: [
+        "./src/fonts/font-face.css",
         "./src/styles/base.css",
-        "@shikijs/twoslash/style-rich.css",
         "./src/styles/copy-button.css",
+        "@shikijs/twoslash/style-rich.css",
       ],
       logo: {
         light: "./src/assets/title-dark.svg",
@@ -105,10 +105,6 @@ export default defineConfig({
       },
       plugins: [starlightLinksValidator()],
       sidebar: [
-        {
-          label: "↖ membrane.io",
-          link: "https://membrane.io",
-        },
         {
           label: "Getting Started",
           items: [
@@ -128,6 +124,7 @@ export default defineConfig({
         },
         {
           label: "Features",
+          collapsed: true,
           items: [
             {
               label: "Durable state",
@@ -165,6 +162,7 @@ export default defineConfig({
         },
         {
           label: "Concepts",
+          collapsed: true,
           items: [
             {
               label: "Programs",
@@ -186,6 +184,7 @@ export default defineConfig({
         },
         {
           label: "Reference",
+          collapsed: true,
           items: [
             {
               label: "membrane module",
@@ -217,10 +216,11 @@ export default defineConfig({
           label: "FAQ",
           link: "/faq/",
         },
+        {
+          label: "membrane.io ↗",
+          link: "https://membrane.io",
+        },
       ],
-    }),
-    tailwind({
-      applyBaseStyles: false,
     }),
     react(),
   ],

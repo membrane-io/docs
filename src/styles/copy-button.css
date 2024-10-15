@@ -10,6 +10,7 @@ pre button.copy {
   width: 24px;
   padding: 0;
   display: flex;
+  border: none;
   border-radius: 4px;
   background-color: var(--astro-code-color-background);
 
