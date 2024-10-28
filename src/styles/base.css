@@ -106,9 +106,12 @@ li > a {
   padding: 8px;
   margin: 16px 0 32px 0;
   border: 1px solid var(--sl-color-accent-high);
-  box-shadow: 1px 1px var(--sl-color-accent-high),
-    2px 2px var(--sl-color-accent-high), 3px 3px var(--sl-color-accent-high),
-    4px 4px var(--sl-color-accent-high), 5px 5px var(--sl-color-accent-high);
+  box-shadow:
+    1px 1px var(--sl-color-accent-high),
+    2px 2px var(--sl-color-accent-high),
+    3px 3px var(--sl-color-accent-high),
+    4px 4px var(--sl-color-accent-high),
+    5px 5px var(--sl-color-accent-high);
 }
 
 /* Customize pagination link buttons */
@@ -127,4 +130,8 @@ dialog {
   overflow-y: hidden;
   --twoslash-popup-bg: var(--sl-color-bg-inline-code);
   --twoslash-docs-color: var(--sl-color-text);
+}
+
+p {
+  text-wrap: pretty;
 }
