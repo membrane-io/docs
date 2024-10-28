@@ -16,7 +16,7 @@ To configure your `sms` program, find it in the Navigator, click the `configure`
 
 To send yourself a text manually, click on the `sms` program in the Navigator, click the `send` action, type in a `message`, and hit "Invoke". Check your phone! (And Membrane Logs 👀).
 
-To send yourself a text programmatically, add the `sms` program as a [connection](/features/connections) to any program and call:
+To send yourself a text programmatically, add the `sms` program as a [connection](/concepts/connections) to any program and call:
 
 ```
 nodes.sms.send({ message: "whatever" });

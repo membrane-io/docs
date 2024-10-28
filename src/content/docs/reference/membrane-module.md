@@ -23,7 +23,7 @@ export const state: State
 
 ### nodes
 
-Import `nodes` from `"membrane"` to access [connections](/features/connections) of a program. Read more about [Connections](/features/connections).
+Import `nodes` from `"membrane"` to access [connections](/concepts/connections) of a program. Read more about [Connections](/concepts/connections).
 
 ```js
 // membrane.d.ts

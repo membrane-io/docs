@@ -139,10 +139,6 @@ export default defineConfig({
               link: "/features/endpoints/",
             },
             {
-              label: "Connections",
-              link: "/features/connections/",
-            },
-            {
               label: "Email",
               link: "/features/email/",
             },
@@ -153,10 +149,6 @@ export default defineConfig({
             {
               label: "Timers",
               link: "/features/timers/",
-            },
-            {
-              label: "Events",
-              link: "/features/events/",
             },
           ],
         },
@@ -179,6 +171,10 @@ export default defineConfig({
             {
               label: "Drivers",
               link: "/concepts/drivers/",
+            },
+            {
+              label: "Connections",
+              link: "/concepts/connections/",
             },
           ],
         },

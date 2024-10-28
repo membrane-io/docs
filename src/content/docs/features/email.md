@@ -8,7 +8,7 @@ To get a program's email address, click "Copy Email Address" above the `email` f
 
 ## Basic Example
 
-This program receives an email and uses the `email` program to forward the email to the currently signed in user's inbox. In order to run this program make sure you [add `email` as a dependency](/features/connections/#add-a-program-connection).
+This program receives an email and uses the `email` program to forward the email to the currently signed in user's inbox. In order to run this program make sure you [add `email` as a dependency](/concepts/connections/#add-a-program-connection).
 
 ```ts twoslash
 // @module: esnext
@@ -54,7 +54,7 @@ declare module "membrane" {
   export const nodes: {
     /**
      * Note that this node will only be present if the email
-     * program is [added as a connection](/features/connections/).
+     * program is [added as a connection](/concepts/connections/).
      */
     readonly email: email.Root;
   };
