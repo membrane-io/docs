@@ -139,10 +139,6 @@ export default defineConfig({
               link: "/features/endpoints/",
             },
             {
-              label: "Connections",
-              link: "/features/connections/",
-            },
-            {
               label: "Email",
               link: "/features/email/",
             },
@@ -154,14 +150,10 @@ export default defineConfig({
               label: "Timers",
               link: "/features/timers/",
             },
-            {
-              label: "Events",
-              link: "/features/events/",
-            },
           ],
         },
         {
-          label: "Concepts",
+          label: "Membrane-isms",
           collapsed: true,
           items: [
             {
@@ -179,6 +171,14 @@ export default defineConfig({
             {
               label: "Drivers",
               link: "/concepts/drivers/",
+            },
+            {
+              label: "Connections",
+              link: "/concepts/connections/",
+            },
+            {
+              label: "Packages",
+              link: "/concepts/packages/",
             },
           ],
         },
