@@ -5,12 +5,12 @@ title: Packages
 Code sharing in Membrane happens through our package registry. You might've already used the registry to install an [API driver](/concepts/drivers) or [share your first program](/getting-started/hello-world/#sharing-your-code).
 
 :::tip
-We're excited to see what you build! Post your share link on [Discord](https://discord.gg/4RHyJDV8kj), or [send us an email](mailto:contact@membrane.io). We'll share our favorites in our changelog.
+We're excited to see what you build! Post your share link on [Discord](https://discord.gg/4RHyJDV8kj), or [send us an email](mailto:contact@membrane.io). We'll share our favorites in the changelog.
 :::
 
 ## Installing
 
-To install a package, you can either select "Search Packages..." in the `NEW PROGRAM` menu, or click `FIND PROGRAMS` in the top right of the IDE.
+To install a package, select "Search Packages..." in the `NEW PROGRAM` menu, or click `FIND PROGRAMS` in the top right of the IDE.
 
 ## Publishing
 
