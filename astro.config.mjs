@@ -176,6 +176,10 @@ export default defineConfig({
               label: "Connections",
               link: "/concepts/connections/",
             },
+            {
+              label: "Packages",
+              link: "/concepts/packages/",
+            },
           ],
         },
         {
