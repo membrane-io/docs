@@ -153,7 +153,7 @@ export default defineConfig({
           ],
         },
         {
-          label: "Concepts",
+          label: "Membrane-isms",
           collapsed: true,
           items: [
             {
