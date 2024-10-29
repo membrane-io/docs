@@ -1,0 +1,30 @@
+---
+import type { Props } from '@astrojs/starlight/props'
+import Default from '@astrojs/starlight/components/Head.astro'
+
+const { title } = Astro.props.entry.data;
+
+// Get the current path and clean it up for use as the slug
+const slug = Astro.props.slug.replace(/^\//, '').replace(/\/$/, '');
+
+// Construct the OG image URL
+const ogImageUrl = new URL('https://www.membrane.io/api/og-image/docs');
+ogImageUrl.searchParams.set('title', title);
+ogImageUrl.searchParams.set('slug', slug);
+
+// Final encoded URL
+const finalOgImageUrl = ogImageUrl.toString();
+---
+
+<!-- Render the default Starlight <Head/> component -->
+<Default {...Astro.props}>
+  <slot />
+</Default>
+
+<!-- Open Graph and Twitter card meta tags -->
+<meta property="og:image" content={finalOgImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={finalOgImageUrl} />
+<meta name="twitter:title" content={title} />
