@@ -136,6 +136,6 @@ p {
   text-wrap: pretty;
 }
 
-starlight-menu-button > button > svg {
+:root[data-theme="dark"] starlight-menu-button > button > svg {
   color: white;
 }
