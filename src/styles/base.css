@@ -3,8 +3,8 @@ html {
   font-size: var(--sl-text-sm);
 }
 
-/* 
- * Can override starlight styles here 
+/*
+ * Can override starlight styles here
  * https://github.com/withastro/starlight/blob/main/packages/starlight/style/props.css
  */
 :root {
@@ -91,7 +91,7 @@ li > a {
 
 /*
  * Hack: without this, inline code font-size is unexpectedly small,
- * even though it is using var(--sl-text-sm) like other text 
+ * even though it is using var(--sl-text-sm) like other text
  */
 .sl-markdown-content code {
   font-size: 1rem;
@@ -134,4 +134,8 @@ dialog {
 
 p {
   text-wrap: pretty;
+}
+
+:root[data-theme="dark"] starlight-menu-button > button > svg {
+  color: white;
 }

@@ -83,6 +83,9 @@ export default defineConfig({
     starlight({
       title: "Membrane",
       favicon: "/favicon.png",
+      components: {
+        Head: "./src/components/Head.astro",
+      },
       editLink: {
         baseUrl: "https://github.com/membrane-io/docs/edit/main",
       },
