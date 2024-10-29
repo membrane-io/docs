@@ -136,6 +136,6 @@ p {
   text-wrap: pretty;
 }
 
-button:where(.astro-jif73yzw) {
+starlight-menu-button > button > svg {
   color: white;
 }
