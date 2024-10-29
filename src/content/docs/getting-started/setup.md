@@ -8,6 +8,10 @@ Membrane's primary interface is the Membrane Web IDE. The IDE is where you deplo
 
 Visit <a href="https://membrane.io/ide" target="_blank">membrane.io/ide</a> to get started.
 
+:::tip
+You can open these docs as a webview in the IDE. Open the command palette (`cmd/ctrl+shift+p`) and type `Open docs`.
+:::
+
 ### Orienting yourself
 
 When the IDE starts up, you'll see the Program Navigator (sidebar), Membrane Logs (bottombar), and an open file, `hello-world/index.ts`.
@@ -22,13 +26,3 @@ There are four Membrane programs pre-installed in your workspace:
 4. [`hello-world`](/getting-started/hello-world)
 
 We'll cover each of these in subsequent sections. For now, continue to the next section to create your first program.
-
-## Membrane CLI
-
-Membrane also includes a CLI tool called [`mctl`](/reference/cli). The CLI is for more advanced use cases and isn't required when first starting out. Feel free to skip ahead to the next section.
-
-You can install `mctl` for any platform via npm:
-
-```sh
-npm install -g @membrane/mctl
-```
