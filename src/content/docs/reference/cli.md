@@ -4,7 +4,13 @@ title: Membrane Control CLI (mctl)
 
 Nearly any operation that can be performed in the Membrane Web IDE can also be completed in the CLI.
 
-See the [setup page](/getting-started/setup/#membrane-cli) for instructions.
+## Installation
+
+You can install `mctl` for any platform via npm:
+
+```sh
+npm install -g @membrane/mctl
+```
 
 <!-- USAGE -->
 
