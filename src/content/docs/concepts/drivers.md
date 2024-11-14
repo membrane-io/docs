@@ -12,4 +12,4 @@ If you do create a driver, feel free to publish it and let us know or share it o
 
 ## Installing drivers
 
-To install a driver in your Membrane graph, click the `New` button in the Navigator panel and select "Package Search...". Or click "FIND PROGRAMS" in the top right of the IDE.
+To install a driver in your Membrane graph, click the `🔎 SEARCH` button in the Navigator (top left, next to `+ NEW`). From there you can browse or search for packages that other users and the Membrane team have published.

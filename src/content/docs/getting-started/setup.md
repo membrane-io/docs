@@ -14,9 +14,14 @@ You can open these docs as a webview in the IDE. Open the command palette (`cmd/
 
 ### Orienting yourself
 
-When the IDE starts up, you'll see the Program Navigator (sidebar), Membrane Logs (bottombar), and an open file, `hello-world/index.ts`.
+When the IDE starts up, you'll see:
 
-![Membrane Web IDE](/cloud-assets/membrane-web-ide.png)
+1. Program Navigator (left sidebar)
+2. Membrane Logs (bottombar)
+3. Program Details (right sidebar)
+4. Welcome instructions & open program file, `hello-world/index.ts`
+
+![Membrane Web IDE](/cloud-assets/ide-orientation.png)
 
 There are four Membrane programs pre-installed in your workspace:
 

@@ -6,9 +6,11 @@ title: Connections
 
 In Membrane, [programs](/concepts/programs/) can use other programs by forming _connections_.
 
-<video src="/cloud-assets/add-connection.mp4" muted autoplay controls></video>
+<video src="/cloud-assets/add-connections.mp4" muted autoplay controls></video>
 
-Here, the `email` program is added as a connection to this example program. Once it's added, the `email` program is accessed by using the `nodes` export from the `membrane` module.
+Above, the `email` program is selected as a connection from the dropdown menu, and the `sms` program is dragged from the Navigator.
+
+Connections can be accessed in code by using the `nodes` export from the `"membrane"` module.
 
 <!-- TODO: ## Add a Granular Dependency -->
 
