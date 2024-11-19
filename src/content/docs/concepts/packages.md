@@ -10,7 +10,7 @@ We're excited to see what you build! Post your share link on [Discord](https://d
 
 ## Installing
 
-To install a package, select `🔎 SEARCH" in Navigator (top left), find the package you want to install, and click `INSTALL`.
+To install a package, select `🔎 SEARCH` in Navigator (top left), find the package you want to install, and click `INSTALL`.
 
 ## Publishing
 
