@@ -53,7 +53,7 @@ To access a program's endpoint URL in your code, call:
 await nodes.process.endpointUrl
 ```
 
-To open an endpoint, click "Open Endpoint URL" above the `endpoint` function signature. You can also copy a program's endpoint by right clicking on it in the Navigator panel.
+To open an endpoint, click "Open Preview" above the `endpoint` function signature. You can also copy a program's endpoint by right clicking on it in the Navigator panel.
 
 <video src="/cloud-assets/copy-endpoint.mp4" muted autoplay controls></video>
 

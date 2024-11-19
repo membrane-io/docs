@@ -10,11 +10,15 @@ We're excited to see what you build! Post your share link on [Discord](https://d
 
 ## Installing
 
-To install a package, select "Search Packages..." in the `NEW PROGRAM` menu, or click `FIND PROGRAMS` in the top right of the IDE.
+To install a package, select `🔎 SEARCH" in Navigator (top left), find the package you want to install, and click `INSTALL`.
 
 ## Publishing
 
-To share your code, you publish it as a package. _This only shares your code—not your program state nor logs._
+To share your code, you publish it as a package. Right-click a program and select "Publish Package".
+
+:::note
+_This only shares your code—not your program state nor logs._
+:::
 
 <video src="/cloud-assets/publish-package.mp4" muted autoplay controls></video>
 
