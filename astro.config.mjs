@@ -103,7 +103,7 @@ export default defineConfig({
       },
       social: {
         discord: "https://discord.gg/4RHyJDV8kj",
-        github: "https://github.com/withastro/starlight",
+        github: "https://github.com/membrane-io/docs",
         twitter: "https://twitter.com/membraneio",
       },
       plugins: [starlightLinksValidator()],
@@ -127,7 +127,7 @@ export default defineConfig({
         },
         {
           label: "Features",
-          collapsed: true,
+          collapsed: false,
           items: [
             {
               label: "Durable state",
@@ -156,8 +156,8 @@ export default defineConfig({
           ],
         },
         {
-          label: "Membrane-isms",
-          collapsed: true,
+          label: "Concepts",
+          collapsed: false,
           items: [
             {
               label: "Programs",
