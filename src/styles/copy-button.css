@@ -4,8 +4,8 @@ pre:has(code) {
 
 pre button.copy {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 4px;
+  top: 4px;
   height: 24px;
   width: 24px;
   padding: 0;
@@ -32,12 +32,18 @@ pre button.copy {
     cursor: pointer;
     background-color: var(--sl-color-text-accent);
     mask-image: url(../assets/icons/clipboard.svg);
+    mask-size: 50%;
+    mask-repeat: no-repeat;
+    mask-position: center;
   }
 
   & .success {
     display: none;
     background-color: var(--sl-color-text-accent);
     mask-image: url(../assets/icons/copy-success.svg);
+    mask-size: 50%;
+    mask-repeat: no-repeat;
+    mask-position: center;
   }
 
   &.copied {
