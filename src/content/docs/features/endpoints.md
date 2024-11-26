@@ -29,7 +29,7 @@ declare module "membrane" {
 }
 
 // ---cut---
-export const endpoint: resolvers.Root["endpoint"] = (req) => {
+export const endpoint = (req) => {
   switch (`${req.method} ${req.path}`) {
     case "GET /":
       return "hello world";
