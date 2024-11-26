@@ -14,6 +14,7 @@ html {
   --sl-text-code: var(--sl-text-base);
   --sl-text-code-sm: var(--sl-text-sm);
   --sl-color-bg-inline-code: var(--sl-color-gray-6);
+  --astro-code-color-background: none;
   --sl-text-sm: 12px;
   --sl-text-2xs: 12px;
   --sl-text-xs: 12px;
@@ -70,6 +71,7 @@ h6 {
   --sl-color-gray-4: #585858;
   --sl-color-gray-5: #383838;
   --sl-color-gray-6: #272727;
+  --sl-color-gray-7: #131313;
   --sl-color-black: #181818;
   --sl-color-blue-low: #000;
 
