@@ -35,9 +35,7 @@ export function count() {
 }
 ```
 
-Note that the entire JS heap is persistent, not just `state`. So technically, you could use module-level variables to store
-state. However, since each update (i.e. code change) creates a new ES Module, prior module-level variables are not accessible from newer modules, hence the need
-for a `state` object shared across all versions of the program's code.
+Note that the entire JS heap is persistent, not just `state`. Since each deploy (i.e. code change) creates a new ES Module, this object serves as a convenient way to pass data from one version to the next.
 
 In most cases Membrane will generate typing information for `state` based on usage. For example, from the code above, we will automatically infer the type of `state` to be:
 

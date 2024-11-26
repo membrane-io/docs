@@ -1,5 +1,5 @@
 ---
-title: Send & receive sms
+title: Send & receive SMS
 ---
 
 Membrane includes an `sms` program (pre-installed in your workspace) for sending and receiving text messages programmatically.

@@ -23,18 +23,38 @@ html {
   --sl-text-2xl: 12px;
   --sl-text-3xl: 12px;
   --sl-text-4xl: 12px;
-  --sl-text-5xl: 12px;
-  --sl-text-6xl: 12px;
+  --sl-text-5xl: 16px;
+  --sl-text-6xl: 14px;
 }
 
-h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-size: 12px !important;
   text-transform: uppercase;
+  padding: 4px 8px 3px 8px;
+  display: inline-block;
+}
+
+:root[data-theme="dark"] h2,
+:root[data-theme="dark"] h3,
+:root[data-theme="dark"] h4,
+:root[data-theme="dark"] h5,
+:root[data-theme="dark"] h6 {
+  background-color: #2f2f2f;
+}
+
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4,
+:root[data-theme="light"] h5,
+:root[data-theme="light"] h6 {
+  background-color: #eee;
+}
+
+.sl-markdown-content p {
+  padding-left: 2ch;
 }
 
 /* Dark mode colors. */
@@ -125,7 +145,7 @@ li > a {
   width: calc(100% - 8px);
   max-width: 720px;
   object-fit: cover;
-  padding: 20px;
+  padding: 10px;
   margin: 16px 0 32px 0;
   border: 1px solid var(--sl-color-accent-high);
   box-shadow: 1px 1px var(--sl-color-accent-high),
