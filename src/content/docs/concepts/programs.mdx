@@ -6,7 +6,7 @@ import { FileTree } from "@astrojs/starlight/components";
 
 Membrane is similar to an operating system; you deploy programs to the Membrane engine, and it takes care of persistence, communication, logging, resources, etc.
 
-A Membrane _program_ is TypeScript or JavaScript code that runs in Membrane's serverless cloud runtime. Unlike traditional serverless runtimes, it is [stateful](/features/state/) and includes multiple handlers instead of a single function.
+A Membrane _program_ is TypeScript or JavaScript code that runs our cloud runtime. Unlike traditional serverless runtimes, it is [stateful](/features/state/) and includes multiple handlers instead of a single function.
 
 A Membrane program consists of:
 
@@ -39,12 +39,10 @@ Your program's directory may also include a `README.md`, `package.json` with npm
 
 To stop a running program, right click the program in the Membrane Navigator and select `Kill` from the dropdown menu. A program must be stopped in order to delete it.
 
-:::caution
-When you stop a running program, its `state` will be lost.
-:::
-
 To delete a program, right click the program's folder in your file explorer and select `Delete` from the dropdown menu. Or, open the command palette (`Cmd+Shift+P` on Mac) and type _Membrane: Delete Program_. A message will appear in the bottom bar of your editor upon deletion.
 
 :::danger
+When you stop a running program, its `state` will be lost.
+
 Deleting a program is a permanent action.
 :::
