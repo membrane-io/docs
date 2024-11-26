@@ -13,6 +13,28 @@ html {
   --sl-line-height: 1.5;
   --sl-text-code: var(--sl-text-base);
   --sl-text-code-sm: var(--sl-text-sm);
+  --sl-text-sm: 12px;
+  --sl-text-2xs: 12px;
+  --sl-text-xs: 12px;
+  --sl-text-sm: 12px;
+  --sl-text-base: 12px;
+  --sl-text-lg: 12px;
+  --sl-text-xl: 12px;
+  --sl-text-2xl: 12px;
+  --sl-text-3xl: 12px;
+  --sl-text-4xl: 12px;
+  --sl-text-5xl: 12px;
+  --sl-text-6xl: 12px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 12px !important;
+  text-transform: uppercase;
 }
 
 /* Dark mode colors. */
@@ -103,15 +125,12 @@ li > a {
   width: calc(100% - 8px);
   max-width: 720px;
   object-fit: cover;
-  padding: 8px;
+  padding: 20px;
   margin: 16px 0 32px 0;
   border: 1px solid var(--sl-color-accent-high);
-  box-shadow:
-    1px 1px var(--sl-color-accent-high),
-    2px 2px var(--sl-color-accent-high),
-    3px 3px var(--sl-color-accent-high),
-    4px 4px var(--sl-color-accent-high),
-    5px 5px var(--sl-color-accent-high);
+  box-shadow: 1px 1px var(--sl-color-accent-high),
+    2px 2px var(--sl-color-accent-high), 3px 3px var(--sl-color-accent-high),
+    4px 4px var(--sl-color-accent-high), 5px 5px var(--sl-color-accent-high);
 }
 
 /* Customize pagination link buttons */
@@ -138,4 +157,16 @@ p {
 
 :root[data-theme="dark"] starlight-menu-button > button > svg {
   color: white;
+}
+
+.large {
+  text-transform: uppercase;
+}
+
+/* This is important so that the JSDoc hovers are not clipped but it forces us to
+ * keep our code blocks to ~70 characters wide
+ */
+.astro-code {
+  overflow: visible !important;
+  font-size: 11px !important;
 }
