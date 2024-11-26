@@ -13,6 +13,7 @@ html {
   --sl-line-height: 1.5;
   --sl-text-code: var(--sl-text-base);
   --sl-text-code-sm: var(--sl-text-sm);
+  --sl-color-bg-inline-code: var(--sl-color-gray-6);
   --sl-text-sm: 12px;
   --sl-text-2xs: 12px;
   --sl-text-xs: 12px;
@@ -42,7 +43,7 @@ h6 {
 :root[data-theme="dark"] h4,
 :root[data-theme="dark"] h5,
 :root[data-theme="dark"] h6 {
-  background-color: #2f2f2f;
+  background-color: var(--sl-color-gray-5);
 }
 
 :root[data-theme="light"] h2,
@@ -50,7 +51,7 @@ h6 {
 :root[data-theme="light"] h4,
 :root[data-theme="light"] h5,
 :root[data-theme="light"] h6 {
-  background-color: #eee;
+  background-color: var(--sl-color-gray-6);
 }
 
 .sl-markdown-content p {
