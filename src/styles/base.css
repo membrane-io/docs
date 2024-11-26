@@ -13,28 +13,46 @@ html {
   --sl-line-height: 1.5;
   --sl-text-code: var(--sl-text-base);
   --sl-text-code-sm: var(--sl-text-sm);
-  --sl-text-sm: 12px;
-  --sl-text-2xs: 12px;
-  --sl-text-xs: 12px;
-  --sl-text-sm: 12px;
-  --sl-text-base: 12px;
-  --sl-text-lg: 12px;
-  --sl-text-xl: 12px;
-  --sl-text-2xl: 12px;
-  --sl-text-3xl: 12px;
-  --sl-text-4xl: 12px;
-  --sl-text-5xl: 12px;
-  --sl-text-6xl: 12px;
+  --sl-color-bg-inline-code: var(--sl-color-gray-6);
+  --astro-code-color-background: none;
+  --sl-text-sm: 13px;
+  --sl-text-2xs: 13px;
+  --sl-text-xs: 13px;
+  --sl-text-sm: 13px;
+  --sl-text-base: 13px;
+  --sl-text-lg: 13px;
+  --sl-text-xl: 13px;
+  --sl-text-2xl: 13px;
+  --sl-text-3xl: 13px;
+  --sl-text-4xl: 13px;
+  --sl-text-5xl: 16px;
+  --sl-text-6xl: 14px;
 }
 
-h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-size: 12px !important;
   text-transform: uppercase;
+  padding: 4px 8px 3px 8px;
+  display: inline-block;
+}
+
+:root[data-theme="dark"] h2,
+:root[data-theme="dark"] h3,
+:root[data-theme="dark"] h4,
+:root[data-theme="dark"] h5,
+:root[data-theme="dark"] h6 {
+  background-color: var(--sl-color-gray-5);
+}
+
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4,
+:root[data-theme="light"] h5,
+:root[data-theme="light"] h6 {
+  background-color: var(--sl-color-gray-6);
 }
 
 /* Dark mode colors. */
@@ -49,6 +67,7 @@ h6 {
   --sl-color-gray-4: #585858;
   --sl-color-gray-5: #383838;
   --sl-color-gray-6: #272727;
+  --sl-color-gray-7: #131313;
   --sl-color-black: #181818;
   --sl-color-blue-low: #000;
 
@@ -119,13 +138,21 @@ li > a {
   font-size: 1rem;
 }
 
+.sl-markdown-content pre:not(:where(.not-content *)) {
+  border-color: var(--sl-color-gray-6);
+}
+
+.sl-container h1 {
+  margin-top: 0;
+}
+
 /* Add some better default styling to videos, images */
 .sl-markdown-content video,
 .sl-markdown-content img {
   width: calc(100% - 8px);
   max-width: 720px;
   object-fit: cover;
-  padding: 20px;
+  padding: 10px;
   margin: 16px 0 32px 0;
   border: 1px solid var(--sl-color-accent-high);
   box-shadow: 1px 1px var(--sl-color-accent-high),
@@ -168,5 +195,5 @@ p {
  */
 .astro-code {
   overflow: visible !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
 }
