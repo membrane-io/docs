@@ -10,16 +10,13 @@ We have drivers for popular APIs like [GitHub](https://www.membrane.io/share/mem
 
 Drivers are regular Membrane programs so if you’ve written some code on Membrane you’re already half way there!
 
-For this guide, we'll walk through the [Resend  driver](https://www.membrane.io/share/membrane/resend) code.
+For this guide, we'll walk through the [Resend  driver](https://www.membrane.io/share/membrane/resend). Resend provides a modern email API for developers. For more details about their API, check out their [docs](https://resend.com/docs/introduction).
 
 We'll demonstrate how to:
 
 - Create an interface for the API that uses Membrane state to store the API key
 - Structure your code using common Membrane patterns (Collections, Resources, grefs)
 - Follow consistent driver design principles and best practices
-
-Resend provides a modern email API for developers. For more details about their API, check out their [docs](https://resend.com/docs/introduction).
-
 ## 2. Core Components
 
 <br/>
