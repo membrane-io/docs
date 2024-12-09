@@ -33,7 +33,7 @@ resend/
 ├── index.ts        # Main driver code and exports
 ├── helpers.ts      # API helper and utilities
 ├── tests.ts        # Test cases
-├── memconfig.json  # Auto-generated schema
+├── memconfig.json  # Driver schema
 └── README.md       # Documentation
 ```
 
