@@ -143,8 +143,8 @@ export const Root = {
   configure,
 
   // Collection fields
-  emails: () => ({}),
-  domains: () => ({}),
+  emails: () => ({}),    // EmailCollection
+  domains: () => ({}),   // DomainCollection
 
   // Test fields
   tests: () => ({}),
