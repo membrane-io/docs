@@ -6,7 +6,7 @@ title: Membrane Driver Guide
 
 A driver serves as a bridge between Membrane and external APIs. Drivers expose API functionality as nodes in your Membrane graph, making it easy for other programs to interact with external services.
 
-We have drivers for popular APIs like [GitHub](https://www.membrane.io/share/membrane/github) and [Slack](https://www.membrane.io/share/membrane/slack). Drivers are open source and anyone can create one. Once you get the hang of using Membrane drivers, you won’t have to worry much about the quirks of individual APIs—the standard driver structure and syntax will feel familiar.
+We have drivers for popular APIs like [GitHub](https://www.membrane.io/share/membrane/github) and [Slack](https://www.membrane.io/share/membrane/slack). Check out the [full list here](https://www.membrane.io/share/membrane). Drivers are open source and anyone can create and publish one. Once you get the hang of it, you won’t have to worry much about the quirks of individual APIs since all drivers follow the same structure.
 
 Drivers are regular Membrane programs so if you’ve written some code on Membrane you’re already half way there!
 
