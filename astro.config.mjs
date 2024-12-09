@@ -201,6 +201,10 @@ export default defineConfig({
               label: "memconfig",
               link: "/reference/memconfig/",
             },
+            {
+              label: "driver guide",
+              link: "/reference/driver-guide/",
+            },
           ],
         },
         {
