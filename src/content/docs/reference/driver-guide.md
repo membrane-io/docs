@@ -6,11 +6,11 @@ title: Membrane Driver Guide
 
 A driver serves as a bridge between Membrane and external APIs. We structure drivers to expose API functionality as nodes in your Membrane graph, making it easy for other programs to interact with external services.
 
-We have drivers for popular APIs like [GitHub]([https://www.membrane.io/share/membrane/github](https://www.membrane.io/share/membrane/github)) and [Slack]([https://www.membrane.io/share/membrane/slack](https://www.membrane.io/share/membrane/slack)). Drivers are open source and anyone can create one. Once you get the hang of using Membrane drivers, you won’t have to worry much about the quirks of individual APIs—the standard driver structure and syntax will feel familiar.
+We have drivers for popular APIs like [GitHub](https://www.membrane.io/share/membrane/github) and [Slack](https://www.membrane.io/share/membrane/slack). Drivers are open source and anyone can create one. Once you get the hang of using Membrane drivers, you won’t have to worry much about the quirks of individual APIs—the standard driver structure and syntax will feel familiar.
 
 Drivers are regular Membrane programs so if you’ve written some code on Membrane you’re already half way there!
 
-For this guide, we'll walk through the [Resend  driver]([https://www.membrane.io/share/membrane/resend](https://www.membrane.io/share/membrane/resend)) code.
+For this guide, we'll walk through the [Resend  driver](https://www.membrane.io/share/membrane/resend) code.
 
 We'll demonstrate how to:
 
@@ -18,7 +18,7 @@ We'll demonstrate how to:
 - Structure your code using common Membrane patterns (Collections, Resources, grefs)
 - Follow consistent driver design principles and best practices
 
-Resend provides a modern email API for developers. For more details about their API, check out their [docs]([https://resend.com/docs/introduction](https://resend.com/docs/introduction)).
+Resend provides a modern email API for developers. For more details about their API, check out their [docs](https://resend.com/docs/introduction).
 
 ## 2. Core Components
 
@@ -159,7 +159,7 @@ The pattern is to create pairs of Collection and Resource objects in the `index.
 This Resource-Collection-Page pattern in Membrane provides a consistent interface where:
 
 - Collections handle `one()` for getting single resources, `page()` for listing resources, and other collection-level operations like `create()` or `search()`
-- Resources implement [`gref` ](#Graph-References) for referencing and item-specific operations like `update()` and `delete()`
+- Resources implement [`gref`](#graph-references-grefs) for referencing and item-specific operations like `update()` and `delete()`
 - Collection operations go on collections (listing, creating)
 - Resource-specific operations go on the resource object (updating, deleting)
 
@@ -329,7 +329,7 @@ export const Tests = {
 
 ### A Note on Types in Membrane
 
-Driver types are defined using the [Schema Editor]([https://docs.membrane.io/concepts/schema/#_top](https://docs.membrane.io/concepts/schema/#_top)). There you'll define:
+Driver types are defined using the [Schema Editor](https://docs.membrane.io/concepts/schema/#_top). There you'll define:
 
 - Fields on the Root type (like `domains: DomainCollection`)
 - Collection types with their operations (`one`, `page`, `create`)
@@ -415,7 +415,7 @@ export const Resource = {
 
 ## 4. Publishing Your Driver
 
-1. Include a [README.md](http://readme.md/) with:
+1. Include a README.md with:
     - Configuration steps
     - Basic usage examples
     - Available methods
@@ -427,7 +427,7 @@ export const Resource = {
     await root.tests.testDomainList();
     ```
 
-3. Share your driver in [discord]([https://discord.gg/gBK9xP3z](https://discord.gg/gBK9xP3z))!
+3. Share your driver in [discord](https://discord.gg/gBK9xP3z)!
 
 Remember: The best drivers make complex APIs feel simple and intuitive to use within the Membrane ecosystem.
 
@@ -435,7 +435,7 @@ As you build more drivers and connect more services, you'll unlock increasingly 
 
 ## 5. Troubleshooting
 
-Get started with our [driver-template]()
+Get started with our [driver-template](/)
 
 <aside>
 💡
@@ -448,5 +448,5 @@ We are working on a way to speed up the driver development process by generating
 
 Missing a driver for one of your favorite APIs?
 
-- Request it in the [community]([https://discord.gg/gBK9xP3z](https://discord.gg/gBK9xP3z))
-- Contribute it! You can get started with our [template]() or try out the [driver-generator]().
+- Request it in the [community](https://discord.gg/gBK9xP3z)
+- Contribute it! You can get started with our [template](/) or try out the [driver-generator](/).
