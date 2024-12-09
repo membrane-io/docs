@@ -151,6 +151,8 @@ export const Root = {
 };
 ```
 
+Note that the resolvers don't do much, they simply return an empty object. This tells the GraphQL executor to continue the query by invoking the resolvers in `EmailCollection` and `DomainCollection` respectively (more on that below).
+
 ### Resources, Collections, and Pages
 
 In Membrane drivers, we organize our code around key resources.
