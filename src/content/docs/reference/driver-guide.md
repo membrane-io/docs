@@ -435,12 +435,12 @@ As you build more drivers and connect more services, you'll unlock increasingly 
 
 ## 5. Troubleshooting
 
-Get started with our [driver-template](/)
+Get started with our [driver-template]
 
 <aside>
 💡
 
-We are working on a way to speed up the driver development process by generating drivers using LLM’s and API specs. You can install the driver-generator program [here]().
+We are working on a way to speed up the driver development process by generating drivers using LLM’s and API specs. You can install the driver-generator program [here].
 
 </aside>
 
@@ -449,4 +449,4 @@ We are working on a way to speed up the driver development process by generating
 Missing a driver for one of your favorite APIs?
 
 - Request it in the [community](https://discord.gg/gBK9xP3z)
-- Contribute it! You can get started with our [template](/) or try out the [driver-generator](/).
+- Contribute it! You can get started with our [template] or try out the [driver-generator].
