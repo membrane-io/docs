@@ -123,7 +123,11 @@ export async function api(
 
 ### Root Object
 
-In your driver’s `index.ts` file, the Root object serves as the entry point to your driver. It defines the top-level structure and available operations. For Resend, we expose email and domain operations through collection fields:
+In all programs (drivers included) the `Root` object serves as the entry point to all of its functionality. Every program has a `Root` type in its schema which defines the top-level structure of the program's graph.
+
+Resend's API exposes two types of resources through their `/emails` and `/domains` endpoints.
+
+To expose that functionality via the Membrane graph, the driver's `Root` type provide corresponding field resolvers:
 
 ```js
 // index.ts
