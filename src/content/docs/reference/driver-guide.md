@@ -60,7 +60,7 @@ export async function configure({ apiKey }: { apiKey: string }) {
 
 ```
 
-### API Helper
+### `helper.ts`
 
 The API helper is a utility function that handles all HTTP communication with the external API, it also lives in `helpers.ts`.
 
