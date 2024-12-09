@@ -62,11 +62,9 @@ export async function configure({ apiKey }: { apiKey: string }) {
 
 ### `helper.ts`
 
-The API helper is a utility function that handles all HTTP communication with the external API, it also lives in `helpers.ts`.
+As a convention, utility functions live in `helpers.ts`. For this driver, we have an `api` function that calls `fetch` with the appropriate headers, query and authentication, as well as parsing the response as JSON when appropriate.
 
-For Resend, this means adding the API key to requests, constructing URLs with query parameters, and handling both JSON and text responses. This helper will look a bit different for each API.
-
-Here's a commonly used implementation:
+Most drivers will need a similar function to make the actual HTTP requests:
 
 ```js
 // helpers.ts
