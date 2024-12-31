@@ -2,11 +2,13 @@
 title: Hello World
 ---
 
+import Action from "../../../components/Action";
 import { Steps } from "@astrojs/starlight/components";
 
-When you first load the Membrane IDE, you'll see a pre-installed `hello-world` program with its index file open. We encourage you to start clicking around and playing with the code!
+When you first load the [Membrane IDE](https://www.membrane.io/ide), you'll see a pre-installed `hello-world` program. We encourage you to start clicking around and playing with the code!
 
-That program has a `run` action that logs a message and sends you an [email](/features/email). It also exports an `endpoint` function that serves a website, storing hits in Membrane [state](/features/state) on each visit.
+That program has a <Action name="run"/> action that sends you an [email](/features/email). It also exports an <Action
+name="endpoint"/> function that serves [the program's website](/features/endpoints) and keeps track of the hit count in [state](/features/state).
 
 ## Creating new programs
 

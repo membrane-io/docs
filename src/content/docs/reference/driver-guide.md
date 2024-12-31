@@ -10,13 +10,14 @@ We have drivers for popular APIs like [GitHub](https://www.membrane.io/share/mem
 
 Drivers are regular Membrane programs so if you’ve written some code on Membrane you’re already half way there!
 
-For this guide, we'll walk through the [Resend  driver](https://www.membrane.io/share/membrane/resend). Resend provides a modern email API for developers. For more details about their API, check out their [docs](https://resend.com/docs/introduction).
+For this guide, we'll walk through the [Resend driver](https://www.membrane.io/share/membrane/resend). Resend provides a modern email API for developers. For more details about their API, check out their [docs](https://resend.com/docs/introduction).
 
 We'll demonstrate how to:
 
 - Create an interface for the API that uses Membrane state to store the API key
 - Structure your code using common Membrane patterns (Collections, Resources, grefs)
 - Follow consistent driver design principles and best practices
+
 ## 2. Core Components
 
 <br/>
@@ -33,6 +34,19 @@ resend/
 ├── memconfig.json  # Driver schema
 └── README.md       # Documentation
 ```
+
+### Schema
+
+Before we dive into the code, let's take a look at the driver schema.
+
+The schema is defined in `memconfig.json` but won't generally edit it by hand (but you can!). Instead you use the Schema
+Editor on the right sidebar.
+
+The schema for a programs defines the "shape" of its graph.
+
+![Membrane Web IDE](/cloud-assets/resend-schema.png)
+
+When writing drivers, the schema should match the API as closely as possible. The list you see above is
 
 ### Configuration
 
@@ -141,8 +155,8 @@ export const Root = {
   configure,
 
   // Collection fields
-  emails: () => ({}),    // EmailCollection
-  domains: () => ({}),   // DomainCollection
+  emails: () => ({}), // EmailCollection
+  domains: () => ({}), // DomainCollection
 
   // Test fields
   tests: () => ({}),
@@ -196,7 +210,7 @@ export const EmailCollection = {
 
 ### Email Resource
 
-Resources handle operations specific to a single item and must implement a `gref`  for referencing:
+Resources handle operations specific to a single item and must implement a `gref` for referencing:
 
 ```js
 // index.ts
@@ -297,7 +311,7 @@ export const emailTests = {
     if (last_event !== "delivered") {
       throw new Error("Expected email to deliver");
     }
-  }
+  },
 };
 
 export const domainTests = {
@@ -306,7 +320,7 @@ export const domainTests = {
     if (!domains.some((d) => d.name === "membrane.io")) {
       throw new Error("Expected membrane.io in list of domains");
     }
-  }
+  },
 };
 ```
 
@@ -340,9 +354,9 @@ Driver types are defined using the [Schema Editor](https://docs.membrane.io/conc
 For example, the Resend driver's types are defined in the Schema Editor to establish:
 
 - Collection type `DomainCollection` with:
-    - `one`: returns type `Domain`
-    - `page`: returns type `DomainPage`
-    - `create`: returns type `Domain`
+  - `one`: returns type `Domain`
+  - `page`: returns type `DomainPage`
+  - `create`: returns type `Domain`
 - `DomainPage` type with field `items` of type `List<Domain>`
 - Resource type `Domain` with its fields
 
@@ -398,7 +412,7 @@ Every resource must implement `gref` for consistent referencing:
 export const Resource = {
   gref: function (_, { obj }) {
     return root.resources.one({ id: obj.id });
-  }
+  },
 };
 ```
 
@@ -417,16 +431,16 @@ export const Resource = {
 ## 4. Publishing Your Driver
 
 1. Include a README.md with:
-    - Configuration steps
-    - Basic usage examples
-    - Available methods
+   - Configuration steps
+   - Basic usage examples
+   - Available methods
 2. Test before publishing:
 
-    ```js
-    // Run all tests
-    await root.tests.testEmailDelivered();
-    await root.tests.testDomainList();
-    ```
+   ```js
+   // Run all tests
+   await root.tests.testEmailDelivered();
+   await root.tests.testDomainList();
+   ```
 
 3. Share your driver in [discord](https://discord.gg/gBK9xP3z)!
 

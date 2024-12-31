@@ -16,6 +16,6 @@ npm run dev
 
 Then open a PR and request a review from our team. Thanks!
 
-- Juan (juan@membrane.io)
-- Pete (pete@membrane.io)
-- Romet (romet@membrane.io)
+- @juancampa
+- @pmillspaugh
+- @amPerl

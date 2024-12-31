@@ -1,48 +1,56 @@
 ---
-title: Programs
+title: Durable Programs
 ---
 
-import { FileTree } from "@astrojs/starlight/components";
+import { Aside } from "@astrojs/starlight/components";
 
-Membrane is similar to an operating system; you deploy programs to the Membrane engine, and it takes care of persistence, communication, logging, resources, etc.
+Membrane allows you to build functionality very quickly because, among other things, you don't need to worry about
+persistence. Each program its its own database.
 
-A Membrane _program_ is TypeScript or JavaScript code that runs on our cloud runtime. Unlike traditional serverless runtimes, it is [stateful](/features/state/) and includes multiple handlers instead of a single function.
+## Durability
 
-A Membrane program consists of:
+Programs in Membrane are written in TypeScript and run on our cloud runtime. Unlike other serverless
+runtimes, Membrane programs are [stateful](/features/state/) which means a few things:
 
-- **Code**: TypeScript/JavaScript functions for fields, actions and events
-- **Schema**: nodes exposed in [the graph](/concepts/the-graph)—the program's own API
-- **Connections**: other programs—nodes—used by the program
-- **Implicit Handlers**: optional functions, e.g. to receive [HTTP requests](/features/endpoints)
+- You don't need to persist data to a database or file.
+- There's only one instance of each program. No horizontal scaling by design.
+- Execution never stops. Even when you change the code, the new code continues the execution with the same state.
 
-In Membrane, you build custom functionality (bots, workflows, etc.) by writing programs. Programs can reference each other's nodes to create powerful abstractions.
+Membrane continually and efficienty persists changes to the program's entire memory heap so that when the program goes
+idle, it doesn't consume any CPU or memory. When the program needs to run again, Membrane lazily restores only the parts
+of the heap that are needed so that "cold-starts" are extremely fast.
 
-## Code organization
+Behind the scenes, a program and its entire history is a SQLite file.
 
-A Membrane program contains at least three files:
+## Feature overview
 
-{/* prettier-ignore */}
-<FileTree>
-  - your-program/ 
-    - index.ts 
-    - memconfig.json 
-    - memconfig.lock
-</FileTree>
+### Graph API
 
-1. **`index.ts|js`:** contains core logic and exports resolver functions
-2. **`memconfig.json`:** describes your schema with all fields, actions, events, and connections. It's automatically generated, so you should never have to edit this file by hand
-3. **`memconfig.lock`:** tracks versions of nodes in your graph. It's also automatically generated, and you should never have to edit it manually
+Membrane programs expose their API in [a graph](/concepts/the-graph) that other programs can consume to create
+useful abstractions. We'll learn more about this in the [Graphs](/concepts/the-graph) section.
 
-Your program's directory may also include a `README.md`, `package.json` with npm dependencies, `.git`, and whatever other helpers and structure you'd like.
+### Built-in HTTP and email
 
-## Stopping and deleting programs
+Every program comes with its own [HTTP URL](/features/endpoints) and [email address](/features/email) so you can
+easily build functionality in a variety of ways.
 
-To stop a running program, right click the program in the Membrane Navigator and select `Kill` from the dropdown menu. A program must be stopped in order to delete it.
+### NPM support
 
-To delete a program, right click the program's folder in your file explorer and select `Delete` from the dropdown menu. Or, open the command palette (`Cmd+Shift+P` on Mac) and type _Membrane: Delete Program_. A message will appear in the bottom bar of your editor upon deletion.
+You can use many NPM packages (but not all) simply by creating a `package.json`. The IDE will transparently fetch the
+packages for you.
 
-:::danger
-When you stop a running program, its `state` will be lost.
+### Deploy on save
 
-Deleting a program is a permanent action.
-:::
+Every time you change a program. Membrane will automatically deploy the new version. This allows to you iterate very
+quickly.
+
+"Deploy on save" can be disabled in the settings if needed.
+
+<Aside>
+  We're working on having a separate "staging" instance where you can quickly
+  iterate without affecting the main program instance.
+</Aside>
+
+### Membrane Packages
+
+You can install programs created by other users or publish your own using [Membrane's package manager](/concepts/packages).

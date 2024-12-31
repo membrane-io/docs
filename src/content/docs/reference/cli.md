@@ -1,8 +1,8 @@
 ---
-title: Membrane Control CLI (mctl)
+title: CLI (mctl)
 ---
 
-Nearly any operation that can be performed in the Membrane Web IDE can also be completed in the CLI.
+Many operations that can be performed in the Membrane Web IDE can also be done from the command line using `mctl`.
 
 ## Installation
 

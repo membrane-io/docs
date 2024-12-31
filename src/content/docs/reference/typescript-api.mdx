@@ -1,0 +1,623 @@
+---
+title: Typescript API
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 4
+---
+
+import Package from "../../../components/Package"
+
+Programs access most of Membrane's functionality by importing the `"membrane"` module. This module is specific to each program and it's regenerated every time you change its [schema](/concepts/schema) or its [connections](/concepts/connections).
+
+```ts
+import { state, nodes, root } from "membrane"
+//       ^       ^     ^
+//       |       |     |
+//       |       |     Gref to the program's root node
+//       |       |
+//       |       Connected nodes
+//       |
+//       Store persistent data
+```
+
+You can explore it by cmd+clicking on `"membrane"` to open the generated `membrane.d.ts`. You'll
+see the types documented on this page, plus any additional types specific to that program's schema.
+
+:::note
+`membrane.d.ts` gets regenerated every time a program's schema or connections change.
+:::
+
+## Exported objects
+
+#### state
+
+Use this object to store data. [Durable state](/features/state) is a core concept of Membrane. Learn more about effectively using `state` by reading the [Managing State](/features/state) guide.
+
+Example usage:
+
+```ts twoslash /{ (state) }/ /(state[^ ][^ ;]*)/
+// @filename membrane.d.ts
+/// <reference path="docs-modules/count/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { state } from "membrane"
+
+// Initialize state at the top-level of the file
+state.count ??= 0
+
+export function increment() {
+  state.count++
+}
+```
+
+#### nodes
+
+Every [connection](/concepts/connections) can be accessed via the `nodes` object.
+
+Values in `nodes` have accessors that match the node's [schema](/concepts/schema) so autocomplete works as expected, and
+you can access any other node reachable by them.
+
+Example usage:
+
+```ts twoslash /{ (nodes) }/ "nodes.user.bio"
+// @noErrors
+// @filename membrane.d.ts
+/// <reference path="docs-modules/github-user/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+
+async function run() {
+  // This program has a connection named `user` to the GitHub driver
+  // so we can query it, invoke actions, subscribe to events, etc.
+  const bio = await nodes.user.bio
+
+  // Autocomplete works as expected
+  nodes.user.re
+  //           ^|
+}
+```
+
+Learn more about [Connections](/concepts/connections) and [Queries](/concepts/queries) in their respective sections.
+
+#### root
+
+This is a reference to the program's own `root` node. This can be used to:
+
+- Pass an action to `$subscribe` to [handle events](/concepts/events).
+- Implementing `gref` fields for [types that need it](/concepts/queries#gref-resolvers).
+- Interacting with the program's own nodes.
+
+Example usage:
+
+```ts twoslash /{ (root) }/ "root"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/issue-opened/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes, root } from "membrane"
+
+async function setup() {
+  // Gref to a repo
+  const repo = nodes.user.repos.one({ name: "docs" })
+
+  // Subscribe to an event
+  repo.issueOpened.$subscribe(root.handleIssueOpened)
+}
+
+// Handle the event
+export async function handleIssueOpened(_, { event }) {
+  console.log(`New issue opened: ${await event.issue.title}`)
+}
+```
+
+## Exported types
+
+### Action&lt;T&gt;
+
+All actions implement the following interface. Where `T` is the type of the action's return value.
+
+```js
+// membrane.d.ts
+interface Action<T> extends Gref {
+  $invoke(): Promise<T>;
+  $invokeAt(time: number | Date): void;
+  $invokeIn(seconds: number): void;
+  $cron(spec: string): void;
+}
+```
+
+#### $invoke
+
+Invoke an action immediately.
+
+Signature:
+
+```js
+$invoke(): void;
+```
+
+Example usage:
+
+```ts twoslash
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/email/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes, root } from "membrane"
+
+export async function run() {
+  // Reference to the action
+  const action = nodes.email.send({ subject: "I love", body: "tacos!" })
+
+  // Invoke it
+  await action.$invoke()
+
+  // For convenience, you can just await the action to invoke it
+  await nodes.email.send({ subject: "Burritos", body: "are also okay" })
+}
+```
+
+:::tip
+You can also simply `await` an action to invoke it, which is shorthand for calling `.$invoke()`.
+:::
+
+#### $invokeAt
+
+Schedules the action to be invoked at a specific time. The invocation time can be either a `Date` object or a UNIX
+timestamp (seconds since January 1st, 1970).
+
+See also: [`$invokeIn`](#invokein)
+
+Signature:
+
+```js
+$invokeAt(time: Date | number): void;
+```
+
+Example usage:
+
+```ts twoslash "$invokeAt(time)"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/email/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+
+export async function run() {
+  // New Year's day in eastern time
+  const time = new Date("2026-01-01T00:00:00.000-04:00")
+
+  // Schedule an email to be sent
+  await nodes.email
+    .send({ subject: "Happy", body: "New Year!" })
+    .$invokeAt(time)
+}
+```
+
+#### $invokeIn
+
+Schedules the action to be invoked after a specified delay in seconds.
+
+See also: [`$invokeAt`](#invokeat)
+
+Signature:
+
+```js
+$invokeIn(seconds: number): void;
+```
+
+Example usage:
+
+```ts twoslash "$invokeIn(60 * 10)"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/email/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+
+export async function run() {
+  // Schedule an email to be sent in 10 minutes
+  await nodes.email
+    .send({ subject: "It's been", body: "10 minutes!" })
+    .$invokeIn(60 * 10)
+}
+```
+
+#### $cron
+
+Schedules a cron-like timer that invokes an action at configured times. Unlike traditional cronjob expressions, Membrane
+has a resolution of seconds instead of the traditional minutes, so `expression` has an extra slot to specify at which second
+the action should be invoked.
+
+Signature:
+
+```ts
+$cron(expression: string): void;
+```
+
+Cron expression syntax:
+
+```ts
+//                        At second zero
+//                        | At minute zero
+//                        | | At 5pm
+//                        | | | Every day of month
+//                        | | | | Every month
+//                        | | | | | Only on Fridays
+//                        | | | | | |
+const everyFridayAt5pm = "0 0 17 * * Fri"
+```
+
+Valid values for each slot are:
+
+| Slot                                                  | Valid values                                                         |
+| ----------------------------------------------------- | -------------------------------------------------------------------- |
+| second                                                | 0-59                                                                 |
+| minute                                                | 0-59                                                                 |
+| hour                                                  | 0-23                                                                 |
+| <span style="white-space: nowrap">day of month</span> | 1-31                                                                 |
+| month                                                 | 1-12 (or month names: Jan, Feb, Mar, etc)                            |
+| day of week                                           | 0-7 (both 0 or 7 represent Sunday, or day names: Sun, Mon, Tue, etc) |
+
+Each slot can also accept `*` to mean "every possible value".
+
+Note that the time zone is always UTC.
+
+Example usage:
+
+```ts twoslash "$cron('0 * * * * *')"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/cron/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes, root } from "membrane"
+
+export async function run() {
+  // Every Friday at 5pm UTC
+  root.everyFriday.$cron("0 0 17 * * Fri")
+}
+
+export async function everyFriday() {
+  await nodes.email.send({ subject: "It's Friday!", body: "🎉" })
+}
+```
+
+### Field&lt;T&gt; & ListField&lt;T[]&gt;
+
+All nodes except for [scalars](#scalart) implement this interface. This includes
+[connections](/concepts/connections) available in the `nodes` object, as well as nodes in the program itself (e.g.
+`root`, `root.status`, etc).
+
+| Interface        | Implemented by                    |
+| ---------------- | --------------------------------- |
+| `Field<T>`       | fields that return an object type |
+| `ListField<T[]>` | fields that return a list types   |
+
+Where `T` is the result(s) of querying that node (a type with all of its inner fields).
+
+```js
+// membrane.d.ts
+
+interface Field<T> extends Gref {
+  $query(query: string): Promise<T>;
+}
+
+interface ListField<T> extends Gref {
+  $query: (q: string) => Promise<T[]>;
+}
+
+```
+
+#### $query
+
+Queries a node using GraphQL.
+
+Signature:
+
+```js
+$query(query: string): Promise<T>;
+```
+
+Example usage:
+
+```ts twoslash "$query"
+// @filename membrane.d.ts
+/// <reference path="docs-modules/github-user/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+
+async function run() {
+  const { name, bio } = await nodes.user.$query("{ name bio }")
+}
+```
+
+Learn more in the [Queries](/concepts/queries) section.
+
+### Scalar&lt;T&gt;
+
+All Scalar nodes (`String`, `Number`, `Boolean`, etc) implement this interface.
+
+```
+interface Scalar<T> extends Gref {
+  $get: () => Promise<T>;
+}
+```
+
+#### $get
+
+Gets the value of a scalar node. Note that you can also omit the `$get()` when querying a scalar (see example below).
+
+```ts twoslash /= (await.*)/
+// @filename membrane.d.ts
+/// <reference path="docs-modules/github-user/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+
+async function run() {
+  // Using $get() to query a string
+  const bio = await nodes.user.bio.$get()
+  // ---cut-start---
+}
+
+async function run1() {
+  // ---cut-end---
+
+  // For convenience, you can omit the $get() when querying a scalar
+  const bio = await nodes.user.bio
+}
+```
+
+### Gref
+
+The base interface implemented by all fields, actions, and events.
+
+```ts
+interface Gref {
+  $args(): Record<string, any>
+  $argsAt(pattern: Field<unknown>): Record<string, any>
+  $pop(): Field<any>
+}
+```
+
+#### $args
+
+Returns the arguments from the last part of the gref. Only the last element of the gref is considered. Consider
+using [`$argsAt`](#argsat) if you need arguments from the middle of the path.
+
+Returns an empty object if there are no arguments.
+
+Signature:
+
+```js
+$args(): Record<string, any>;
+```
+
+Example usage:
+
+```ts twoslash "$query"
+// @filename membrane.d.ts
+/// <reference path="docs-modules/github-user/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+async function run() {
+  const repo = await nodes.user.repos.one({ name: "docs" })
+  console.assert(repo.$args().name === "docs")
+}
+```
+
+#### $argsAt
+
+Returns the arguments from an arbitrary part of the gref.
+The provided `pattern` is also a gref and determines which part to get the arguments from.
+
+Returns an empty object if there are no arguments or if the pattern does not match the gref.
+
+This similar to using a regular expression on a URL to extract parts of it.
+
+This is useful when implementing API drivers to extract the arguments for an API call.
+
+```js
+$argsAt(pattern: Field<unknown>): Record<string, any>;
+```
+
+Example usage:
+
+```js
+const gref = root.a({ x: 1 }).b({ y: 2 })
+const { x } = gref.$argsAt(root.a)
+const { y } = gref.$argsAt(root.a.b)
+```
+
+#### $pop
+
+Returns a gref with the last part of the path removed. This does nothing if the path is empty.
+
+```js
+$pop(): Field<any>;
+```
+
+```js
+const gref = root.a.b
+const parent = gref.$pop()
+console.assert(parent === root.a)
+```
+
+### NodeEvent
+
+All events implement this interface. This is not called `Event` to avoid conflicts with other `Event` types in node.js
+and browser environments. To unsubscribe from events, use the global [`unsubscribe`](#unsubscribe) function.
+
+Learn more about [Events](/concepts/schema#events).
+
+```js
+// membrane.d.ts
+interface NodeEvent<T> extends Gref {
+  $subscribe: (handler: Action<any>) => Promise<Subscription>;
+  $emit(event: Partial<T>): void;
+}
+```
+
+#### $subscribe
+
+Subscribes to the event so that when it fires, the handler action gets invoked.
+
+See also: [`unsubscribe`](#unsubscribe).
+
+Signature:
+
+```js
+$subscribe: (handler: Action<any>) => Promise<Subscription>;
+```
+
+Example usage:
+
+```ts twoslash "$subscribe"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/issue-opened/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes, root } from "membrane"
+
+async function setup() {
+  // Gref to a repo
+  const repo = nodes.user.repos.one({ name: "docs" })
+
+  // Subscribe to an event
+  repo.issueOpened.$subscribe(root.handleIssueOpened)
+}
+
+// Event handler (must be an action)
+export async function handleIssueOpened(_, { event }) {
+  console.log(`New issue opened: ${await event.issue.title}`)
+}
+```
+
+#### $emit
+
+Emits the event.
+
+Signature:
+
+```js
+$emit(event: Partial<T>): void;
+```
+
+Example usage:
+
+```ts twoslash "$emit()"
+// @filename membrane.d.ts
+/// <reference path="docs-modules/count/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { state, root } from "membrane"
+
+state.count ??= 0
+
+export function status() {
+  return `Count ${state.count}`
+}
+
+export function increment() {
+  state.count++
+  root.statusChanged.$emit()
+}
+```
+
+## Globals
+
+These are function available in the global scope.
+
+#### sleep
+
+Returns a promise that resolves after a given number of seconds. You can `await` this promise to temporarily pause the
+execution of a function. Thanks to Membrane's durable runtime, you can pause for an arbitrarily long time.
+
+Signature:
+
+```js
+function sleep(seconds: number): Promise<void>;
+```
+
+Example usage:
+
+```ts twoslash /{ (sleep) }/ "sleep(10)"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/email/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+export async function run() {
+  // Print the time every 10 seconds
+  for (let i = 0; i < 3; i++) {
+    console.log("The time is", new Date().toLocaleTimeString())
+    await sleep(10)
+  }
+}
+```
+
+Note that, even though you can sleep for an arbitrarily long time, once a function is executing, you can't change it. When building long-running workflows, it's best to use [$invokeIn](#invokein) or [$invokeAt](#invokeat) to schedule workflow steps as separate [actions](/concepts/actions).
+
+#### unsubscribe
+
+Unsubscribes from a previously subscribed event.
+
+See also: [`$subscribe`](#subscribe)
+
+Signature:
+
+```js
+unsubscribe(subscription: Subscription): Promise<any>;
+```
+
+Example usage:
+
+```ts twoslash "unsubscribe(state.subscription)"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/issue-opened/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes, root, state } from "membrane"
+
+async function setup() {
+  // Gref to a repo
+  const repo = nodes.user.repos.one({ name: "docs" })
+
+  // Subscribe to an event
+  state.subscription = await repo.issueOpened.$subscribe(root.handleIssueOpened)
+}
+
+async function stop() {
+  // Unsubscribe from the event
+  unsubscribe(state.subscription)
+}
+
+// Handle the event
+export async function handleIssueOpened(_, { event }) {
+  console.log(`New issue opened: ${await event.issue.title}`)
+}
+```

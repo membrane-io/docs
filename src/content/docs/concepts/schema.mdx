@@ -1,0 +1,133 @@
+---
+title: Schema
+---
+
+import Action from "../../../components/Action"
+import Event from "../../../components/Event"
+import Package from "../../../components/Package"
+import Gref from "../../../components/Gref"
+
+Before learning about schemas. Make sure you've read the previous section about [The Graph](/concepts/the-graph) to
+understand the core concepts like nodes and grefs.
+
+## Introduction
+
+The types of nodes that a program exposes in its graph are defined in its _schema_.
+
+A program's schema consist of a set of _node types_ with _fields_ that define the available data.
+
+Types can also declare _actions_ which are functions that can be invoked on them, and _events_ which other programs can
+be subscribed to.
+
+To summarize, a type is made of
+
+|             |                             |
+| ----------- | --------------------------- |
+| **Fields**  | Values that can be queried  |
+| **Actions** | Functions with side effects |
+| **Events**  | Subscribable notifications  |
+
+Collectively these are called _members_.
+
+## Editing schemas
+
+Schemas can be edited from the right sidebar and are stored in `memconfig.json`. You can also edit this file manually
+when convenient.
+
+<video src="/cloud-assets/schema.mp4" muted autoplay controls></video>
+
+## Root Type
+
+All schemas must declare a type named `Root` which defines the type of its _root
+node_. The root node serves as the "entry point" into the program so all grefs are relative to it.
+
+The root node of each program can be referenced using the program's name followed by a colon:
+
+- <Gref value="google-calendar:" />
+- <Gref value="github:" />
+- <Gref value="slack:" />
+
+The trailing colon indicates that it's a gref with no path.
+
+Other nodes are referenced by appending a path. For example, if you had [membrane/github](https://membrane.io/share/membrane/github) running, these would all be valid grefs:
+
+| gref                                                                                                              | Refers to              |
+| ----------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| <Gref value="github:users" />                                                                                     | `UserCollection`       |
+| <Gref value="github:users.one(name:'membrane-io')" />                                                             | `User`                 |
+| <Gref value="github:users.one(name:'lodash').repos" />                                                            | `RepositoryCollection` |
+| <div style={{ maxWidth: "50ex" }}><Gref value="github:users.one(name:'lodash').repos.one(name:'lodash')" /></div> | `Repository`           |
+
+## Scalars (Primitive types)
+
+Membrane provides a few built-in types for primitives (aka scalars):
+
+- `String`
+- `Int` (a 53-bit signed integer)
+- `Float` (a single-precision floating point number)
+- `Boolean`
+- `Null`
+- `Void` (used for actions that don't return anything)
+
+As well as a couple of "type wrapper":
+
+- `List<T>` A list of `T` values
+- `Gref<T>` A gref to a node of type `T`
+
+These two wrappers are essential for implementing [pagination](/features/pagination) in a unified way across all
+programs and drivers.
+
+## Object types
+
+As mention above, programs can define their own types with fields, actions and events.
+
+To illustrate this section, we'll use a simplified `PullRequest` type from <Package name="github" /> with the following schema:
+
+```yaml
+PullRequest
+  Fields
+    id: int
+    number: Int
+    title: String
+    body: String
+    owner: User
+    comments: CommentCollection
+
+  Actions
+    merge(message: String): Void
+    close(message: String): Void
+
+  Events
+    closed: ClosedEvent
+```
+
+### Fields
+
+Fields define the data that can be queried from a node.
+
+Fields can be scalars, lists, grefs, or other object types.
+
+Fields _can_ have a corresponding "resolver" function that gets invoked during queries.
+
+We'll learn more about queries in the [Queries](/concepts/queries) section.
+
+### Actions
+
+Actions are functions that can be invoked in the context of a graph node.
+
+For example, the type `PullRequest` in <Package name="github"/> declares an <Action name="merge"/> action which can be invoked on a pull request.
+
+For each action declared in the schema, you must define a corresponding function that gets called when the action is invoked.
+
+We'll learn more about actions in the [Actions](/concepts/actions) section.
+
+### Events
+
+Any Membrane program can emit events on their nodes and subscribe to events on nodes of other programs.
+
+For example, the type `Issue` in <Package name="github"/> declares a <Event name="closed"/> which is emitted when a
+specific issue is closed.
+
+Events can optionally have a pair of corresponding functions called `subscribe` and `unsubscribe` that get invoked when the event is subscribed to or unsubscribed from.
+
+We'll learn more about events in the [Events](/concepts/events) section.

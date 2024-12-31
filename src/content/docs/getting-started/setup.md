@@ -1,10 +1,9 @@
 ---
-title: Setup
+title: The IDE
 ---
 
-## Membrane Web IDE
-
-Membrane's primary interface is the Membrane Web IDE. The IDE is where you deploy Membrane programs, set up cron jobs, inspect logs, and more.
+Membrane's primary interface is the Membrane Web IDE. The IDE is where you write and deploy programs, set up cron jobs, inspect logs, and more.
+We built our own IDE to tightly integrate all our features and provide a great developer experience.
 
 Visit <a href="https://membrane.io/ide" target="_blank">membrane.io/ide</a> to get started.
 
@@ -17,7 +16,7 @@ You can open these docs as a webview in the IDE. Open the command palette (`cmd/
 When the IDE starts up, you'll see:
 
 1. Program Navigator (left sidebar)
-2. Membrane Logs (bottombar)
+2. Membrane Logs (bottom bar)
 3. Program Details (right sidebar)
 4. Welcome instructions & open program file, `hello-world/index.ts`
 

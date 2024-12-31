@@ -15,9 +15,8 @@ html {
   --sl-text-code-sm: var(--sl-text-sm);
   --sl-color-bg-inline-code: var(--sl-color-gray-6);
   --astro-code-color-background: none;
-  --sl-text-sm: 13px;
-  --sl-text-2xs: 13px;
-  --sl-text-xs: 13px;
+  --sl-text-2xs: 11px;
+  --sl-text-xs: 12px;
   --sl-text-sm: 13px;
   --sl-text-base: 13px;
   --sl-text-lg: 13px;
@@ -29,18 +28,65 @@ html {
   --sl-text-6xl: 14px;
 }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* inline code */
+.sl-markdown-content code:not(:where(.not-content *)) {
+  background-color: var(--sl-color-gray-6);
+}
+
+/* .sl-markdown-content
+  :not(a, strong, em, del, span, input, code)
+  + :not(a, strong, em, del, span, input, code, :where(.not-content *)) {
+  margin-top: 1rem;
+} */
+
+.sl-markdown-content a {
+  text-decoration: dotted underline;
+  text-decoration-color: var(--sl-color-gray-3);
+  text-underline-offset: 2px;
+}
+
+.sl-markdown-content a:hover,
+.sl-markdown-content a:active {
+  text-decoration: dotted underline;
+}
+
+h2 {
   text-transform: uppercase;
+  width: fit-content;
+  padding: 4px 8px 3px 8px;
+}
+
+h3 {
   padding: 4px 8px 3px 8px;
   display: inline-block;
 }
 
+h4,
+h5,
+h6 {
+  padding: 3px 8px 2px 8px;
+  margin-top: 1rem;
+  color: var(--sl-color-gray-2) !important;
+  display: inline-block;
+  font-weight: normal !important;
+}
+
+/* Headings after non-headings have more spacing. */
+.sl-markdown-content
+  :not(h1, h2, h3 h4, h5, h6)
+  + :is(h1, h2, h3):not(:where(.not-content *)) {
+  margin-top: 4.5em;
+}
+.sl-markdown-content
+  :not(h1, h2, h3 h4, h5, h6)
+  + :is(h4, h5, h6):not(:where(.not-content *)) {
+  margin-top: 3.5em;
+}
+
 :root[data-theme="dark"] h2,
-:root[data-theme="dark"] h3,
+:root[data-theme="dark"] h3 {
+  background-color: var(--sl-color-gray-5);
+}
 :root[data-theme="dark"] h4,
 :root[data-theme="dark"] h5,
 :root[data-theme="dark"] h6 {
@@ -48,11 +94,13 @@ h6 {
 }
 
 :root[data-theme="light"] h2,
-:root[data-theme="light"] h3,
-:root[data-theme="light"] h4,
+:root[data-theme="light"] h3 {
+  background-color: var(--sl-color-gray-7);
+}
 :root[data-theme="light"] h5,
-:root[data-theme="light"] h6 {
-  background-color: var(--sl-color-gray-6);
+:root[data-theme="light"] h6,
+:root[data-theme="light"] h4 {
+  background-color: var(--sl-color-gray-7);
 }
 
 /* Dark mode colors. */
@@ -60,8 +108,8 @@ h6 {
   --sl-color-accent-low: #242424;
   --sl-color-accent: #6a6a6a;
   --sl-color-accent-high: #c8c8c8;
-  --sl-color-white: #eee;
-  --sl-color-gray-1: #ddd;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #dddddd;
   --sl-color-gray-2: #c2c2c2;
   --sl-color-gray-3: #8b8b8b;
   --sl-color-gray-4: #585858;
@@ -79,27 +127,31 @@ h6 {
   --sl-color-purple-low: #111;
   --sl-color-purple-high: #fff;
 
-  --sl-color-text-accent: #fff;
   --sl-color-bg: #141414;
   --sl-color-bg-nav: #141414;
   --sl-color-bg-sidebar: #141414;
   --sl-color-hairline-shade: #242424;
   --sl-color-hairline: #242424;
+
+  --color-gref-border-top: var(--sl-color-gray-5);
+  --color-gref-border-bottom: var(--sl-color-gray-6);
+  --color-gref-border-left: var(--sl-color-gray-5);
+  --color-shadow: rgba(0, 0, 0, 0.8);
 }
 
 /* Light mode colors. */
 :root[data-theme="light"] {
   --sl-color-accent-low: #d7d7d7;
-  --sl-color-accent: #6b6b6b;
+  --sl-color-accent: #222222;
   --sl-color-accent-high: #323232;
   --sl-color-white: #181818;
   --sl-color-gray-1: #272727;
   --sl-color-gray-2: #383838;
   --sl-color-gray-3: #585858;
   --sl-color-gray-4: #8b8b8b;
-  --sl-color-gray-5: #c2c2c2;
-  --sl-color-gray-6: #eeeeee;
-  --sl-color-gray-7: #f6f6f6;
+  --sl-color-gray-5: #cccccc;
+  --sl-color-gray-6: #dddddd;
+  --sl-color-gray-7: #eeeeee;
   --sl-color-black: #ffffff;
 
   --sl-color-blue: #000;
@@ -110,7 +162,27 @@ h6 {
   --sl-color-purple-low: #eee;
   --sl-color-purple-high: #000;
 
-  --sl-color-text-accent: #000;
+  --color-gref-border-top: var(--sl-color-gray-6);
+  --color-gref-border-bottom: var(--sl-color-gray-5);
+  --color-gref-border-left: var(--sl-color-gray-6);
+  --color-shadow: rgba(0, 0, 0, 0.2);
+}
+
+a[aria-current="page"],
+a[aria-current="page"]:hover,
+.a[aria-current="page"]:focus {
+  font-weight: 600;
+  color: var(--sl-color-text-accent);
+  background-color: var(--sl-color-gray-6);
+}
+
+/* Colors that are dark/light indenpendent */
+:root {
+  --sl-color-text: var(--sl-color-gray-3);
+  --color-field: var(--sl-color-white);
+  --color-action: rgb(255, 50, 255);
+  --color-event: rgb(120, 80, 255);
+  --sl-color-text-accent: var(--sl-color-white);
 }
 
 /* Hack to ensure logo is never larger than sidebar */
@@ -136,6 +208,7 @@ li > a {
  */
 .sl-markdown-content code {
   font-size: 1rem;
+  color: var(--sl-color-gray-2);
 }
 
 .sl-markdown-content pre:not(:where(.not-content *)) {
@@ -146,18 +219,24 @@ li > a {
   margin-top: 0;
 }
 
+strong {
+  color: var(--sl-color-gray-2);
+}
+
 /* Add some better default styling to videos, images */
 .sl-markdown-content video,
 .sl-markdown-content img {
-  width: calc(100% - 8px);
-  max-width: 720px;
+  max-width: calc(100% - 8px);
   object-fit: cover;
   padding: 10px;
   margin: 16px 0 32px 0;
   border: 1px solid var(--sl-color-accent-high);
-  box-shadow: 1px 1px var(--sl-color-accent-high),
-    2px 2px var(--sl-color-accent-high), 3px 3px var(--sl-color-accent-high),
-    4px 4px var(--sl-color-accent-high), 5px 5px var(--sl-color-accent-high);
+  box-shadow:
+    1px 1px var(--sl-color-accent-high),
+    2px 2px var(--sl-color-accent-high),
+    3px 3px var(--sl-color-accent-high),
+    4px 4px var(--sl-color-accent-high),
+    5px 5px var(--sl-color-accent-high);
 }
 
 /* Customize pagination link buttons */
@@ -196,4 +275,39 @@ p {
 .astro-code {
   overflow: visible !important;
   font-size: 12px !important;
+}
+
+.starlight-aside--note {
+  --sl-color-asides-text-accent: var(--sl-color-gray-1);
+  --sl-color-asides-border: var(--sl-color-gray-4);
+  background-color: var(--sl-color-blue-low);
+}
+
+.starlight-aside {
+  padding: 1rem;
+  border-inline-start: 1px solid var(--sl-color-asides-border);
+  color: var(--sl-color-gray-3);
+}
+
+table {
+  /* Starlight makes table display: block for some reason */
+  display: table !important;
+  width: 100%;
+  padding: 0px 1ex;
+}
+
+td,
+th {
+  padding-inline-start: 1ex !important;
+}
+
+/* Blinking cursor in expressive code blocks */
+.expressive-code .twoslash-cursor {
+  width: 2px !important;
+  background-color: var(--sl-color-white) !important;
+}
+
+/* Code blocks */
+.expressive-code .frame pre {
+  background: none !important;
 }
