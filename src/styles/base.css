@@ -239,6 +239,11 @@ strong {
     5px 5px var(--sl-color-accent-high);
 }
 
+/* All videos are larger than the content (some images are not) */
+.sl-markdown-content video {
+  width: calc(100% - 8px);
+}
+
 /* Customize pagination link buttons */
 .pagination-links > a,
 starlight-menu-button > button,

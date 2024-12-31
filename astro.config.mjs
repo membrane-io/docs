@@ -113,7 +113,7 @@ export default defineConfig({
               link: "/concepts/connections/",
             },
             {
-              label: "Drivers",
+              label: "API Drivers",
               link: "/concepts/drivers/",
             },
             {
