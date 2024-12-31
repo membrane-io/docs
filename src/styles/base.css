@@ -316,3 +316,8 @@ th {
 .expressive-code .frame pre {
   background: none !important;
 }
+
+.pagination-links a {
+  box-shadow: none;
+  border: none;
+}
