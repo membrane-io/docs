@@ -49,7 +49,7 @@ The root node of each program can be referenced using the program's name followe
 
 The trailing colon indicates that it's a gref with no path.
 
-Other nodes are referenced by appending a path. For example, if you had [membrane/github](https://membrane.io/share/membrane/github) running, these would all be valid grefs:
+Other nodes are referenced by appending a path. For example, if you had <Package name="github" /> running, these would all be valid grefs:
 
 | gref                                                                                                              | Refers to              |
 | ----------------------------------------------------------------------------------------------------------------- | ---------------------- |
@@ -69,7 +69,7 @@ Membrane provides a few built-in types for primitives (aka scalars):
 - `Null`
 - `Void` (used for actions that don't return anything)
 
-As well as a couple of "type wrapper":
+As well as a couple of "type wrappers":
 
 - `List<T>` A list of `T` values
 - `Gref<T>` A gref to a node of type `T`
@@ -79,7 +79,7 @@ programs and drivers.
 
 ## Object types
 
-As mention above, programs can define their own types with fields, actions and events.
+As mentioned above, programs can define their own types with fields, actions and events.
 
 To illustrate this section, we'll use a simplified `PullRequest` type from <Package name="github" /> with the following schema:
 
@@ -115,7 +115,7 @@ We'll learn more about queries in the [Queries](/concepts/queries) section.
 
 Actions are functions that can be invoked in the context of a graph node.
 
-For example, the type `PullRequest` in <Package name="github"/> declares an <Action name="merge"/> action which can be invoked on a pull request.
+For example, the type `PullRequest` in <Package name="github"/> declares a <Action name="merge"/> action which can be invoked on a pull request.
 
 For each action declared in the schema, you must define a corresponding function that gets called when the action is invoked.
 
@@ -125,7 +125,7 @@ We'll learn more about actions in the [Actions](/concepts/actions) section.
 
 Any Membrane program can emit events on their nodes and subscribe to events on nodes of other programs.
 
-For example, the type `Issue` in <Package name="github"/> declares a <Event name="closed"/> which is emitted when a
+For example, the type `Issue` in <Package name="github"/> declares a <Event name="closed"/> event, which is emitted when a
 specific issue is closed.
 
 Events can optionally have a pair of corresponding functions called `subscribe` and `unsubscribe` that get invoked when the event is subscribed to or unsubscribed from.

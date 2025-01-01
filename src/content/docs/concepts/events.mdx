@@ -35,7 +35,7 @@ declare module "membrane" {
 // ---cut---
 import type { root } from "membrane";
 
-export const endpoint: resolvers.Root["endpoint"] = (req) => {
+export function endpoint(req) {
   switch (`${req.method} ${req.path}`) {
     case "POST /gh-webhook-path":
       root.ghWebhookReceived.$emit();
