@@ -33,12 +33,6 @@ html {
   background-color: var(--sl-color-gray-6);
 }
 
-/* .sl-markdown-content
-  :not(a, strong, em, del, span, input, code)
-  + :not(a, strong, em, del, span, input, code, :where(.not-content *)) {
-  margin-top: 1rem;
-} */
-
 .sl-markdown-content a {
   text-decoration: dotted underline;
   text-decoration-color: var(--sl-color-gray-3);

@@ -8,7 +8,7 @@ A driver serves as a bridge between Membrane and external APIs. Drivers expose A
 
 We have drivers for popular APIs like [GitHub](https://www.membrane.io/share/membrane/github) and [Slack](https://www.membrane.io/share/membrane/slack). Check out the [full list here](https://www.membrane.io/share/membrane). Drivers are open source and anyone can create and publish one. Once you get the hang of it, you won’t have to worry much about the quirks of individual APIs since all drivers follow the same structure.
 
-Drivers are regular Membrane programs so if you’ve written some code on Membrane you’re already half way there!
+Drivers are regular Membrane programs, so if you’ve written some code on Membrane you’re already halfway there!
 
 For this guide, we'll walk through the <Package name="resend" /> driver. Resend provides a modern email API for developers. For more details about their API, check out their [docs](https://resend.com/docs/introduction).
 
