@@ -39,7 +39,7 @@ export function count() {
 Note that the entire JS heap is persistent, not just `state`. The reason we use `state` is because each deploy (i.e.
 code change) creates a new ES Module, so this object serves as a convenient way to pass data from one version to the
 next. Technically you could use `globalThis`, but this is not recommended since it's also accesible by NPM dependencies
-and our IDE provides tooling to conveniently inspect `state`
+and our IDE provides tooling to conveniently inspect `state`.
 
 In most cases Membrane will generate typing information for `state` based on usage. For example, from the code above, we
 will automatically infer the type of `state` to be:

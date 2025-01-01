@@ -10,7 +10,7 @@ We have drivers for popular APIs like [GitHub](https://www.membrane.io/share/mem
 
 Drivers are regular Membrane programs so if you’ve written some code on Membrane you’re already half way there!
 
-For this guide, we'll walk through the [Resend driver](https://www.membrane.io/share/membrane/resend). Resend provides a modern email API for developers. For more details about their API, check out their [docs](https://resend.com/docs/introduction).
+For this guide, we'll walk through the <Package name="resend" /> driver. Resend provides a modern email API for developers. For more details about their API, check out their [docs](https://resend.com/docs/introduction).
 
 We'll demonstrate how to:
 
@@ -46,7 +46,7 @@ The schema for a programs defines the "shape" of its graph.
 
 ![Membrane Web IDE](/cloud-assets/resend-schema.png)
 
-When writing drivers, the schema should match the API as closely as possible. The list you see above is
+When writing drivers, the schema should match the API as closely as possible. The list you see above includes:
 
 ### Configuration
 

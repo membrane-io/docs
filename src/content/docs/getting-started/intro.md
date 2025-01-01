@@ -15,10 +15,10 @@ the [core concepts](/concepts/programs) that make Membrane unique and powerful.
 
 Membrane has some superpowers that differentiate it from other JavaScript/TypeScript environments, most notably:
 
-- **Programs are durable** There's no need to store & load data from a database. Instead, keep everything in the `state` object.
-- **Access everything via a unified graph** Use external APIs in a standard way without worrying about API quirks and reading lots of docs.
-- **Everything is in the logs** Our runtime uses a write-ahead log, so if it's not in the logs, it didn't happen.
-- **Built-in email** Every program comes with an email address. Simply export an `email` function to programmatically handle incoming email.
+- **Programs are durable.** There's no need to store & load data from a database. Instead, keep everything in the `state` object.
+- **Access everything via a unified graph.** Use external APIs in a standard way without worrying about API quirks and reading lots of docs.
+- **Everything is in the logs.** Our runtime uses a write-ahead log, so if it's not in the logs, it didn't happen.
+- **Built-in email.** Every program comes with an email address. Simply export an `email` function to programmatically handle incoming email.
 
 Start learning more in the [Durable Programs](/concepts/programs) section.
 
@@ -27,7 +27,7 @@ Start learning more in the [Durable Programs](/concepts/programs) section.
 Popular use cases for Membrane include
 
 - Internal tools
-- Long lived workflows
+- Long-lived workflows
 - Email or SMS automation
 - Slack/Discord/Telegram bots
 - LLM-powered AI agents
@@ -47,7 +47,7 @@ you can still use Membrane for parts of your application that don't need to hand
 ## Community
 
 Come join us on <a href="https://discord.gg/4RHyJDV8kj" target="_blank">our Discord</a> or reach out via
-`contact@membrane.io`. We'll help you get set up and show you around.
+[contact@membrane.io](mailto:contact@membrane.io). We'll help you get set up and show you around.
 
 These docs are open source. To contribute, click `Edit page` at the bottom of any page, or open a PR directly on <a
 href="https://github.com/membrane-io/docs" target="_blank">our GitHub repo</a>.

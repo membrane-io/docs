@@ -27,8 +27,8 @@ Note that sometimes we refer to "The Graph" as the combination of all your progr
 
 ## Nodes
 
-Nodes are instances of types in your graph. Anything that is refereceable is a node. To continue with the GitHub
-example, a specific `Repository` is a node, but also it's name, the number of stars, as well as the "bio" of the author.
+Nodes are instances of types in your graph. Anything that is referenceable is a node. To continue with the GitHub
+example, a specific `Repository` is a node, and so are its properties - like its name, number of stars, and the author's bio."
 
 ## Grefs (graph references)
 
@@ -65,7 +65,6 @@ This also allows you to provide fine-grained access to only the data that's need
 | name     | gref                                                                                           |
 | -------- | ---------------------------------------------------------------------------------------------- |
 | stars    | <Gref value='github:users.one(name:"membrane-io").repos.one(name:"membrane-io").stargazers' /> |
-| deleteme | <Gref value='github:users.one(name:"membrane-io")' />                                          |
 
 Which makes `nodes.stars` available in your program.
 
@@ -102,7 +101,7 @@ export async function action() {
 
 Graph nodes are typed. So each program defines a _schema_ that determines the shape of its graph.
 
-Here's an example schema from the <Package name="resend"/> as shown in the IDE.
+Here's an example schema from <Package name="resend"/> as shown in the IDE.
 
 <center>
   ![An example schema from the membrane/resend
@@ -148,7 +147,7 @@ By modeling APIs as explicit graphs rather than implicit ID-based relationships,
 individual nodes, Membrane provides a unified interface for interacting with data in a way that matches your mental
 model.
 
-By allowing you to refenrece individual nodes, the graph guarantees that programs (especially ones you didn't write) can
+By allowing you to reference individual nodes, the graph guarantees that programs (especially ones you didn't write) can
 only access what they need, and nothing else. It also enables visibility into everything a program has done. Nothing is
 opaque in Membrane.
 
@@ -158,7 +157,7 @@ nodes under the hood.
 In conclusion, The Membrane Graph is a powerful abstraction that:
 
 - Abstracts away particularities of individual APIs like pagination, data formats, headers, webhook models, URL encoding, etc.
-- Unifies how data is accessed read regardless of its source (API resources vs. your own abstractions)
+- Unifies how data is accessed regardless of its source (API resources vs. your own abstractions)
 - Provides a way to declaratively reference data in a fine-grained way
 - Allows for easy understanding of the flow of events and data
 - Serves as an access-control mechanism. Programs can only access what you allow and nothing else

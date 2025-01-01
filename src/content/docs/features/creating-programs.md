@@ -27,14 +27,14 @@ In Membrane you rarely need to stop a program because you can modify its code. H
 for any reason, you can do so by right clicking on its name in the Navigator and selecting `Stop`. A program must be
 stopped in order to delete it.
 
-Currently, when a program is stopped and started again **it's state will be lost**. Membrane can resume stopped programs but
+Currently, when a program is stopped and started again **its state will be lost**. Membrane can resume stopped programs, but
 this functionality is currently not exposed in the IDE. Let us know if you need to restore the state of a stopped
 program and we'll do it for you. Keep in mind that this might not be possible if a program has been stopped for too long.
 
-Once a program is stopped, it's files will remain in the Navigator under the `NOT RUNNING` section. From there you can redeploy it
+Once a program is stopped, its files will remain in the Navigator under the `NOT RUNNING` section. From there you can redeploy it
 if you want.
 
-You can permanently delete these files from the context menu.
+You can permanently delete these files from the right-click context menu.
 
 :::danger
 When you stop a running program, its state will be lost. Let us know if you need to restore.
