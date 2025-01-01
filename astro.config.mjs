@@ -97,7 +97,7 @@ export default defineConfig({
               link: "/concepts/schema/",
             },
             {
-              label: "Queries",
+              label: "Queries (Fields)",
               link: "/concepts/queries/",
             },
             {

@@ -5,18 +5,18 @@ title: Durable Programs
 import { Aside } from "@astrojs/starlight/components";
 
 Membrane allows you to build functionality very quickly because, among other things, you don't need to worry about
-persistence. Each program its its own database.
+persistence. Each program is its own database.
 
 ## Durability
 
 Programs in Membrane are written in TypeScript and run on our cloud runtime. Unlike other serverless
-runtimes, Membrane programs are [stateful](/features/state/) which means a few things:
+runtimes, Membrane programs are [stateful](/features/state/) which means:
 
 - You don't need to persist data to a database or file.
 - There's only one instance of each program. No horizontal scaling by design.
 - Execution never stops. Even when you change the code, the new code continues the execution with the same state.
 
-Membrane continually and efficienty persists changes to the program's entire memory heap so that when the program goes
+Membrane continually and efficiently persists changes to the program's entire memory heap so that when the program goes
 idle, it doesn't consume any CPU or memory. When the program needs to run again, Membrane lazily restores only the parts
 of the heap that are needed so that "cold-starts" are extremely fast.
 
@@ -27,12 +27,12 @@ Behind the scenes, a program and its entire history is a SQLite file.
 ### Graph API
 
 Membrane programs expose their API in [a graph](/concepts/the-graph) that other programs can consume to create
-useful abstractions. We'll learn more about this in the [Graphs](/concepts/the-graph) section.
+useful abstractions. We'll learn more about this in [The Graph](/concepts/the-graph) section.
 
 ### Built-in HTTP and email
 
 Every program comes with its own [HTTP URL](/features/endpoints) and [email address](/features/email) so you can
-easily build functionality in a variety of ways.
+easily build functionality like webhook handlers, email automations, REST APIs, website prototypes, and more.
 
 ### NPM support
 
@@ -41,10 +41,10 @@ packages for you.
 
 ### Deploy on save
 
-Every time you change a program. Membrane will automatically deploy the new version. This allows to you iterate very
+Every time you change a program, Membrane will automatically deploy the new version. This allows to you iterate very
 quickly.
 
-"Deploy on save" can be disabled in the settings if needed.
+"Deploy on save" can be disabled in settings if needed.
 
 <Aside>
   We're working on having a separate "staging" instance where you can quickly

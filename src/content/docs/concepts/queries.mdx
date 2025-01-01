@@ -25,7 +25,7 @@ To illustrate this section, we'll assume that you have <Package name="github" />
   />{" "}
 </div>
 
-You can click on its type to explore the entire schema.
+You can click on the `User` type above to explore the entire GitHub program schema.
 
 The above is a reference to a Github User which we'll be reading some data from. Feel free to change it to some other github username.
 
@@ -124,11 +124,11 @@ TODO
 ## Query execution
 
 This section explains how Membrane queries work by calling the functions exported from a program. You generally
-don't need to think about this but it's helpful to understand which functions are called when.
+don't need to think about this, but it's helpful to understand which functions are called when.
 
 When a query is received for a node, Membrane first combines the gref and the query (if any) into a larger GraphQL query.
 
-If we're querying `{ name bio }` on the above gref. The actual query that will be executed looks something like this
+If we're querying `{ name bio }` on the above gref, the actual query that will be executed looks something like this:
 
 ```graphql
 {
@@ -150,7 +150,7 @@ Then, to resolve the values, Membrane will invoke these functions in order, whic
 3. `User.name`
 4. `User.bio`
 
-The result of each resolver is passed as the `obj` argument to all children resolvers.
+The result of each resolver is passed as the `obj` argument to all child resolvers.
 
 ### Executing List fields
 
@@ -193,7 +193,7 @@ All object types have an _implicit_ field aptly named `gref` which can be querie
 
 For example, we could query `user.gref` and would get back `github:users.one(name:'membrane-io')`. That's not very useful because we already knew that one. However, when querying a list of nodes, including `gref` in the query can be useful to know the identify of each returned item. We can then use the returned grefs to interact with each item individually.
 
-Membrane's IDE, uses grefs to identify each node. This is what enables you to click on a list item and interact with the corresponding node in a generic way (independent of how each API identifies its resources).
+Membrane's IDE uses grefs to identify each node. This is what enables you to click on a list item and interact with the corresponding node in a generic way (independent of how each API identifies its resources).
 
-In most cases, you don't need to write a resolver for this field but it's important for when you're querying a list of
+In most cases, you don't need to write a resolver for this field, but it's important for when you're querying a list of
 nodes and you want to keep track of the identity of each item.
