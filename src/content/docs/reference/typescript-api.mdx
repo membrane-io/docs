@@ -15,11 +15,11 @@ you change its [schema](/concepts/schema) or its
 
 ```ts
 import { state, nodes, root } from "membrane"
-//       ^       ^     ^
-//       |       |     |
-//       |       |     Gref to the program's root node
-//       |       |
-//       |       Connected nodes
+//       ↑      ↑      ↑
+//       |      |      |
+//       |      |      Gref to the program's root node
+//       |      |
+//       |      Connected nodes
 //       |
 //       Store persistent data
 ```
@@ -27,11 +27,6 @@ import { state, nodes, root } from "membrane"
 You can explore it by cmd+clicking on `"membrane"` to open the generated
 `membrane.d.ts`. You'll see the types documented on this page, plus any
 additional types specific to that program's schema.
-
-<Aside>
-  `membrane.d.ts` gets regenerated every time a program's schema or connections
-  change.
-</Aside>
 
 ## Exported objects
 
