@@ -93,6 +93,10 @@ export default defineConfig({
               link: "/concepts/the-graph/",
             },
             {
+              label: "Observability",
+              link: "/concepts/observability/",
+            },
+            {
               label: "Schema",
               link: "/concepts/schema/",
             },
@@ -120,10 +124,6 @@ export default defineConfig({
               label: "Packages",
               link: "/concepts/packages/",
             },
-            {
-              label: "Observability",
-              link: "/features/observability/",
-            },
           ],
         },
         {
@@ -132,39 +132,39 @@ export default defineConfig({
           items: [
             {
               label: "The IDE",
-              link: "/getting-started/setup/",
+              link: "/getting-started/ide/",
             },
             {
               label: "Creating programs",
-              link: "/features/creating-programs/",
+              link: "/guides/creating-programs/",
             },
             {
               label: "Managing state",
-              link: "/features/state/",
+              link: "/guides/state/",
             },
             {
               label: "HTTP endpoints",
-              link: "/features/endpoints/",
+              link: "/guides/endpoints/",
             },
             {
               label: "Email",
-              link: "/features/email/",
+              link: "/guides/email/",
             },
             {
               label: "SMS",
-              link: "/features/sms/",
+              link: "/guides/sms/",
             },
             {
               label: "Timers and Cronjobs",
-              link: "/features/timers/",
+              link: "/guides/timers/",
             },
             {
               label: "Pagination",
-              link: "/features/pagination/",
+              link: "/guides/pagination/",
             },
             {
               label: "API drivers",
-              link: "/reference/driver-guide/",
+              link: "/guides/driver-guide/",
             },
           ],
         },

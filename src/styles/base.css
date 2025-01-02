@@ -10,6 +10,9 @@ html {
 :root {
   --__sl-font: "Berkeley Mono", monospace;
   --__sl-font-mono: "Berkeley Mono", monospace;
+  /* This content-width prevents horizontal scrolling in code blocks since
+    we limit the MDX width to 80 chars using prettier */
+  --sl-content-width: 85ch; 
   --sl-line-height: 1.5;
   --sl-text-code: var(--sl-text-base);
   --sl-text-code-sm: var(--sl-text-sm);
@@ -62,7 +65,7 @@ h6 {
   margin-top: 1rem;
   color: var(--sl-color-gray-2) !important;
   display: inline-block;
-  font-weight: normal !important;
+  /* font-weight: normal !important; */
 }
 
 /* Headings after non-headings have more spacing. */
@@ -107,14 +110,13 @@ h6 {
   --sl-color-gray-2: #c2c2c2;
   --sl-color-gray-3: #8b8b8b;
   --sl-color-gray-4: #585858;
-  --sl-color-gray-5: #383838;
-  --sl-color-gray-6: #272727;
+  --sl-color-gray-5: #2a2a2a;
+  --sl-color-gray-6: #1a1a1a;
   --sl-color-gray-7: #131313;
   --sl-color-black: #181818;
-  --sl-color-blue-low: #000;
 
   --sl-color-blue: #fff;
-  --sl-color-blue-low: #111;
+  --sl-color-blue-low: var(--sl-color-gray-6);
   --sl-color-blue-high: #fff;
 
   --sl-color-purple: #fff;
@@ -136,7 +138,7 @@ h6 {
 /* Light mode colors. */
 :root[data-theme="light"] {
   --sl-color-accent-low: #d7d7d7;
-  --sl-color-accent: #222222;
+  --sl-color-accent: #000000;
   --sl-color-accent-high: #323232;
   --sl-color-white: #181818;
   --sl-color-gray-1: #272727;
@@ -167,7 +169,7 @@ a[aria-current="page"]:hover,
 .a[aria-current="page"]:focus {
   font-weight: 600;
   color: var(--sl-color-text-accent);
-  background-color: var(--sl-color-gray-6);
+  background-color: var(--sl-color-gray-5);
 }
 
 /* Colors that are dark/light indenpendent */
@@ -292,12 +294,13 @@ table {
   /* Starlight makes table display: block for some reason */
   display: table !important;
   width: 100%;
-  padding: 0px 1ex;
+  padding: 0px 8px;
+  margin: 1rem 0 2rem 0 !important;
 }
 
 td,
 th {
-  padding-inline-start: 1ex !important;
+  padding-inline-start: 1ch !important;
 }
 
 /* Blinking cursor in expressive code blocks */
@@ -307,8 +310,7 @@ th {
 }
 
 /* Code blocks */
-.expressive-code .frame pre {
-  background: none !important;
+.expressive-code {
 }
 
 .pagination-links a {

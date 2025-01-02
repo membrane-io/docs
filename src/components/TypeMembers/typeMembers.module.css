@@ -1,23 +1,23 @@
-td.member {
+.membersTable td.member {
   padding: 1px 0px;
   border: none;
-  width: 35ex;
-  max-width: 35ex;
+  width: 35ch;
+  max-width: 35ch;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-tbody {
+.membersTable tbody {
   border-spacing: 0px;
 }
 
-tr {
+.membersTable tr {
   position: relative;
   width: 100%;
 }
 
-tr:before {
+.membersTable tr:before {
   content: "";
   position: absolute;
   top: calc(50% - 1px);

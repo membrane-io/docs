@@ -27,7 +27,7 @@ const Package = (props: PackageProps) => {
   );
 };
 
-const PackageIcon = ({ size = 12 }: { size?: number }) => (
+const PackageIcon = ({ size = 14 }: { size?: number }) => (
   <svg
     style={{ display: "inline-block", verticalAlign: "middle" }}
     width={size}

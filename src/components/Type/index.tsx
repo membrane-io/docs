@@ -5,7 +5,7 @@ import SchemaView from "../SchemaView";
 import Package from "../Package";
 
 interface TypeProps {
-  typed: Typed;
+  type: Typed | string;
   memconfig?: Memconfig;
   packageName?: string;
   onClick?: () => void;
@@ -14,7 +14,10 @@ interface TypeProps {
 export type OfType = string | { type: string; ofType?: OfType };
 export type Typed = { type: string; ofType?: OfType };
 
-const Type = ({ typed, memconfig, packageName, onClick }: TypeProps) => {
+const Type = ({ type: typed, memconfig, packageName, onClick }: TypeProps) => {
+  if (typeof typed === "string") {
+    typed = { type: typed };
+  }
   if (!memconfig) {
     if (onClick) {
       return (

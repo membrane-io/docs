@@ -83,7 +83,7 @@ const MemberRow = ({ member, kind }: { member: Field; kind: MemberKind }) => {
         )}
       </td>
       <td>
-        <Type typed={member as Typed} onClick={() => {}} />
+        <Type type={member as Typed} onClick={() => {}} />
       </td>
     </tr>
   );

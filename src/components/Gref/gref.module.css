@@ -10,13 +10,13 @@
   --border-bottom: 1px solid var(--color-gref-border-bottom);
   color: var(--sl-color-gray-1);
   font-size: 12px;
-  padding-left: 4ex;
+  padding-left: 6ch; /* Countered by the margin-left of grefRoot */
 }
 
 .grefRoot {
-  margin-left: -4ex; /* Cancels the padding-left so that the first row isn't indented */
-  padding: 0px 1ex 1px 8px;
-  margin-right: -1ex;
+  margin-left: -6ch; /* Cancels the padding-left so that the first row isn't indented */
+  padding: 0px 1ch 1px 8px;
+  margin-right: -1ch; /* Allow the colon to encroach into the root */
   border-top: var(--border-top);
   border-bottom: var(--border-bottom);
   border-left: var(--border-left);
@@ -47,10 +47,10 @@
 
 .pathElem {
   padding-bottom: 1px;
-  padding-right: 1ex;
-  margin-right: -1ex;
-  padding-left: 1ex;
-  margin-left: -1ex;
+  padding-right: 1ch;
+  margin-right: -1ch;
+  padding-left: 1ch;
+  margin-left: -1ch;
   display: inline-block;
   position: relative;
   white-space: nowrap;

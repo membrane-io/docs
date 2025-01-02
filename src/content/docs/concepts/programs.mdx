@@ -2,55 +2,60 @@
 title: Durable Programs
 ---
 
-import { Aside } from "@astrojs/starlight/components";
-
-Membrane allows you to build functionality very quickly because, among other things, you don't need to worry about
-persistence. Each program is its own database.
+import { Aside } from "@astrojs/starlight/components"
 
 ## Durability
 
-Programs in Membrane are written in TypeScript and run in our cloud runtime. Unlike other serverless
-runtimes, Membrane programs are [stateful](/features/state/) which means:
+Membrane allows you to build functionality very quickly because, among other
+things, you don't need to worry about persistence. Each program is its own
+database.
 
-- You don't need to persist data to a database or file.
-- There's only one instance of each program. No horizontal scaling by design.
-- Execution never stops. Even when you change the code, the new code continues the execution with the same state.
+Programs run in a durable runtime that transparently and efficiently persist its
+state to disk. This is different from other serverless environments, where
+programs can only run for a limited amount of time, typically a few minutes,
+because CPU and RAM are expensive and servers need to be able to restart at any
+time.
 
-Membrane continually and efficiently persists changes to the program's entire memory heap so that when the program goes
-idle, it doesn't consume any CPU or memory. When the program needs to run again, Membrane lazily restores only the parts
-of the heap that are needed so that "cold-starts" are extremely fast.
+In contrast, Membrane is continually and transparently persisting changes to the
+program's entire memory heap so that when a program goes idle, it doesn't
+consume any CPU or memory, and our servers can be restarted without you
+noticing. When a program needs to do something again, for example, handle an
+HTTP request, Membrane lazily restores only the parts of the heap that are
+needed so that "cold-starts" are fast.
 
-Behind the scenes, a program and its entire history is a SQLite file.
+Unlike other serverless runtimes, Membrane programs:
 
-## Feature overview
+- Don't need to persist data to a database or file.
+- Can run forever and will never be killed due to timing out.
+- When you change the code, the new code continues the execution with the same
+  [state](/guides/state/).
 
-### Graph API
+## I/O
 
-Membrane programs expose their API in [a graph](/concepts/the-graph) that other programs can consume to create
-useful abstractions. We'll learn more about this in [The Graph](/concepts/the-graph) section.
+The main challenge we faced when designing Membrane was how to handle I/O.
 
-### Built-in HTTP and email
+Conventional programs have state that simply cannot be persisted to disk. For
+example, socket connections or open file handles. To solve this, all I/O in
+Membrane is _externalized_, meaning that the programs don't directly interact
+with the outside world by opening sockets. Instead, they write the request to
+its write-ahead log and then Membrane takes care of executing it.
 
-Every program comes with its own [HTTP URL](/features/endpoints) and [email address](/features/email) so you can
-easily build functionality like webhook handlers, email automations, REST APIs, website prototypes, and more.
+## Replays and time travel
 
-### NPM support
+Thanks to our write-ahead log and our deterministic JavaScript runtime, the
+entire history of the program can be replayed. Which means you can go back in
+time, inspect the state, debug errors after the fact and so on. These features
+are currently being worked on. Subscribe to our
+[mailing list](https://membrane.io) or join us on
+[Discord](https://discord.gg/4RHyJDV8kj) to stay up to date.
 
-You can use many NPM packages (but not all) simply by creating a `package.json`. The IDE will transparently fetch the
-packages for you.
+## Limitations
 
-### Deploy on save
+Membrane is not a silver bullet. One important limitation to keep in mind is
+that, because of its stateful nature, programs cannot be scaled horizontally.
+However, scaling is oftentimes not necessary! Learn more about
+[when to use Membrane](/getting-started/intro#when-to-use-membrane).
 
-Every time you change a program, Membrane will automatically deploy the new version. This allows to you iterate very
-quickly.
-
-"Deploy on save" can be disabled in settings if needed.
-
-<Aside>
-  We're working on having a separate "staging" instance where you can quickly
-  iterate without affecting the main program instance.
-</Aside>
-
-### Membrane Packages
-
-You can install programs created by other users or publish your own using [Membrane's package manager](/concepts/packages).
+Another limitation is that, due to our I/O model, you currently cannot stream
+network responses. This is something we're working on fixing though! So, stay
+tuned.

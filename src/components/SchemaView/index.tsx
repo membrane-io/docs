@@ -180,7 +180,7 @@ const SchemaView = ({ memconfig, defaultOpen }: SchemaViewProps) => {
             >
               <Collapsible.Trigger asChild>
                 <button className={styles.collapseButton}>
-                  <Type typed={{ type: type.name }} />
+                  <Type type={{ type: type.name }} />
                 </button>
               </Collapsible.Trigger>
               <Collapsible.Content className={styles.collapsibleContent}>

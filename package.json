@@ -30,6 +30,7 @@
     "starlight-links-validator": "^0.8.0"
   },
   "devDependencies": {
+    "prettier": "^3.4.2",
     "@clack/prompts": "^0.7.0",
     "eslint": "^8.57.1",
     "eslint-config-react-app": "^7.0.1",

@@ -1,9 +1,10 @@
+import styles from "./action.module.css";
 interface ActionProps {
   name: string;
 }
 
 const Action = ({ name }: ActionProps) => {
-  return <span style={{ color: "var(--color-action)" }}>{name}</span>;
+  return <span className={styles.action}>{name}</span>;
 };
 
 export default Action;
