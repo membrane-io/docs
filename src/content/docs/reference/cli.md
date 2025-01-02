@@ -1,8 +1,9 @@
 ---
-title: Membrane Control CLI (mctl)
+title: CLI (mctl)
 ---
 
-Nearly any operation that can be performed in the Membrane Web IDE can also be completed in the CLI.
+Many operations that can be performed in the Membrane Web IDE can also be done
+from the command line using `mctl`.
 
 ## Installation
 
@@ -18,7 +19,6 @@ npm install -g @membrane/mctl
 
 ```cli-help
 mctl 1.9.1
-Membrane Control CLI: mctl
 
 USAGE:
     mctl [OPTIONS] <SUBCOMMAND>
@@ -60,10 +60,9 @@ SUBCOMMANDS:
 
 ### action
 
-```cli-help
-mctl-action
 Invokes an action on a node
 
+```cli-help
 USAGE:
     mctl action <GREF>
 
@@ -76,10 +75,9 @@ OPTIONS:
 
 ### auth-token
 
-```cli-help
-mctl-auth-token
 Prints the auth token from the config file
 
+```cli-help
 USAGE:
     mctl auth-token
 
@@ -89,10 +87,9 @@ OPTIONS:
 
 ### details
 
-```cli-help
-mctl-details
 Fetches the detail of an item by its "seq" number
 
+```cli-help
 USAGE:
     mctl details <PID> <SEQ>
 
@@ -106,11 +103,10 @@ OPTIONS:
 
 ### exit-node
 
-```cli-help
-mctl-exit-node
-Starts an HTTP exit node. Outgoing traffic from all programs will be
-routed through this computer
+Starts an HTTP exit node. Outgoing traffic from all programs will be routed
+through this computer
 
+```cli-help
 USAGE:
     mctl exit-node [OPTIONS]
 
@@ -123,10 +119,9 @@ OPTIONS:
 
 ### get-transpiled-source
 
-```cli-help
-mctl-get-transpiled-source
 Downloads the transpiled source code of a running program
 
+```cli-help
 USAGE:
     mctl get-transpiled-source <PID> <OUTPUT_PATH>
 
@@ -140,10 +135,9 @@ OPTIONS:
 
 ### kill
 
-```cli-help
-mctl-kill
 Kill a running program
 
+```cli-help
 USAGE:
     mctl kill [PIDS]...
 
@@ -156,10 +150,9 @@ OPTIONS:
 
 ### login
 
-```cli-help
-mctl-login
 Log into your account
 
+```cli-help
 USAGE:
     mctl login
 
@@ -169,10 +162,9 @@ OPTIONS:
 
 ### logs
 
-```cli-help
-mctl-logs
 Stream the logs of a program
 
+```cli-help
 USAGE:
     mctl logs <PID>
 
@@ -185,10 +177,9 @@ OPTIONS:
 
 ### ps
 
-```cli-help
-mctl-ps
 List running programs
 
+```cli-help
 USAGE:
     mctl ps [OPTIONS]
 
@@ -200,10 +191,9 @@ OPTIONS:
 
 ### query
 
-```cli-help
-mctl-query
 Queries a program
 
+```cli-help
 USAGE:
     mctl query <GREF> [QUERY]
 
@@ -217,10 +207,9 @@ OPTIONS:
 
 ### repl
 
-```cli-help
-mctl-repl
 Enter into a program's REPL mode
 
+```cli-help
 USAGE:
     mctl repl [OPTIONS] <PID>
 
@@ -234,10 +223,9 @@ OPTIONS:
 
 ### test
 
-```cli-help
-mctl-test
 Runs all tests actions in a program
 
+```cli-help
 USAGE:
     mctl test <PID>
 

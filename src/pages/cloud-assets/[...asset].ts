@@ -10,7 +10,7 @@ import manifest from "~/cloud-assets/manifest.json";
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ url, redirect }) => {
+export const GET: APIRoute = async ({ url }) => {
   // TODO: This should be updated to be a custom URL
   const ASSET_HOST = "https://pub-9f5707ce32c7495d9687b939883b271d.r2.dev";
   const ASSET_PATH =

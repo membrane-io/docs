@@ -1,0 +1,120 @@
+.container {
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* justify-content: stretch; */
+}
+
+.typeList {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 4px;
+  align-items: stretch;
+
+  padding: 8px 0px 8px 10px;
+  overflow-y: auto;
+  scrollbar-color: var(--sl-color-gray-6) transparent;
+  scrollbar-width: thin;
+}
+
+.typeHeader {
+  display: flex;
+  max-width: 100%;
+  gap: 8px;
+}
+
+.collapseButton {
+  background: none;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  cursor: pointer;
+}
+
+.typeDescription {
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-3);
+  background-color: var(--sl-color-black);
+  padding: 4px 12px;
+  margin: 4px 12px 0px 12px;
+}
+
+.collapsibleContent {
+  overflow: hidden;
+}
+.collapsibleContent[data-state="open"] {
+  animation: slideDown 120ms linear;
+}
+.collapsibleContent[data-state="closed"] {
+  animation: slideUp 120ms linear;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes highlight {
+  0% {
+    background-color: transparent;
+  }
+  10% {
+    background-color: var(--sl-color-gray-6);
+  }
+  60% {
+    background-color: var(--sl-color-gray-6);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.highlight {
+  animation: highlight 1s ease-out;
+}
+
+.topShadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 0%,
+    var(--color-shadow) 100%
+  );
+}
+
+.bottomShadow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    var(--color-shadow) 100%
+  );
+}

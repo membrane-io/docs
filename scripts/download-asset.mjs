@@ -38,7 +38,7 @@ if (import.meta.url.startsWith("file:")) {
 
     if (!path) {
       path = await select({
-        message: "Select a program to download:",
+        message: "Select an asset to download:",
         options: Object.keys(manifest.assets).map((file) => ({
           value: file,
           label: file,
