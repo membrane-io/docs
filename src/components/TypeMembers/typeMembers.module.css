@@ -1,0 +1,63 @@
+.membersTable td.member {
+  padding: 1px 0px;
+  border: none;
+  width: 35ch;
+  max-width: 35ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.membersTable tbody {
+  border-spacing: 0px;
+}
+
+.membersTable tr {
+  position: relative;
+  width: 100%;
+}
+
+.membersTable tr:before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  bottom: 4px;
+  left: -10px;
+  width: 5px;
+  border-top: 1px dotted var(--sl-color-gray-4);
+}
+
+.memberKind {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--sl-color-gray-1);
+}
+
+.membersTable {
+  margin: 2px 0px 2px 8px !important;
+  padding: 0px 0px 0px 10px !important;
+  position: relative;
+  width: 100%;
+}
+
+.membersTable:before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: calc(0.5lh + 4px); /* half a line plus type padding and row spacing */
+  left: 0px;
+  right: 0px;
+  border-left: 1px dotted var(--sl-color-gray-4);
+}
+
+.field {
+  color: var(--color-field);
+}
+
+.action {
+  color: var(--color-action);
+}
+
+.event {
+  color: var(--color-event);
+}

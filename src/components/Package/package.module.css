@@ -1,0 +1,9 @@
+.link {
+  white-space: nowrap;
+  color: var(--sl-color-text-accent);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

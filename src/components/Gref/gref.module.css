@@ -1,0 +1,100 @@
+.gref {
+  display: flex;
+  align-items: first baseline;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  row-gap: 2px;
+  --border-top: 1px solid var(--color-gref-border-top);
+  --border-left: 1px solid var(--color-gref-border-left);
+  --border-bottom: 1px solid var(--color-gref-border-bottom);
+  color: var(--sl-color-gray-1);
+  font-size: 12px;
+  padding-left: 6ch; /* Countered by the margin-left of grefRoot */
+}
+
+.grefRoot {
+  margin-left: -6ch; /* Cancels the padding-left so that the first row isn't indented */
+  padding: 0px 1ch 1px 8px;
+  margin-right: -1ch; /* Allow the colon to encroach into the root */
+  border-top: var(--border-top);
+  border-bottom: var(--border-bottom);
+  border-left: var(--border-left);
+  border-radius: 10px 5px 5px 10px;
+  background-color: var(--sl-color-bg-inline-code);
+}
+
+.grefRootText::before {
+  background-color: var(--sl-color-bg-inline-code);
+  content: "";
+  position: absolute;
+  inset: 1px -0.325rem;
+  z-index: -1;
+}
+
+.grefSeparator {
+  color: var(--sl-color-gray-4);
+  padding: 0px 2px;
+  z-index: 2;
+  word-break: break-all;
+}
+
+.path {
+  display: flex;
+  align-items: first baseline;
+  flex-wrap: wrap;
+}
+
+.pathElem {
+  padding-bottom: 1px;
+  padding-right: 1ch;
+  margin-right: -1ch;
+  padding-left: 1ch;
+  margin-left: -1ch;
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+
+  border-radius: 5px;
+  background-color: var(--sl-color-bg-inline-code);
+  border-top: var(--border-top);
+  border-bottom: var(--border-bottom);
+  background-size: calc(100% + 30px);
+  background-position: center;
+}
+
+.pathElem::before {
+  background-color: var(--sl-color-bg-inline-code);
+  mask-image: linear-gradient(
+    to right,
+    transparent 0px,
+    black 15px,
+    black calc(100% - 15px),
+    transparent 100%
+  );
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: -15px;
+  right: -15px;
+  bottom: 2px;
+  border-top: var(--border-top);
+  border-bottom: var(--border-bottom);
+  z-index: -1;
+}
+
+/* Right-padding for the last path element */
+.pathElem:last-child {
+  padding-right: 8px;
+  border-radius: 5px 10px 10px 0px;
+  border-right: var(--border);
+}
+
+.pathElem:last-child::before {
+  content: unset;
+}
+
+.paramValue {
+  padding: 0px 4px;
+  background-color: var(--sl-color-gray-5);
+}

@@ -2,11 +2,18 @@
 title: Hello World
 ---
 
-import { Steps } from "@astrojs/starlight/components";
+import Action from "../../../components/Action"
+import { Steps } from "@astrojs/starlight/components"
 
-When you first load the Membrane IDE, you'll see a pre-installed `hello-world` program with its index file open. We encourage you to start clicking around and playing with the code!
+When you first load the [Membrane IDE](https://www.membrane.io/ide), you'll see
+a pre-installed `hello-world` program. We encourage you to start clicking around
+and playing with the code!
 
-That program has a `run` action that logs a message and sends you an [email](/features/email). It also exports an `endpoint` function that serves a website, storing hits in Membrane [state](/features/state) on each visit.
+That program has a <Action name="run"/> action that sends you an
+[email](/guides/email). It also exports an <Action
+name="endpoint"/> function that serves
+[the program's website](/guides/endpoints) and keeps track of the hit count in
+[state](/guides/state).
 
 ## Creating new programs
 
@@ -22,20 +29,33 @@ Creating a new Membrane program is simple:
 
 <video src="/cloud-assets/blank-program.mp4" controls autoplay></video>
 
-That's it! The program is immediately deployed whenever you save the file. You can also start with one of our templates for a cronjob, API, webhook handler, emailer, or website.
+That's it! The program is immediately deployed whenever you save the file. You
+can also start with one of our templates for a cronjob, API, webhook handler,
+emailer, or website.
 
 :::tip
-We also have a [`getting-started`](https://www.membrane.io/share/membrane/getting-started) tutorial if you'd prefer a hands-on way to learn core features and concepts.
+
+We also have a
+[`getting-started`](https://www.membrane.io/share/membrane/getting-started)
+tutorial if you'd prefer a hands-on way to learn core features and concepts.
+
 :::
 
 ## Sharing your code
 
-Once you've made your first Membrane program, share it with the world! Right-click a program and select "Publish Package...", to push your code to our registry and generate a share link [like this one](https://www.membrane.io/share/iamseeley/ml-test).
+Once you've made your first Membrane program, share it with the world!
+Right-click a program and select "Publish Package...", to push your code to our
+registry and generate a share link
+[like this one](https://www.membrane.io/share/iamseeley/ml-test).
 
 <video src="/cloud-assets/publish-package.mp4" muted autoplay controls></video>
 
-Send us what you build (via [email](mailto:contact@membrane.io) or [Discord](https://discord.gg/4RHyJDV8kj)), and we'll include our favorites in our weekly(ish) changelog.
+Send us what you build (via [email](mailto:contact@membrane.io) or
+[Discord](https://discord.gg/4RHyJDV8kj)), and we'll include our favorites in
+our weekly(ish) changelog.
 
 ---
 
-The next page is where things get interesting. You'll learn how our durable runtime helps you build long-lived programs without the traditional complexities.
+The next page is where things get interesting. You'll learn how our durable
+runtime helps you build long-lived programs without the traditional
+complexities.

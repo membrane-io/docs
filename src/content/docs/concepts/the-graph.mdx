@@ -1,0 +1,173 @@
+---
+title: The Graph
+---
+
+import Package from "../../../components/Package"
+import Action from "../../../components/Action"
+import Gref from "../../../components/Gref"
+import Type from "../../../components/Type"
+import Event from "../../../components/Event"
+
+## Introduction
+
+In Membrane, each program defines a graph API to expose its data and functionality to other programs.
+
+You can think of the graph as objects that can be referenced by other programs, allowing you to easily compose
+functionality and create useful abstractions.
+
+For example <Package name="github" /> defines a <Type type='PullRequest'/> type which you can use to interact with pull
+requests. You can then create a program with a `Task` type that groups a <Type type='PullRequest' /> and an
+
+<Type type="Issue" /> from e.g. Linear.
+
+If you know about GraphQL this idea should sound familiar. In fact, we use a simpler version of GraphQL to describe and
+execute graph queries.
+
+The schema of a graph defines _types_ with _fields_, _actions_, and _events_. You'll learn more about it in the
+[Schema](/concepts/schema) section.
+
+Note that sometimes we refer to "The Graph" as the combination of all your programs graphs.
+
+## Grefs (graph references)
+
+To reference nodes in the graph, Membrane uses a notation called **gref** which stands for "graph reference". The gref
+syntax is pretty straightforward:
+
+`program:path.to.node`
+
+For example, if you have <Package name="github"/> running on your workspace, all of these would be grefs that point to
+valid nodes.
+
+| Gref                                                           | Type                          |
+| -------------------------------------------------------------- | ----------------------------- |
+| <Gref value="github:"/>                                        | <Type type="Root"/>           |
+| <Gref value='github:users'/>                                   | <Type type="UserCollection"/> |
+| <Gref value='github:users.one(name:"membrane-io")'/>           | <Type type="User"/>           |
+| <Gref value='github:users.one(name:"membrane-io").bio'/>       | <Type type="String"/>         |
+| <Gref value='github:users.one(name:"membrane-io").followers'/> | <Type type="Int"/>            |
+| <Gref value='github:configure'/>                               | an action                     |
+
+Grefs are like URLs for your graph. But unlike URLs, grefs follow a schema and can have parameters on every part!
+
+You won't be using this syntax directly from code, though, because Membrane generates type-safe accessors for every
+field, action, and event which mirror program schemas. This allows us to provide rich autocomplete and type safety.
+
+## Nodes
+
+Anything that is referenceable using fields is a node. All the grefs above point to graph nodes except for the last one
+that points to an action on the root node.
+
+We make this distinction because nodes are the things in your graph that can be queried. Actions are invoked _on_ a
+particular node, and events are emitted _by_ a node.
+
+## Connections
+
+Programs can only access nodes that you explicitly allow them to access. These are called _connections_.
+
+Connections can be added from the right sidebar, either from the drop-down menu or by dragging-and-dropping grefs onto
+it. Once you've added a connection, it'll be available in the [nodes object](/reference/typescript-api#nodes).
+
+Connections serve as an access control mechanism. Only programs that are explicitly allowed to access a node can access
+it.
+
+This also allows you to provide fine-grained access to only the data that's needed. For example, if you write a program
+to track the number of stars in a GitHub repo, you can add a connection to
+
+| name  | gref                                                                                           |
+| ----- | ---------------------------------------------------------------------------------------------- |
+| stars | <Gref value='github:users.one(name:"membrane-io").repos.one(name:"membrane-io").stargazers' /> |
+
+Which makes `nodes.stars` available in your program.
+
+```ts twoslash "nodes.stars"
+// @module: esnext
+// @filename: membrane.d.ts
+interface Scalar<V> {
+  /**
+   * Gets the value of this field. This is equivalent to calling $query without arguments
+   */
+  $get: () => Promise<V>
+
+  // This a scalar field thenable so that await'ing returns the right type
+  then: Promise<V>["then"]
+}
+declare module "membrane" {
+  /**
+   * Contains the graph references (grefs) that this program has been given access to.
+   */
+  export const nodes: {
+    readonly stars: Scalar<number>
+  }
+}
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+
+export async function action() {
+  const stars = await nodes.stars
+}
+```
+
+## Types
+
+Graph nodes are typed. So each program defines a _schema_ that determines the shape of its graph.
+
+Here's an example schema from <Package name="resend"/> as shown in the IDE.
+
+<center>![An example schema from the membrane/resend driver](/cloud-assets/resend-schema.png)</center>
+
+In the [Schema](/concepts/schema) section, we'll learn about schemas and how programs define their own graphs.
+
+## Rationale
+
+Most APIs represent objects that relate to each other. For example, GitHub repositories have issues, which in turn have
+comments, which in turn have authors, which in turn have repositories, etc.
+
+```
+Github Repository                          Slack Channel
+   ↘                                         ↙       ↘
+   Issue                              Message        User
+      ↘                                  ↙              ↘
+      Comment                     Reactions           (Slack Channels...)
+         ↘
+         User
+            ↘
+            (Github Repository...)
+```
+
+However, most APIs (with the exception of GraphQL APIs) represent these relationships implicitly by using IDs. When
+using these APIs, you as a developer, need to figure out how to correctly use these IDs to "traverse" the implied graph.
+
+The primary goal of the Membrane graph to allow you to easily traverse these relationships without having to read API
+docs.
+
+It turns out that this same abstraction allows us to implement pagination in a unified way. Pagination is nothing more
+than a "linked list" of pages. In other words, a graph:
+
+```
+Page 1 → Page 2 → Page 3 → Page 4 → ...
+```
+
+However, each API implements it differently. For example, GitHub paginates by using the `Link` header, Slack uses
+`next_cursor`, and many APIs use a `page` query parameter.
+
+By modeling APIs as explicit graphs rather than implicit ID-based relationships, and allowing you to reference
+individual nodes, Membrane provides a unified interface for interacting with data in a way that matches your mental
+model.
+
+By allowing you to reference individual nodes, the graph guarantees that programs (especially ones you didn't write) can
+only access what they need, and nothing else. It also enables visibility into everything a program has done. Nothing is
+opaque in Membrane.
+
+For example. Membrane programs need access to <Package name="http" /> to make network requests since `fetch` uses these
+nodes under the hood.
+
+In conclusion, The Membrane Graph is a powerful abstraction that:
+
+- Abstracts away particularities of individual APIs like pagination, data formats, headers, webhook models, URL
+  encoding, etc.
+- Unifies how data is accessed regardless of its source (API resources vs. your own abstractions)
+- Provides a way to declaratively reference data in a fine-grained way
+- Allows for easy understanding of the flow of events and data
+- Serves as an access-control mechanism. Programs can only access what you allow and nothing else

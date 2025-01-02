@@ -1,48 +1,61 @@
 ---
-title: Programs
+title: Durable Programs
 ---
 
-import { FileTree } from "@astrojs/starlight/components";
+import { Aside } from "@astrojs/starlight/components"
 
-Membrane is similar to an operating system; you deploy programs to the Membrane engine, and it takes care of persistence, communication, logging, resources, etc.
+## Durability
 
-A Membrane _program_ is TypeScript or JavaScript code that runs on our cloud runtime. Unlike traditional serverless runtimes, it is [stateful](/features/state/) and includes multiple handlers instead of a single function.
+Membrane allows you to build functionality very quickly because, among other
+things, you don't need to worry about persistence. Each program is its own
+database.
 
-A Membrane program consists of:
+Programs run in a durable runtime that transparently and efficiently persist its
+state to disk. This is different from other serverless environments, where
+programs can only run for a limited amount of time, typically a few minutes,
+because CPU and RAM are expensive and servers need to be able to restart at any
+time.
 
-- **Code**: TypeScript/JavaScript functions for fields, actions and events
-- **Schema**: nodes exposed in [the graph](/concepts/the-graph)—the program's own API
-- **Connections**: other programs—nodes—used by the program
-- **Implicit Handlers**: optional functions, e.g. to receive [HTTP requests](/features/endpoints)
+In contrast, Membrane is continually and transparently persisting changes to the
+program's entire memory heap so that when a program goes idle, it doesn't
+consume any CPU or memory, and our servers can be restarted without you
+noticing. When a program needs to do something again, for example, handle an
+HTTP request, Membrane lazily restores only the parts of the heap that are
+needed so that "cold-starts" are fast.
 
-In Membrane, you build custom functionality (bots, workflows, etc.) by writing programs. Programs can reference each other's nodes to create powerful abstractions.
+Unlike other serverless runtimes, Membrane programs:
 
-## Code organization
+- Don't need to persist data to a database or file.
+- Can run forever and will never be killed due to timing out.
+- When you change the code, the new code continues the execution with the same
+  [state](/guides/state/).
 
-A Membrane program contains at least three files:
+## I/O
 
-{/* prettier-ignore */}
-<FileTree>
-  - your-program/ 
-    - index.ts 
-    - memconfig.json 
-    - memconfig.lock
-</FileTree>
+The main challenge we faced when designing Membrane was how to handle I/O.
 
-1. **`index.ts|js`:** contains core logic and exports resolver functions
-2. **`memconfig.json`:** describes your schema with all fields, actions, events, and connections. It's automatically generated, so you should never have to edit this file by hand
-3. **`memconfig.lock`:** tracks versions of nodes in your graph. It's also automatically generated, and you should never have to edit it manually
+Conventional programs have state that simply cannot be persisted to disk. For
+example, socket connections or open file handles. To solve this, all I/O in
+Membrane is _externalized_, meaning that the programs don't directly interact
+with the outside world by opening sockets. Instead, they write the request to
+its write-ahead log and then Membrane takes care of executing it.
 
-Your program's directory may also include a `README.md`, `package.json` with npm dependencies, `.git`, and whatever other helpers and structure you'd like.
+## Replays and time travel
 
-## Stopping and deleting programs
+Thanks to our write-ahead log and our deterministic JavaScript runtime, the
+entire history of the program can be replayed. Which means you can go back in
+time, inspect the state, debug errors after the fact and so on. These features
+are currently being worked on. Subscribe to our
+[mailing list](https://membrane.io) or join us on
+[Discord](https://discord.gg/4RHyJDV8kj) to stay up to date.
 
-To stop a running program, right click the program in the Membrane Navigator and select `Kill` from the dropdown menu. A program must be stopped in order to delete it.
+## Limitations
 
-To delete a program, right click the program's folder in your file explorer and select `Delete` from the dropdown menu. Or, open the command palette (`Cmd+Shift+P` on Mac) and type _Membrane: Delete Program_. A message will appear in the bottom bar of your editor upon deletion.
+Membrane is not a silver bullet. One important limitation to keep in mind is
+that, because of its stateful nature, programs cannot be scaled horizontally.
+However, scaling is oftentimes not necessary! Learn more about
+[when to use Membrane](/getting-started/intro#when-to-use-membrane).
 
-:::danger
-When you stop a running program, its `state` will be lost.
-
-Deleting a program is a permanent action.
-:::
+Another limitation is that, due to our I/O model, you currently cannot stream
+network responses. This is something we're working on fixing though! So, stay
+tuned.
