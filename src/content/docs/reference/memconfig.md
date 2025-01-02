@@ -2,7 +2,10 @@
 title: memconfig
 ---
 
-`memconfig.json` is automatically generated and updated based on a program's [schema](/concepts/schema/) configured in the schema editor UI (bottom left of the IDE). You should rarely have to edit the file itself, although currently there are some features missing in the UI.
+`memconfig.json` is automatically generated and updated based on a program's
+[schema](/concepts/schema/) configured in the schema editor UI (bottom left of
+the IDE). You should rarely have to edit the file itself, although currently
+there are some features missing in the UI.
 
 ## Descriptions
 
@@ -17,16 +20,22 @@ Types in a program's schema can have descriptions.
 ```
 
 :::tip
-The `description` field on a program's `Root` type will be displayed in the Navigator when you hover over a program. It'll also be used as the description when you publish a package.
+
+The `description` field on a program's `Root` type will be displayed in
+the Navigator when you hover over a program. It'll also be used as the
+description when you publish a package.
+
 :::
 
 ## Hints
 
-Hints provided in `memconfig.json` indicate how fields should be displayed in the Navigator.
+Hints provided in `memconfig.json` indicate how fields should be displayed in
+the Navigator.
 
 ### Preview
 
-With preview hints, you can mark fields as `primary` and `secondary` to use them as previews in the Navigator, e.g. in a list of paginated results.
+With preview hints, you can mark fields as `primary` and `secondary` to use them
+as previews in the Navigator, e.g. in a list of paginated results.
 
 ```json
 {
@@ -47,7 +56,7 @@ With preview hints, you can mark fields as `primary` and `secondary` to use them
 }
 ```
 
-![Paginated list of github PRs in the Membrane Navigator](../../../assets/primary_secondary.png)
+![Paginated list of github PRs in the Membrane Navigator](@assets/primary_secondary.png)
 
 ### Format
 
@@ -66,7 +75,8 @@ The format hint allows you to format a string as a URL in the Navigator.
 
 ### Hidden
 
-The hidden hint can be used to mark a field that should not be displayed in the Navigator.
+The hidden hint can be used to mark a field that should not be displayed in the
+Navigator.
 
 ```json
 {

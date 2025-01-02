@@ -3,18 +3,20 @@ title: Queries
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components"
-import Package from "../../../components/Package"
-import Type from "../../../components/Type"
-import Gref from "../../../components/Gref"
-import SchemaView from "../../../components/SchemaView"
+import Package from "@components/Package"
+import Type from "@components/Type"
+import Gref from "@components/Gref"
+import SchemaView from "@components/SchemaView"
 import githubMemconfig from "../../../assets/memconfigs/github.memconfig.json"
 
-Queries are the way to read data from a node. Now that you know how [schemas](/concepts/schema) shape a program's
-[graph](/concepts/the-graph), let's talk about how queries work.
+Queries are the way to read data from a node. Now that you know how
+[schemas](/concepts/schema) shape a program's [graph](/concepts/the-graph),
+let's talk about how queries work.
 
-To illustrate this section, we'll assume that you have <Package name="github" /> running on your workspace. We'll also
-assume that you have created a blank program with the following node as a [connection](/concepts/connections), and named
-the connection `user`:
+To illustrate this section, we'll assume that you have <Package name="github" />
+running on your workspace. We'll also assume that you have created a blank
+program with the following node as a [connection](/concepts/connections), and
+named the connection `user`:
 
 <table>
   <thead>
@@ -31,19 +33,28 @@ the connection `user`:
         <Gref value="github:users.one(name:'membrane-io')" />
       </td>
       <td>
-        <Type client:load type={{ type: `User` }} packageName="github" memconfig={githubMemconfig} />
+        <Type
+          client:load
+          type={{ type: `User` }}
+          packageName="github"
+          memconfig={githubMemconfig}
+        />
       </td>
     </tr>
   </tbody>
 </table>
 
-You can click on the type above to explore the entire schema of <Package name="github" />.
+You can click on the type above to explore the entire schema of
 
-We'll be querying data from the above Github User. Feel free to change it to your own GitHub username.
+<Package name="github" />.
+
+We'll be querying data from the above Github User. Feel free to change it to
+your own GitHub username.
 
 ## Querying a node
 
-Now that your program has access to a node named `user`, you can use `$query` and `$get` to read values from it.
+Now that your program has access to a node named `user`, you can use `$query`
+and `$get` to read values from it.
 
 Here are some examples:
 
@@ -100,8 +111,10 @@ async function run4() {
 }
 ```
 
-Note that you can only query [scalar nodes](/concepts/schema#scalars-primitive-types). When querying objects nodes, you
-must specify which fields to include by using `$query` and passing a GraphQL query. Here's an example that won't work:
+Note that you can only query
+[scalar nodes](/concepts/schema#scalars-primitive-types). When querying objects
+nodes, you must specify which fields to include by using `$query` and passing a
+GraphQL query. Here's an example that won't work:
 
 ```ts twoslash "await nodes.user"
 // @filename membrane.d.ts
@@ -115,15 +128,17 @@ import { nodes } from "membrane"
 const user = await nodes.user
 ```
 
-The above expression doesn't work because to query an object node you must specify which fields you want to get from it
-using `$query` to provide a GraphQL query.
+The above expression doesn't work because to query an object node you must
+specify which fields you want to get from it using `$query` to provide a GraphQL
+query.
 
-Finally, for convenience, you can omit the outer `{` and `}` when using `$query`. So instead of `"{ name bio }"` you can
-just write `"name bio"`.
+Finally, for convenience, you can omit the outer `{` and `}` when using
+`$query`. So instead of `"{ name bio }"` you can just write `"name bio"`.
 
 ## Querying form the CLI
 
-You can make queries from the command line by using [mctl query](/reference/cli#query). For example:
+You can make queries from the command line by using
+[mctl query](/reference/cli#query). For example:
 
 ```shellsession
 # Query a scalar
@@ -141,13 +156,15 @@ TODO
 
 ## Query execution
 
-This section explains how Membrane queries work by calling the functions exported from a program. You generally don't
-need to think about this, but it's helpful to understand which functions are called when.
+This section explains how Membrane queries work by calling the functions
+exported from a program. You generally don't need to think about this, but it's
+helpful to understand which functions are called when.
 
-When a query is received for a node, Membrane first combines the gref and the query (if any) into a larger GraphQL
-query.
+When a query is received for a node, Membrane first combines the gref and the
+query (if any) into a larger GraphQL query.
 
-If we're querying `{ name bio }` on the above gref, the actual query that will be executed looks something like this:
+If we're querying `{ name bio }` on the above gref, the actual query that will
+be executed looks something like this:
 
 ```graphql
 {
@@ -162,7 +179,8 @@ If we're querying `{ name bio }` on the above gref, the actual query that will b
 }
 ```
 
-Then, to resolve the values, Membrane will invoke these functions in order, which are all exported from
+Then, to resolve the values, Membrane will invoke these functions in order,
+which are all exported from
 
 <Package name="github" />:
 
@@ -171,14 +189,16 @@ Then, to resolve the values, Membrane will invoke these functions in order, whic
 3. `User.name`
 4. `User.bio`
 
-The result of each resolver is passed as the `obj` argument to all child resolvers.
+The result of each resolver is passed as the `obj` argument to all child
+resolvers.
 
 ### Executing List fields
 
-Resolvers of type `List<T>` must return an array of values. Membrane will then invoke the resolvers for each item in the
-array.
+Resolvers of type `List<T>` must return an array of values. Membrane will then
+invoke the resolvers for each item in the array.
 
-For example. If we wanted to get the `name` and `description` of all repos, we would typically use the following query:
+For example. If we wanted to get the `name` and `description` of all repos, we
+would typically use the following query:
 
 ```graphql
 {
@@ -207,22 +227,28 @@ Membrane would invoke the resolvers in the following order:
 
 ### Gref resolvers
 
-Nodes in the graph are identified by their gref. Why? Because APIs typically use integers IDs, names or UUIDs to
-identify resources. However, a bare ID is not enough to interact with its corresponding resource. When using an API
-directly you'd also need to know which endpoints to hit and how to pass the ID.
+Nodes in the graph are identified by their gref. Why? Because APIs typically use
+integers IDs, names or UUIDs to identify resources. However, a bare ID is not
+enough to interact with its corresponding resource. When using an API directly
+you'd also need to know which endpoints to hit and how to pass the ID.
 
-By using grefs to identity graph nodes, we are able to "encode" all the information needed to interact with something.
+By using grefs to identity graph nodes, we are able to "encode" all the
+information needed to interact with something.
 
-All object types have an _implicit_ field aptly named `gref` which can be queried to get a reference to the node. The
-`gref` field, when queried, answers the question "what is the gref that points to this node?".
+All object types have an _implicit_ field aptly named `gref` which can be
+queried to get a reference to the node. The `gref` field, when queried, answers
+the question "what is the gref that points to this node?".
 
-For example, we could query `user.gref` and would get back `github:users.one(name:'membrane-io')`. That's not very
-useful because we already knew that one. However, when querying a list of nodes, including `gref` in the query can be
-useful to know the identify of each returned item. We can then use the returned grefs to interact with each item
-individually.
+For example, we could query `user.gref` and would get back
+`github:users.one(name:'membrane-io')`. That's not very useful because we
+already knew that one. However, when querying a list of nodes, including `gref`
+in the query can be useful to know the identify of each returned item. We can
+then use the returned grefs to interact with each item individually.
 
-Membrane's IDE uses grefs to identify each node. This is what enables you to click on a list item and interact with the
-corresponding node in a generic way (independent of how each API identifies its resources).
+Membrane's IDE uses grefs to identify each node. This is what enables you to
+click on a list item and interact with the corresponding node in a generic way
+(independent of how each API identifies its resources).
 
-In most cases, you don't need to write a resolver for this field, but it's important for when you're querying a list of
-nodes and you want to keep track of the identity of each item.
+In most cases, you don't need to write a resolver for this field, but it's
+important for when you're querying a list of nodes and you want to keep track of
+the identity of each item.

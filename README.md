@@ -2,20 +2,28 @@
 
 [<img src="https://astro.badg.es/v2/built-with-starlight/tiny.svg" align="right" />](https://starlight.astro.build)
 
-> [!NOTE]  
-> [Membrane](https://membrane.io) is in `alpha`. Help us grow by contributing to these docs and publishing programs you create with Membrane :)
+[Membrane](https://membrane.io) site hosted ad [docs.membrane.io](https://docs.membrane.io).
+
+Note that Membrane is currently in `alpha` state. Help us grow by contributing to these docs and [publishing your Membrane creations](https://docs.membrane.io/concepts/packages/).
 
 ## Contributing
 
-To make changes to the docs, first clone the repo and run the following commands:
+This repo uses [git-lfs](https://git-lfs.com/) to store large files like images and videos. You'll need to:
+
+ - Install git-lfs on your machine using `brew install git-lfs`.
+ - One time set up of git hooks for your local clone using `git lfs install`.
+
+To run the docs locally:
 
 ```
 npm install
 npm run dev
 ```
 
-Then open a PR and request a review from our team. Thanks!
+Feel free to open a pull request!
 
-- @juancampa
-- @pmillspaugh
-- @amPerl
+### Where to put images and videos
+
+ - `/public`: Put videos here. Images here won't be optimized by astro.
+ - `/src/assets`: Put images here so that astro can optimize them.
+

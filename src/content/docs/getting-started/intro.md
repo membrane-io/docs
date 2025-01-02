@@ -26,11 +26,11 @@ JavaScript/TypeScript environments, most notably:
 - [Everything is in the logs](/concepts/observability). Our runtime uses a
   write-ahead log, so if it's not in the logs, it didn't happen. Our logs are
   also semantically rich and let you quickly rerun actions.
-- **Built-in [HTTP](/guides/endpoints) and [email](/guides/email)**. Every
+- **Easy [HTTP](/guides/endpoints) and [email](/guides/email)**. Every
   program comes with its own domain name and email address. Simply export an
   `endpoint` or `email` function to quickly build powerful automations.
 - [Cronjobs](/guides/timers). Easily run functions on a schedule.
-- **And much more!** Like visual tools to explorer program state, instant
+- **And much more!** Like visual tools to explore program state, instant
   deployments, a built-in REPL, easy SMS integration, and (coming soon) a
   fully-fledged debugger.
 
