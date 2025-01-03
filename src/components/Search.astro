@@ -146,7 +146,8 @@ import { Icon } from "@astrojs/starlight/components";
           const { PagefindUI } = await import("@pagefind/default-ui");
           new PagefindUI({
             ranking: {
-              termSimilarity: 1, // Default 1.0
+              // Reference: https://pagefind.app/docs/ranking/
+              termSimilarity: 1.0, // Default 1.0
               termSaturation: 1.4, // Default 1.4
               termFrequency: 1.0, // Default 1.0
               pageLength: 0.75, // Default 0.75
