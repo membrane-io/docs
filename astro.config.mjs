@@ -46,7 +46,7 @@ export default defineConfig({
         shiki: {
           langs: [
             // Custom language for mctl help
-            JSON.parse(fs.readFileSync("./cli-help.tmLanguage.json", "utf-8")),
+            cliHelpLang,
           ],
         },
       },

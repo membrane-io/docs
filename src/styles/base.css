@@ -318,3 +318,26 @@ th {
   box-shadow: none;
   border: none;
 }
+
+/* Search */
+#starlight__search {
+  & mark {
+    background-color: var(--sl-color-gray-3);
+    color: var(--sl-color-text-invert);
+  }
+  & .pagefind-ui__result-excerpt {
+    font-size: var(--sl-text-sm);
+  }
+}
+
+@media (min-width: 50rem) {
+  dialog[aria-label="Search"] {
+      margin: 4rem auto auto;
+      border-radius: .5rem;
+      width: 90%;
+      max-width: 85ch;
+      height: max-content;
+      min-height: 15rem;
+      max-height: calc(100% - 8rem)
+  }
+}
