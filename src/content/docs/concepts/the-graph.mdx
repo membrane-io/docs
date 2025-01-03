@@ -50,7 +50,7 @@ of these would be grefs that point to valid nodes.
 | <Gref value='github:users.one(name:"membrane-io").followers'/> | <Type type="Int"/>            |
 | <Gref value='github:configure'/>                               | an action                     |
 
-Grefs are like URLs for your graph. But unlike URLs, grefs follow a schema and
+<span data-pagefind-weight="10">Grefs</span> are like URLs for your graph. But unlike URLs, grefs follow a schema and
 can have parameters on every part!
 
 You won't be using this syntax directly from code, though, because Membrane
@@ -59,9 +59,8 @@ program schemas. This allows us to provide rich autocomplete and type safety.
 
 ## Nodes
 
-Anything that is referenceable using fields is a node. All the grefs above point
-to graph nodes except for the last one that points to an action on the root
-node.
+Anything that is referenceable using fields is a <span data-pagefind-weight="10">node</span>.  All the grefs above point
+to graph nodes except for the last one that points to an action on the root node.
 
 We make this distinction because nodes are the things in your graph that can be
 queried. Actions are invoked _on_ a particular node, and events are emitted _by_

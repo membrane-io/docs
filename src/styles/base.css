@@ -29,6 +29,10 @@ html {
   --sl-text-4xl: 13px;
   --sl-text-5xl: 16px;
   --sl-text-6xl: 14px;
+
+  /* Don't make the search dialog too big (default is 0.8) */
+  --pagefind-ui-scale: 0.7;
+  --pagefind-ui-border-radius: 0;
 }
 
 /* inline code */
@@ -317,4 +321,61 @@ th {
 .pagination-links a {
   box-shadow: none;
   border: none;
+}
+
+/* Search */
+#starlight__search {
+  /* Highlighted search results */
+  & mark {
+    background-color: #ffff00;
+    color: #222222;
+    padding: 0px 2px;
+  }
+
+  /* Page excerpts */
+  & .pagefind-ui__result-excerpt {
+    font-size: var(--sl-text-sm);
+    padding-left: 2ch;
+  }
+
+  /* Input box */
+  & input {
+    outline: unset;
+    font-size: var(--sl-text-base);
+  }
+
+  /* More results button */
+  & button {
+    font-size: var(--sl-text-base);
+  }
+
+  /* Message saying "9 results found" */
+  & .pagefind-ui__message {
+    font-size: var(--sl-text-base);
+  }
+
+  /* Clear search button */
+  & button.pagefind-ui__search-clear::before {
+    font-size: var(--sl-text-base);
+    inset-inline-end: 6px;
+    width: 32px;
+  }
+}
+
+/* This is the breakpoint that starlight uses for mobile */
+@media (min-width: 50rem) {
+  dialog[aria-label="Search"] {
+      margin: 4rem auto auto;
+      border-radius: 0;
+      width: 90%;
+      max-width: 120ch;
+      height: max-content;
+      min-height: 15rem;
+      max-height: calc(100% - 8rem)
+  }
+  /* Uppercase page and section titles */
+  p.pagefind-ui__result-title {
+    font-size: var(--sl-text-base) !important;
+    text-transform: uppercase;
+  }
 }

@@ -34,6 +34,7 @@ export default defineConfig({
       favicon: "/favicon.png",
       components: {
         Head: "./src/components/Head.astro",
+        Search: "./src/components/Search.astro",
       },
       editLink: {
         baseUrl: "https://github.com/membrane-io/docs/edit/main",
@@ -46,7 +47,7 @@ export default defineConfig({
         shiki: {
           langs: [
             // Custom language for mctl help
-            JSON.parse(fs.readFileSync("./cli-help.tmLanguage.json", "utf-8")),
+            cliHelpLang,
           ],
         },
       },

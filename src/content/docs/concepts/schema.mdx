@@ -128,7 +128,6 @@ We'll learn more about queries in the [Queries](/concepts/queries) section.
 Actions are functions that can be invoked in the context of a graph node.
 
 For example, the type `PullRequest` in <Package name="github"/> declares a
-
 <Action name="merge" /> action which can be invoked on a pull request.
 
 For each action declared in the schema, you must define a corresponding function
@@ -142,7 +141,6 @@ Any Membrane program can emit events on their nodes and subscribe to events on
 nodes of other programs.
 
 For example, the type `Issue` in <Package name="github"/> declares a
-
 <Event name="closed" /> event, which is emitted when a specific issue is closed.
 
 Events can optionally have a pair of corresponding functions called `subscribe`
