@@ -26,7 +26,7 @@ When the IDE starts up, you'll see:
 3. Program Details (right sidebar)
 4. Welcome instructions & open program file, `hello-world/index.ts`
 
-![Membrane Web IDE](/cloud-assets/ide-orientation.png)
+![Membrane Web IDE](@assets/ide-orientation.png)
 
 There are four Membrane programs pre-installed in your workspace:
 

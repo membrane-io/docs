@@ -7,7 +7,7 @@ title: Connections
 In Membrane, [programs](/concepts/programs/) can use other programs by forming
 _connections_.
 
-<video src="/cloud-assets/add-connections.mp4" muted autoplay controls></video>
+<video src="/videos/add-connections.mp4" muted autoplay controls></video>
 
 Above, the `email` program is selected as a connection from the dropdown menu,
 and the `sms` program is dragged from the Navigator.

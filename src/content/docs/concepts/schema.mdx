@@ -2,10 +2,10 @@
 title: Schema
 ---
 
-import Action from "../../../components/Action"
-import Event from "../../../components/Event"
-import Package from "../../../components/Package"
-import Gref from "../../../components/Gref"
+import Action from "@components/Action"
+import Event from "@components/Event"
+import Package from "@components/Package"
+import Gref from "@components/Gref"
 
 Before learning about schemas, make sure you've read the previous section about
 [The Graph](/concepts/the-graph) to understand the core concepts like nodes and
@@ -37,7 +37,7 @@ Collectively these are called _members_.
 Schemas can be edited from the right sidebar and are stored in `memconfig.json`.
 You can also edit this file manually when convenient.
 
-<video src="/cloud-assets/schema.mp4" muted autoplay controls></video>
+<video src="/videos/schema.mp4" muted autoplay controls></video>
 
 ## Root Type
 
@@ -55,6 +55,7 @@ followed by a colon:
 The trailing colon indicates that it's a gref with no path.
 
 Other nodes are referenced by appending a path. For example, if you had
+
 <Package name="github" /> running, these would all be valid grefs:
 
 | gref                                                                                                              | Refers to              |
@@ -90,6 +91,7 @@ As mentioned above, programs can define their own types with fields, actions and
 events.
 
 To illustrate this section, we'll use a simplified `PullRequest` type from
+
 <Package name="github" /> with the following schema:
 
 ```yaml
@@ -126,7 +128,8 @@ We'll learn more about queries in the [Queries](/concepts/queries) section.
 Actions are functions that can be invoked in the context of a graph node.
 
 For example, the type `PullRequest` in <Package name="github"/> declares a
-<Action name="merge"/> action which can be invoked on a pull request.
+
+<Action name="merge" /> action which can be invoked on a pull request.
 
 For each action declared in the schema, you must define a corresponding function
 that gets called when the action is invoked.
@@ -139,7 +142,8 @@ Any Membrane program can emit events on their nodes and subscribe to events on
 nodes of other programs.
 
 For example, the type `Issue` in <Package name="github"/> declares a
-<Event name="closed"/> event, which is emitted when a specific issue is closed.
+
+<Event name="closed" /> event, which is emitted when a specific issue is closed.
 
 Events can optionally have a pair of corresponding functions called `subscribe`
 and `unsubscribe` that get invoked when the event is subscribed to or

@@ -223,9 +223,10 @@ strong {
 .sl-markdown-content video,
 .sl-markdown-content img {
   max-width: calc(100% - 8px);
+  box-sizing: content-box; /* Prevent images from shrinking from the padding */
   object-fit: cover;
   padding: 10px;
-  margin: 16px 0 32px 0;
+  margin: 24px auto 32px auto;
   border: 1px solid var(--sl-color-accent-high);
   box-shadow:
     1px 1px var(--sl-color-accent-high),

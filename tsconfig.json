@@ -7,7 +7,7 @@
     "paths": {
       "~/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "cloud-assets/*": ["cloud-assets/*"]
+      "@assets/*": ["src/assets/*"]
     },
     "jsxImportSource": "react"
   },

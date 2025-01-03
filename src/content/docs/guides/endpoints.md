@@ -66,7 +66,7 @@ To open an endpoint, click "Open Preview" above the `endpoint` function
 signature. You can also copy a program's endpoint by right clicking on it in the
 Navigator panel.
 
-<video src="/cloud-assets/copy-endpoint.mp4" muted autoplay controls></video>
+<video src="/videos/copy-endpoint.mp4" muted autoplay controls></video>
 
 ## http program
 

@@ -31,7 +31,7 @@ _This only shares your code—not your program state nor logs._
 
 :::
 
-<video src="/cloud-assets/publish-package.mp4" muted autoplay controls></video>
+<video src="/videos/publish-package.mp4" muted autoplay controls></video>
 
 If the program you want to share relies on other programs as
 [connections](/concepts/connections), you'll have to publish those first.

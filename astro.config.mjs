@@ -132,7 +132,7 @@ export default defineConfig({
           items: [
             {
               label: "The IDE",
-              link: "/getting-started/ide/",
+              link: "/guides/ide/",
             },
             {
               label: "Creating programs",
