@@ -362,10 +362,11 @@ th {
   }
 }
 
+/* This is the breakpoint that starlight uses for mobile */
 @media (min-width: 50rem) {
   dialog[aria-label="Search"] {
       margin: 4rem auto auto;
-      border-radius: .5rem;
+      border-radius: 0;
       width: 90%;
       max-width: 120ch;
       height: max-content;
