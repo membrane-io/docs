@@ -501,9 +501,12 @@ import { Icon } from "@astrojs/starlight/components";
     overflow-wrap: anywhere;
   }
 
-  #starlight__search mark {
-    color: var(--sl-color-gray-2);
-    background-color: transparent;
-    font-weight: 600;
+#starlight__search {
+      & mark {
+          color: #0f0 !important;
+          background-color: transparent !important;
+          padding: 0 !important;
+          font-weight: 600;
+      }
   }
 </style>
