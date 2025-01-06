@@ -2,6 +2,8 @@ import styles from "./gref.module.css";
 
 interface GrefProps {
   value: string;
+  action?: boolean
+  event?: boolean
 }
 
 function splitOnce(s: string, on: string): [string, string | undefined] {
@@ -10,17 +12,17 @@ function splitOnce(s: string, on: string): [string, string | undefined] {
 }
 
 // Basic gref component, we don't use a proper gref parser here so it might not work for all cases
-const Gref = ({ value }: GrefProps) => {
+const Gref = ({ value, action, event }: GrefProps) => {
   const [root, path] = splitOnce(value, ":");
-  const pathElems = path?.split(".");
+  const pathElems = path?.length ? path?.split(".") : [];
   return (
     <span className={styles.gref}>
       <span className={styles.grefRoot}>{root}</span>
       <span className={styles.grefSeparator}>:</span>
       {pathElems?.map((part, i) => (
         <>
-          {i > 0 && <span className={styles.grefSeparator}>.</span>}
-          <span key={i} className={styles.pathElem}>
+          { i > 0 && <span className={styles.grefSeparator}>.</span> }
+          <span key={i} className={classForElem(i, pathElems.length, action, event)}>
             <PathElem value={part} />
           </span>
         </>
@@ -28,6 +30,12 @@ const Gref = ({ value }: GrefProps) => {
     </span>
   );
 };
+
+function classForElem(i: number, total: number, action?: boolean, event?: boolean) {
+  if (action && i === total - 1) return [styles.action, styles.pathElem].join(" ");
+  if (event && i === total - 1) return [styles.event, styles.pathElem].join(" ");
+  return styles.pathElem;
+}
 
 const PathElem = ({ value }: { value: string }) => {
   const [name, params] = splitOnce(value, "(");

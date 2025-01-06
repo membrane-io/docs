@@ -45,6 +45,14 @@
   flex-wrap: wrap;
 }
 
+.action {
+  color: var(--color-action);
+}
+
+.event {
+  color: var(--color-event);
+}
+
 .pathElem {
   padding-bottom: 1px;
   padding-right: 1ch;

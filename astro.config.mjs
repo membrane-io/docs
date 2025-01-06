@@ -90,24 +90,24 @@ export default defineConfig({
               link: "/concepts/programs/",
             },
             {
-              label: "The Graph",
-              link: "/concepts/the-graph/",
-            },
-            {
               label: "Observability",
               link: "/concepts/observability/",
+            },
+            {
+              label: "The Graph",
+              link: "/concepts/the-graph/",
             },
             {
               label: "Schema",
               link: "/concepts/schema/",
             },
             {
-              label: "Queries (Fields)",
-              link: "/concepts/queries/",
-            },
-            {
               label: "Actions",
               link: "/concepts/actions/",
+            },
+            {
+              label: "Queries (Fields)",
+              link: "/concepts/queries/",
             },
             {
               label: "Events",
