@@ -2,4 +2,145 @@
 title: Actions
 ---
 
-work-in-progress
+import Package from "@components/Package"
+import ConnectionTable from "@components/ConnectionTable.astro"
+import Action from "@components/Action"
+import Type from "@components/Type"
+import Gref from "@components/Gref"
+
+Actions are functions that can be invoked in the context of a graph node.
+
+Let's start by creating a simple action on the <Type type="Root" /> type.
+
+The simplest way to do that, is to export a function from `index.ts`:
+
+```ts twoslash "export function increment()"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/count/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { state } from "membrane"
+
+state.count ??= 0
+
+export function increment() {
+  return ++state.count
+}
+```
+
+Since actions are part of your program's API, they must be declared in its schema. If you haven't declared
+it yet, you'll see an error that can be fixed with `cmd+.` (quick-fix) on the `increment` function and selecting `Declare action`.
+
+![Declare action](@assets/declare-action.png)
+
+Your schema should then look like this:
+
+![Schema after declaring the "increment" action](@assets/declare-action-schema.png)
+
+You can declare actions on any type by exporting an object with the type name (in this case `Root`) containing functions as properties. So, the above example is equivalent to:
+
+```ts twoslash "export const Root" "increment()"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/count/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { state } from "membrane"
+
+state.count ??= 0
+
+export const Root = {
+  increment() {
+    return ++state.count
+  },
+}
+```
+
+For convenience, exported functions (functions at the top level of the file) map to actions, fields and events on the
+program's <Type type="Root" /> type.
+
+
+This action will be available in the program's root node. In other words, it can be referenced by the gref:
+
+<div style="display: flex; justify-content: center; gap: 4px;">
+<Gref value="<program-name>:increment" action />
+</div>
+
+## Action params
+
+Actions can accept parameters. We can modify <Action name="increment" /> to accept an amount to increment by:
+
+```ts twoslash "export function increment(by: number)"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/count/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { state } from "membrane"
+
+state.count ??= 0
+
+export function increment({ amount = 1 }) {
+  state.count += amount
+  return state.count
+}
+```
+
+All parameters are passed in an object as the first function argument, and must also be declared in the schema. You'll
+see an error indicating that this param is not declared in the schema, but it can also be fixed with `cmd+.` (quick-fix)
+on the `amount` parameter and selecting `Declare param`.
+
+![Declare param](@assets/declare-param.png)
+
+## Action node (self)
+
+We mentioned before that actions are invoked in the context of a graph node. The `self` object is a reference to the node where the action is invoked.
+The second argument to an action is an object with a `self` property which is a reference to the node where the action is invoked.
+
+```ts twoslash "self === root"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/count/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { state, root } from "membrane"
+
+state.count ??= 0
+
+export function increment({ amount = 1 }, { self }) {
+  console.assert(self === root)
+  // ...
+}
+```
+
+This reference is useful for actions that need to know the node where they are invoked. Here's a more involved example that uses [`$args`](/reference/typescript-api#args) to extract the id of a <Type type="Task" /> node to mark it as done:
+
+```ts twoslash "export function increment(by: number)"
+// @noImplicitAny: false
+// @filename membrane.d.ts
+/// <reference path="docs-modules/count/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { state, root } from "membrane"
+
+interface Task {
+  description: string
+  done: boolean
+}
+
+state.tasks ?? = {};
+
+export const Thing = {
+  // Actions
+  markAsDone(_, { self }) {
+    const { id } = self.$args(root.things.one)
+  },
+}
+
+```

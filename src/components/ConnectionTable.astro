@@ -1,0 +1,47 @@
+---
+import Type from "@components/Type";
+import Gref from "@components/Gref";
+import githubMemconfig from "@assets/memconfigs/github.memconfig.json";
+
+interface Connection {
+  name: string;
+  gref: string;
+  type: string;
+}
+
+interface Props {
+  connections: Connection[];
+}
+
+const { connections } = Astro.props;
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gref</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      connections.map(({ name, gref, type }) => (
+        <tr>
+          <td>{name}</td>
+          <td>
+            <Gref value={gref} />
+          </td>
+          <td>
+            <Type
+              client:load
+              type={{ type }}
+              packageName="github"
+              memconfig={githubMemconfig}
+            />
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

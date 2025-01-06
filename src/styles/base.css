@@ -36,6 +36,12 @@ html {
 }
 
 /* inline code */
+:root[data-theme="dark"] 
+.sl-markdown-content code:not(:where(.not-content *)) {
+  background-color: var(--sl-color-gray-5);
+}
+
+:root[data-theme="light"] 
 .sl-markdown-content code:not(:where(.not-content *)) {
   background-color: var(--sl-color-gray-6);
 }
