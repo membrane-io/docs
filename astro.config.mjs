@@ -72,7 +72,7 @@ export default defineConfig({
         starlightDocSearch({
           appId: 'D16FPPVRA7',
           apiKey: 'f01cc7df3a4e606df0dc9c2a61f894a9',
-          indexName: '7b446da1c86ad809763c402d865a1136',
+          indexName: 'membrane',
         }),
       ],
       sidebar: [
