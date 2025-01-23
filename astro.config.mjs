@@ -2,14 +2,14 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLinksValidator from "starlight-links-validator";
 import react from "@astrojs/react";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 import ecTwoSlash from "expressive-code-twoslash";
 import cliHelpLang from "./cli-help.tmLanguage.json";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://docs.membrane.io",
-  output: "hybrid", // default to static, but allow SSR opt-in per page
+  output: "static",
   adapter: vercel({
     isr: {
       // cache server rendered pages on first request and save for 1 hour

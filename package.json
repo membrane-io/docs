@@ -13,32 +13,30 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/react": "^3.6.2",
-    "@astrojs/starlight": "^0.28.3",
-    "@astrojs/vercel": "^7.8.1",
+    "@astrojs/react": "^4.1.2",
+    "@astrojs/starlight": "^0.30.4",
+    "@astrojs/vercel": "^8.0.1",
     "@radix-ui/react-collapsible": "^1.1.2",
     "@radix-ui/react-popover": "^1.1.4",
     "@radix-ui/react-tabs": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.6",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "astro": "^4.16.17",
+    "@types/react": "^19.0.3",
+    "@types/react-dom": "^19.0.2",
+    "astro": "^5.1.3",
     "expressive-code-twoslash": "^0.3.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "sharp": "^0.33.5",
-    "starlight-links-validator": "^0.8.0"
+    "starlight-links-validator": "^0.14.1"
   },
   "overrides": {
     "@pagefind/default-ui": "^1.3.0",
     "pagefind": "1.3.0"
   },
   "devDependencies": {
-    "prettier": "^3.4.2",
-    "@clack/prompts": "^0.7.0",
-    "eslint": "^8.57.1",
+    "eslint": "^8.0.0",
     "eslint-config-react-app": "^7.0.1",
-    "typescript": "^5.4.5",
-    "wrangler": "^3.53.0"
+    "prettier": "^3.4.2",
+    "typescript": "^5.4.5"
   }
 }

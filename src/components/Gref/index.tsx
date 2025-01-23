@@ -21,7 +21,7 @@ const Gref = ({ value, action, event }: GrefProps) => {
       <span className={styles.grefSeparator}>:</span>
       {pathElems?.map((part, i) => (
         <>
-          { i > 0 && <span className={styles.grefSeparator}>.</span> }
+          { i > 0 && <span key={`sep-${i}`} className={styles.grefSeparator}>.</span> }
           <span key={i} className={classForElem(i, pathElems.length, action, event)}>
             <PathElem value={part} />
           </span>
@@ -44,7 +44,7 @@ const PathElem = ({ value }: { value: string }) => {
       {name}
       {params && (
         <>
-          <span className={styles.parens}>(</span>
+          <span key="open-parens" className={styles.parens}>(</span>
           {params
             .slice(0, -1)
             .split(",")
@@ -54,7 +54,7 @@ const PathElem = ({ value }: { value: string }) => {
                 <Param value={param} />
               </span>
             ))}
-          <span className={styles.parens} style={{ marginRight: -2 }}>
+          <span key="close-parens" className={styles.parens} style={{ marginRight: -2 }}>
             )
           </span>
         </>
