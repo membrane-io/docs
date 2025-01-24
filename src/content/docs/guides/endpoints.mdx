@@ -2,13 +2,15 @@
 title: HTTP Endpoints
 ---
 
-Every Membrane program comes with its own URL. By exporting an
-<Action name="endpoint"/> function you can quickly handle HTTP requests.
+import Action from "@components/Action"
+import Package from "@components/Package"
+
+Every Membrane program comes with its own URL. By exporting an <Action name="endpoint" /> function you can quickly handle HTTP requests.
 
 ```ts twoslash
 // @noImplicitAny: false
-export const endpoint = (req) => {
-  switch (`${req.method} ${req.path}`) {
+export const endpoint = ({ method, path, body, headers, query }) => {
+  switch (`${method} ${path}`) {
     case "GET /":
       return "hello world"
     default:
@@ -20,11 +22,21 @@ export const endpoint = (req) => {
 When your program endpoint receives a request it will be logged, so you can
 inspect it in the Logs panel.
 
-:::note
+## Using a router
 
-Currently the endpoint function must return a string.
+The endpoint function returns a string, but it's easy to use a nice router like Hono:
 
-:::
+```ts
+import { Hono } from "hono"
+import { withRequestResponse } from "membrane-utils"
+
+const app = new Hono()
+app.get("/", (c) => c.html(`<p>Hello, Hono.</p>`))
+
+export const endpoint = withRequestResponse(app.fetch)
+```
+
+See <Package name="pete/hono-taco" /> and <Package name="pete/hono-flags" /> for examples.
 
 ## Accessing an endpoint URL
 
