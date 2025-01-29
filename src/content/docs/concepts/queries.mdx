@@ -8,46 +8,30 @@ import Type from "@components/Type"
 import Gref from "@components/Gref"
 import SchemaView from "@components/SchemaView"
 import githubMemconfig from "../../../assets/memconfigs/github.memconfig.json"
+import ConnectionTable from "@components/ConnectionTable.astro"
 
 Queries are the way to read data from a node. Now that you know how
 [schemas](/concepts/schema) shape a program's [graph](/concepts/the-graph),
 let's talk about how queries work.
+
+## Pre-requisites
 
 To illustrate this section, we'll assume that you have <Package name="github" />
 running on your workspace. We'll also assume that you have created a blank
 program with the following node as a [connection](/concepts/connections), and
 named the connection `user`:
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Gref</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>user</td>
-      <td>
-        <Gref value="github:users.one(name:'membrane-io')" />
-      </td>
-      <td>
-        <Type
-          client:load
-          type={{ type: `User` }}
-          packageName="github"
-          memconfig={githubMemconfig}
-        />
-      </td>
-    </tr>
-  </tbody>
-</table>
+<ConnectionTable
+  connections={[
+    {
+      name: "user",
+      gref: "github:users.one(name:'membrane-io')",
+      type: "User",
+    },
+  ]}
+/>
 
-You can click on the type above to explore the entire schema of
-
-<Package name="github" />.
-
+You can click on the type above to explore the entire schema of <Package name="github" />.
 We'll be querying data from the above Github User. Feel free to change it to
 your own GitHub username.
 

@@ -14,6 +14,7 @@ interface Member {
   type: string;
   ofType?: string;
   params?: Param[];
+  hints?: Record<string, any>;
   description?: string;
 }
 
@@ -24,11 +25,12 @@ type Field = Member;
 export interface SchemaType {
   name: string;
   description?: string;
-  fields: Field[];
-  actions: Action[];
-  events: Event[];
+  fields?: Field[];
+  actions?: Action[];
+  events?: Event[];
 }
-interface Schema {
+
+export interface Schema {
   types: SchemaType[];
 }
 
@@ -36,6 +38,7 @@ export interface Memconfig {
   dependencies: { [key: string]: string };
   schema: Schema;
 }
+
 const TypeMembers = ({ type }: { type: SchemaType }) => {
   const fields = type.fields ?? [];
   const actions = type.actions ?? [];
