@@ -88,7 +88,7 @@ export async function configure({ apiKey }: { apiKey: string }) {
 
 ```
 
-### `helper.ts`
+### helper.ts
 
 As a convention, utility functions live in `helpers.ts`. For this driver, we
 have an `api` function that calls `fetch` with the appropriate headers, query
@@ -475,9 +475,11 @@ export const Resource = {
 ## 4. Publishing Your Driver
 
 1. Include a README.md with:
+
    - Configuration steps
    - Basic usage examples
    - Available methods
+
 2. Test before publishing:
 
    ```js
@@ -494,23 +496,18 @@ within the Membrane ecosystem.
 As you build more drivers and connect more services, you'll unlock increasingly
 powerful automation and integration possibilities.
 
-## 5. Troubleshooting
-
-Get started with our [driver-template]
-
 <aside>
 💡
 
 We are working on a way to speed up the driver development process by generating
-drivers using LLM’s and API specs. You can install the driver-generator program
-[here].
+drivers using LLM’s and API specs.
 
 </aside>
 
-## 6. Missing a Driver?
+## 5. Missing a Driver?
 
 Missing a driver for one of your favorite APIs?
 
-- Request it in the [community](https://discord.gg/gBK9xP3z)
-- Contribute it! You can get started with our [template] or try out the
-  [driver-generator].
+- Request it in our [community](https://discord.gg/gBK9xP3z), or let us build it for you - just reach out at
+  [contact@membrane.io](mailto:contact@membrane.io).
+- Contribute it!
