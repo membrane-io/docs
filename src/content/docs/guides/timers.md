@@ -20,13 +20,12 @@ Example: add a cron, delete it, then add a delay and observe it firing.
 
 When using "Invoke after delay...", you can specify durations using these time units:
 
+- `ms` - milliseconds (e.g. "500ms")
 - `s` - seconds (e.g. "10s")
 - `m` - minutes (e.g. "5m")
 - `h` - hours (e.g. "12h")
 - `d` - days (e.g. "7d")
 - `w` - weeks (e.g. "2w")
-- `ms` - milliseconds (e.g. "500ms")
-- `ns` - nanoseconds (e.g. "100ns")
 
 ## Setting timers in code
 
