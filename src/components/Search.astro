@@ -36,8 +36,8 @@ import { Icon } from "@astrojs/starlight/components";
             dir="ltr"
           >
             <p>
-              Search is only available in production builds. \nTry building and
-              previewing the site to test it out locally.
+              Search is only available in production builds. <br />
+              Try building and previewing the site to test it out locally.
             </p>
           </div>
         ) : (
@@ -501,13 +501,13 @@ import { Icon } from "@astrojs/starlight/components";
     overflow-wrap: anywhere;
   }
 
-#starlight__search {
-      & mark {
-          color: #0f0 !important;
-          background-color: transparent !important;
-          padding: 0 !important;
-          font-weight: 600;
-      }
+  #starlight__search {
+    & mark {
+      color: #0f0 !important;
+      background-color: transparent !important;
+      padding: 0 !important;
+      font-weight: 600;
+    }
   }
 
   :root[data-theme="light"] #starlight__search {
@@ -515,5 +515,4 @@ import { Icon } from "@astrojs/starlight/components";
       color: #63f !important;
     }
   }
-  
 </style>

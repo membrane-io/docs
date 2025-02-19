@@ -156,6 +156,10 @@ export default defineConfig({
               link: "/guides/sms/",
             },
             {
+              label: "Databases",
+              link: "/guides/databases/",
+            },
+            {
               label: "Timers and Cronjobs",
               link: "/guides/timers/",
             },
