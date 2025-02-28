@@ -37,8 +37,6 @@ Collectively these are called _members_.
 Schemas can be edited from the right sidebar and are stored in `memconfig.json`.
 You can also edit this file manually when convenient.
 
-<video src="/videos/schema.mp4" muted autoplay controls></video>
-
 ## Root Type
 
 All schemas must declare a type named `Root` which defines the type of its _root
@@ -127,8 +125,7 @@ We'll learn more about queries in the [Queries](/concepts/queries) section.
 
 Actions are functions that can be invoked in the context of a graph node.
 
-For example, the type `PullRequest` in <Package name="github"/> declares a
-<Action name="merge" /> action which can be invoked on a pull request.
+For example, the type `PullRequest` in <Package name="github"/> declares a <Action name="merge" /> action which can be invoked on a pull request.
 
 For each action declared in the schema, you must define a corresponding function
 that gets called when the action is invoked.
@@ -140,8 +137,7 @@ We'll learn more about actions in the [Actions](/concepts/actions) section.
 Any Membrane program can emit events on their nodes and subscribe to events on
 nodes of other programs.
 
-For example, the type `Issue` in <Package name="github"/> declares a
-<Event name="closed" /> event, which is emitted when a specific issue is closed.
+For example, the type `Issue` in <Package name="github"/> declares a <Event name="closed" /> event, which is emitted when a specific issue is closed.
 
 Events can optionally have a pair of corresponding functions called `subscribe`
 and `unsubscribe` that get invoked when the event is subscribed to or

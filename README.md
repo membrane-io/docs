@@ -2,7 +2,7 @@
 
 [<img src="https://astro.badg.es/v2/built-with-starlight/tiny.svg" align="right" />](https://starlight.astro.build)
 
-[Membrane](https://membrane.io) site hosted ad [docs.membrane.io](https://docs.membrane.io).
+[Membrane](https://membrane.io) site hosted at [docs.membrane.io](https://docs.membrane.io).
 
 Note that Membrane is currently in `alpha` state. Help us grow by contributing to these docs and [publishing your Membrane creations](https://docs.membrane.io/concepts/packages/).
 

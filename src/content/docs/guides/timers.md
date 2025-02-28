@@ -13,9 +13,6 @@ To set up a timer, navigate to the Navigator panel, click on any program, find
 the [action](/concepts/schema#actions) you want to run, and click the clock icon
 to configure when the program should run. Right click a timer to delete.
 
-Example: add a cron, delete it, then add a delay and observe it firing.
-<video src="/videos/timers.mp4" muted autoplay controls></video>
-
 ## Delay Timer Options
 
 When using "Invoke after delay...", you can specify durations using these time units:
