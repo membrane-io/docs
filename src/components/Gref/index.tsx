@@ -13,18 +13,23 @@ function splitOnce(s: string, on: string): [string, string | undefined] {
 const Gref = ({ value }: GrefProps) => {
   const [root, path] = splitOnce(value, ":");
   const pathElems = path?.split(".");
+  const isRoot = pathElems?.length === 1 && pathElems[0] === "";
+
   return (
     <span className={styles.gref}>
-      <span className={styles.grefRoot}>{root}</span>
+      <span className={styles.grefRoot} data-root={isRoot}>
+        {root}
+      </span>
       <span className={styles.grefSeparator}>:</span>
-      {pathElems?.map((part, i) => (
-        <>
-          {i > 0 && <span className={styles.grefSeparator}>.</span>}
-          <span key={i} className={styles.pathElem}>
-            <PathElem value={part} />
-          </span>
-        </>
-      ))}
+      {!isRoot &&
+        pathElems?.map((part, i) => (
+          <>
+            {i > 0 && <span className={styles.grefSeparator}>.</span>}
+            <span key={i} className={styles.pathElem}>
+              <PathElem value={part} />
+            </span>
+          </>
+        ))}
     </span>
   );
 };
