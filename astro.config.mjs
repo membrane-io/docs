@@ -187,10 +187,15 @@ export default defineConfig({
             },
           ],
         },
-        // {
-        //   label: "Examples",
-        //   link: "/examples/",
-        // },
+        {
+          label: "Membrane in Action",
+          items: [
+            {
+              label: "Slack + GitHub issue watcher in 10m",
+              link: "/videos/issue-watcher/",
+            },
+          ],
+        },
         {
           label: "Roadmap",
           link: "/roadmap/",

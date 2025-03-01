@@ -226,7 +226,7 @@ strong {
 /* Add some better default styling to videos, images */
 .sl-markdown-content video,
 .sl-markdown-content img {
-  max-width: calc(100% - 8px);
+  max-width: calc(100% - 24px);
   box-sizing: content-box; /* Prevent images from shrinking from the padding */
   object-fit: cover;
   padding: 10px;
