@@ -21,3 +21,7 @@ If you do create a driver, publish it and let us know or share it on
 To install a driver in your Membrane graph, click the `🔎 SEARCH` button in the
 Navigator (top left, next to `+ NEW`). From there you can browse or search for
 packages that other users and the Membrane team have published.
+
+## Creating drivers
+
+We wrote a deep dive on drivers [here](/guides/driver-guide). Read through that guide if you're interested in making your own driver.

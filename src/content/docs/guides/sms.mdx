@@ -1,0 +1,33 @@
+---
+title: SMS
+---
+
+import Package from "@components/Package"
+
+Membrane includes a `sys-sms` program in your workspace for sending
+text messages programmatically.
+
+:::note
+You can only configure one phone number at the moment (to send texts to
+yourself), but we plan to remove that limitation.
+[Send us a note](mailto:contact@membrane.io) if that's something you'd like
+asap, and/or upvote it on our [roadmap](https://docs.membrane.io/roadmap).
+:::
+
+## Configure
+
+To configure `sys-sms`, find it in the Navigator, click the `configure`
+action, type in your phone number, and hit "Invoke".
+
+## Send
+
+To send yourself a text manually, click on `sys-sms` in the Navigator,
+click the `send` action, type in a `message`, and hit "Invoke". Check your
+phone!
+
+To send yourself a text programmatically, add `sys-sms` as a
+[connection](/concepts/connections) to any program and call:
+
+```
+nodes.sms.send({ message: "whatever" });
+```

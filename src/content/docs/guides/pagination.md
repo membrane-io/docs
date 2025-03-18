@@ -2,4 +2,4 @@
 title: Pagination
 ---
 
-work-in-progress
+_Documentation coming soon._

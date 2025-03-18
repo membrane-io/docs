@@ -22,6 +22,19 @@
   border-left: var(--border-left);
   border-radius: 10px 5px 5px 10px;
   background-color: var(--sl-color-bg-inline-code);
+  position: relative;
+
+  &[data-root="true"]::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    right: -8px;
+    width: 16px;
+    background-color: var(--sl-color-bg-inline-code);
+    border-bottom: var(--border-bottom);
+    border-radius: 0px 10px 10px 0px;
+  }
 }
 
 .grefRootText::before {

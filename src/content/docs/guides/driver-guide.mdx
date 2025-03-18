@@ -2,16 +2,15 @@
 title: Membrane Driver Guide
 ---
 
+import Package from "@components/Package"
+
 ## 1. Understanding the Driver's Role
 
 A driver serves as a bridge between Membrane and external APIs. Drivers expose
 API functionality as nodes in your Membrane graph, making it easy for other
 programs to interact with external services.
 
-We have drivers for popular APIs like
-[GitHub](https://www.membrane.io/share/membrane/github) and
-[Slack](https://www.membrane.io/share/membrane/slack). Check out the
-[full list here](https://www.membrane.io/share/membrane). Drivers are open
+We have drivers for popular APIs like <Package name="membrane/github" /> and <Package name="membrane/slack" />. Check out the [full list here](https://www.membrane.io/share/membrane). Drivers are open
 source and anyone can create and publish one. Once you get the hang of it, you
 won’t have to worry much about the quirks of individual APIs since all drivers
 follow the same structure.
@@ -32,7 +31,7 @@ We'll demonstrate how to:
 
 ## 2. Core Components
 
-<br/>
+<br />
 
 ### File Organization
 
@@ -497,11 +496,8 @@ As you build more drivers and connect more services, you'll unlock increasingly
 powerful automation and integration possibilities.
 
 <aside>
-💡
-
-We are working on a way to speed up the driver development process by generating
-drivers using LLM’s and API specs.
-
+  💡 We are working on a way to speed up the driver development process by
+  generating drivers using LLM’s and API specs.
 </aside>
 
 ## 5. Missing a Driver?

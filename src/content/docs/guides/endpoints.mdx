@@ -78,13 +78,9 @@ To open an endpoint, click "Open Preview" above the `endpoint` function
 signature. You can also copy a program's endpoint by right clicking on it in the
 Navigator panel.
 
-<video src="/videos/copy-endpoint.mp4" muted autoplay controls></video>
-
 ## http program
 
-In Membrane all communication is done via the graph. So how can `fetch` make
-network requests? Via a special program called `http`.
+In Membrane all communication is done via the graph. So how can `fetch` make network requests? Via a Membrane system program called `sys-http`, which is available in your workspace by default.
 
-There is a special program running on your workspace called `http`. Whenever you
-use `fetch`, the request will go through the `http` program which ultimately
-makes the actual request.
+Whenever you use `fetch`, the request will go through the `sys-http` program which ultimately
+makes the actual request. Be sure to add `sys-http` as a [connection](/concepts/connections) when your program needs to make HTTP requests.
