@@ -4,12 +4,10 @@ title: Query external databases
 
 Membrane provides `sys-db`, a system program for querying PostgreSQL, MySQL, and Microsoft SQL Server databases.
 
-::: note
-
+:::note
 Transactions, among other advanced features, aren't yet available.
 [Send us a note](mailto:contact@membrane.io) if there's something you'd like
-asap, and/or upvote it on our [roadmap](https://docs.membrane.io/roadmap).
-
+asap.
 :::
 
 ## Basic example
