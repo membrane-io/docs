@@ -160,6 +160,10 @@ export default defineConfig({
               link: "/guides/sms/",
             },
             {
+              label: "Dashboard",
+              link: "/guides/dashboard/",
+            },
+            {
               label: "Databases",
               link: "/guides/databases/",
             },
@@ -184,6 +188,10 @@ export default defineConfig({
             {
               label: "Typescript API",
               link: "/reference/typescript-api/",
+            },
+            {
+              label: "JSX (dashboard)",
+              link: "/reference/jsx/",
             },
             {
               label: "CLI (mctl)",
