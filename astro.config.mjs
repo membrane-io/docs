@@ -144,6 +144,10 @@ export default defineConfig({
               link: "/guides/state/",
             },
             {
+              label: "Brane",
+              link: "/guides/brane/",
+            },
+            {
               label: "HTTP endpoints",
               link: "/guides/endpoints/",
             },
