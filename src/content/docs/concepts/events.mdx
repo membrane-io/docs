@@ -2,6 +2,10 @@
 title: Events
 ---
 
+Any Membrane program can _emit_ and _subscribe to_ events.
+
+For example, if you have a program that handles GitHub webhooks, your program could emit a `webhookReceived` event, and another program that forwards GitHub notifications to Slack could subscribe to that event.
+
 ### Emitting an event
 
 ```ts twoslash
@@ -11,19 +15,12 @@ declare module "membrane" {
   namespace resolvers {
     export interface Root {
       endpoint(req: {
-        method:
-          | "GET"
-          | "POST"
-          | "PUT"
-          | "PATCH"
-          | "DELETE"
-          | "HEAD"
-          | "OPTIONS";
-        path: string;
-        body?: string;
-        query?: string;
-        headers: string;
-      }): string;
+        method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS"
+        path: string
+        body?: string
+        query?: string
+        headers: string
+      }): string
     }
   }
   /**
