@@ -172,10 +172,6 @@ export default defineConfig({
               link: "/guides/timers/",
             },
             {
-              label: "Pagination",
-              link: "/guides/pagination/",
-            },
-            {
               label: "API drivers",
               link: "/guides/driver-guide/",
             },

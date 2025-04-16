@@ -1,14 +1,16 @@
 ---
 title: Events
 ---
+import Package from "@components/Package"
+import Event from "@components/Event"
 
-Any Membrane program can _emit_ and _subscribe to_ events.
+Any Membrane program can _emit_ events on their nodes and _subscribe to_ events on nodes of other programs.
 
-For example, if you have a program that handles GitHub webhooks, your program could emit a `webhookReceived` event, and another program that forwards GitHub notifications to Slack could subscribe to that event.
+For example, if you have a program that handles webhooks, a node in your program could emit a <Event name="webhookReceived" />  event, and another program could subscribe to that event.
 
 ### Emitting an event
 
-```ts twoslash
+```ts twoslash "$emit()"
 // @module: esnext
 // @filename: membrane.d.ts
 declare module "membrane" {
@@ -34,10 +36,8 @@ import type { root } from "membrane";
 
 export function endpoint(req) {
   switch (`${req.method} ${req.path}`) {
-    case "POST /gh-webhook-path":
-      root.ghWebhookReceived.$emit();
-    //                      ^^^^^^^^
-    /* ... */
+    case "POST /webhook-path":
+      root.webhookReceived.$emit();
   }
 };
 ```
@@ -46,7 +46,7 @@ export function endpoint(req) {
 
 Programs can subscribe an action to handle an event. When an event is emitted, the action will be invoked with an additional parameter called `event`.
 
-```ts twoslash
+```ts twoslash "$subscribe(doSomething)"
 // @module: esnext
 // @filename: membrane.d.ts
 type State = import("./index").State;
@@ -62,12 +62,11 @@ declare module "membrane" {
 // ---cut---
 import type { nodes } from "membrane";
 
-export async function sendToSlack(_, { event }) {
-  await nodes.slack.channel(/* ... */).sendMessage(/* ... */);
+export async function doSomething(_, { event }) {
+  // Do something with the webhookReceived event
 }
 
 export async function configure() {
-  nodes.ghWebhookReceived.$subscribe(sendToSlack);
-  //                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  nodes.webhookReceived.$subscribe(doSomething);
 }
 ```

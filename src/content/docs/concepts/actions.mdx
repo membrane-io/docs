@@ -2,6 +2,113 @@
 title: Actions
 ---
 
-{/* TODO: */}
+import Action from "@components/Action"
+import Gref from "@components/Gref"
+import Package from "@components/Package"
 
-_Documentation coming soon._
+As mentioned in the [Schema](/concepts/schema) section, actions are functions that can be invoked on a graph node. There we gave the example of a `PullRequest` type in <Package name="membrane/github" /> that declares a <Action name="merge" /> action which can be invoked on a pull request.
+
+Conceptually, field queries are reads and action invocations of actions are writes (or producing a side effect). You could think of fields like `GET` requests and actions like `POST|PUT|DELETE`.
+
+:::note
+You can install <Package name="pete/actions-docs-examples" /> to test out the code examples on this page in your own Membrane workspace.
+:::
+
+## Invoking actions
+
+### Invoking programmatically
+
+As an example, let's assume we have a program with a [connection](/concepts/connections) to the Membrane GitHub user like so:
+
+| **Name** | **Gref**                                              |
+| -------- | ----------------------------------------------------- |
+| `user`   | <Gref value="github:users.one(name:'membrane-io')" /> |
+
+Let's find the latest pull request from the paginated list of PRs and YOLO-merge it. Refer to docs on [querying collections](/concepts/queries/#querying-a-collection) for a refresher on pagination in Membrane.
+
+```ts twoslash /merge.*/ "await latest.merge"
+// @filename membrane.d.ts
+/// <reference path="docs-modules/github-user/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+
+export async function example() {
+  const prs = nodes.user.repos.one({ name: "docs" }).pull_requests
+  const page = await prs.page().items.$query("number title")
+  const { number, title } = page[0]
+
+  if (number) {
+    const latest = await prs.one({ number })
+    latest.merge({ commit_title: `YOLO-merging ${title}` }).$invoke()
+    // ---cut-start---
+  }
+}
+
+export async function example2() {
+  const prs = nodes.user.repos.one({ name: "docs" }).pull_requests
+  const page = await prs.page().items.$query("number title")
+  const { number, title } = page[0]
+
+  if (number) {
+    const latest = await prs.one({ number })
+    // ---cut-end---
+
+    // Instead of chaining `.$invoke()`, we could also simply await to invoke
+    await latest.merge({ commit_title: `YOLO-merging ${title}` })
+  }
+}
+```
+
+So if you have a reference to a `PullRequest` node, you can invoke <Action name="merge" /> or other PR actions, like <Action name="createComment" />. Note that since actions are graph nodes too, they can be passed around and referenced just like fields.
+
+See the [actions API reference](/reference/typescript-api/#actiont) for all the different ways to invoke actions, including via timers.
+
+### Invoking manually
+
+You can also invoke actions manually, in the IDE sidebar and the [dashboard](/guides/dashboard). Here I'm invoking the `createComment` action on the PR that I'm currently working on:
+
+<video src="/videos/invoke-action.mp4" muted autoplay controls></video>
+
+### Invoking from the CLI
+
+Actions can also be invoked from the command line with our [`mctl` CLI](/reference/cli#action).
+
+```shellsession
+$ mctl action 'github:users.one(name:"membrane-io").repos.one(name:"docs").pull_requests.one(number:76).merge'
+```
+
+## Defining actions
+
+For each action declared in a program's [schema](/concepts/schema), you must define a corresponding function that gets called when the action is invoked.
+
+### On root
+
+For example, when you create a new program using our blank template, we include a <Action name="run" /> action on its root node. To implement that action, we export a function from the top-level of the program's `index.ts` entry file, or export a `Root` object with a method.
+
+```ts twoslash
+export async function run() {
+  // Do something
+}
+
+export const Root = {
+  run: async () => {
+    // This also works
+  },
+}
+```
+
+### On nodes
+
+And what about actions on graph nodes more deeply nested in a program's schema? Let's return to the pull request example.
+
+The <Package name="membrane/github" /> defines a `PullRequest` type with a <Action name="merge" /> action in its schema. To implement the merge action, the driver exports a PR object with a `merge` method:
+
+```ts twoslash
+export const PullRequest = {
+  async merge() {
+    // Call the GitHub API to merge the PR
+  },
+}
+```

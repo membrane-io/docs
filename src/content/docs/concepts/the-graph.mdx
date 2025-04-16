@@ -41,14 +41,14 @@ stands for "graph reference". The gref syntax is pretty straightforward:
 For example, if you have <Package name="github"/> running on your workspace, all
 of these would be grefs that point to valid nodes.
 
-| Gref                                                           | Type                          |
-| -------------------------------------------------------------- | ----------------------------- |
-| <Gref value="github:"/>                                        | <Type type="Root"/>           |
-| <Gref value='github:users'/>                                   | <Type type="UserCollection"/> |
-| <Gref value='github:users.one(name:"membrane-io")'/>           | <Type type="User"/>           |
-| <Gref value='github:users.one(name:"membrane-io").bio'/>       | <Type type="String"/>         |
-| <Gref value='github:users.one(name:"membrane-io").followers'/> | <Type type="Int"/>            |
-| <Gref value='github:configure'/>                               | an action                     |
+| Gref                                                           | Type                            |
+| -------------------------------------------------------------- | ------------------------------- |
+| <Gref value="github:"/>                                        | <Type type="Root"/>             |
+| <Gref value='github:users'/>                                   | <Type type="UserCollection"/>   |
+| <Gref value='github:users.one(name:"membrane-io")'/>           | <Type type="User"/>             |
+| <Gref value='github:users.one(name:"membrane-io").bio'/>       | <Type type="String"/>           |
+| <Gref value='github:users.one(name:"membrane-io").followers'/> | <Type type="Int"/>              |
+| <Gref value='github:configure'/>                               | an [action](/concepts/actions/) |
 
 <span data-pagefind-weight="10">Grefs</span> are like URLs for your graph. But unlike URLs, grefs follow a schema and
 can have parameters on every part!
@@ -113,8 +113,9 @@ declare module "membrane" {
 // ---cut---
 import { nodes } from "membrane"
 
-export async function action() {
+export async function someAction() {
   const stars = await nodes.stars
+  /* do something with stars... */
 }
 ```
 
