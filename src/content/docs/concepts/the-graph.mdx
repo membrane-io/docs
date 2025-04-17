@@ -17,10 +17,8 @@ You can think of the graph as objects that can be referenced by other programs,
 allowing you to easily compose functionality and create useful abstractions.
 
 For example <Package name="github" /> defines a <Type type='PullRequest'/> type
-which you can use to interact with pull requests. You can then create a program
-with a `Task` type that groups a <Type type='PullRequest' /> and an
-
-<Type type="Issue" /> from e.g. Linear.
+which you can use to interact with pull requests. You could then create a program
+with a `Task` type that groups a <Type type='PullRequest' /> and an <Type type="Issue" /> from e.g. Linear.
 
 If you know about GraphQL this idea should sound familiar. In fact, we use a
 simpler version of GraphQL to describe and execute graph queries.
@@ -33,10 +31,10 @@ programs graphs.
 
 ## Grefs (graph references)
 
-To reference nodes in the graph, Membrane uses a notation called **gref** which
+To reference nodes in the graph, Membrane uses a notation called **gref**, which
 stands for "graph reference". The gref syntax is pretty straightforward:
 
-`program:path.to.node`
+> `program:path.to.node`
 
 For example, if you have <Package name="github"/> running on your workspace, all
 of these would be grefs that point to valid nodes.
@@ -50,8 +48,8 @@ of these would be grefs that point to valid nodes.
 | <Gref value='github:users.one(name:"membrane-io").followers'/> | <Type type="Int"/>              |
 | <Gref value='github:configure'/>                               | an [action](/concepts/actions/) |
 
-<span data-pagefind-weight="10">Grefs</span> are like URLs for your graph. But unlike URLs, grefs follow a schema and
-can have parameters on every part!
+<span data-pagefind-weight="10">Grefs</span> are like URLs for your graph. But
+unlike URLs, grefs follow a schema and can have parameters on every part!
 
 You won't be using this syntax directly from code, though, because Membrane
 generates type-safe accessors for every field, action, and event which mirror
@@ -59,8 +57,8 @@ program schemas. This allows us to provide rich autocomplete and type safety.
 
 ## Nodes
 
-Anything that is referenceable using fields is a <span data-pagefind-weight="10">node</span>.  All the grefs above point
-to graph nodes except for the last one that points to an action on the root node.
+Anything that is referenceable using fields is a <span data-pagefind-weight="10">node</span>. All the grefs above point
+to graph nodes, and the last one points to an action on the root node.
 
 We make this distinction because nodes are the things in your graph that can be
 queried. Actions are invoked _on_ a particular node, and events are emitted _by_
@@ -158,7 +156,7 @@ implied graph.
 The primary goal of the Membrane graph to allow you to easily traverse these
 relationships without having to read API docs.
 
-It turns out that this same abstraction allows us to implement pagination in a
+It turns out that this same abstraction allows us to implement [pagination](/concepts/queries/#querying-a-collection) in a
 unified way. Pagination is nothing more than a "linked list" of pages. In other
 words, a graph:
 

@@ -98,9 +98,8 @@ export async function example4() {
   // ---cut-end---
 
   // Use $query() and graphQL to get all the data you need in one call
-  const { name, email, repos } = await nodes.user.$query(`
+  const { name, repos } = await nodes.user.$query(`
     name
-    email
     repos {
       page {
         items { name, description }
@@ -161,7 +160,7 @@ export async function example() {
 }
 ```
 
-But how about querying a collection of repos and paginating through it? For that, we access the `page` field on our repos collection, which itself contains sub-fields for `items<Repository>` and `next<Gref<RepositoryPage>>`.
+But how about querying a collection of repos and paginating through it? For that, we access the `page` field on our repository collection, which itself contains sub-fields for `items<List<Repository>>` and `next<Gref<RepositoryPage>>`.
 
 ```ts twoslash
 // @filename membrane.d.ts
@@ -174,14 +173,15 @@ import { nodes } from "membrane"
 export async function example() {
   // Get a reference to a RepositoryPage and paginate
   let page = nodes.user.repos.page()
+
   while (page) {
     const repos = await page.items.$query("name")
     page = await page.next()
   }
 }
 
-// Or, using graphQL syntax
 export async function exampleGQL() {
+  // Or, use graphQL syntax to query all sub-fields at once
   let { page } = await nodes.user.repos.$query(`
     page {
       items { name }
@@ -198,17 +198,17 @@ export async function exampleGQL() {
 
 Pagination UI in the IDE relies on these conventions for a `page` with `items` and `next`. You've likely already come across it in the explorer sidebar or [dashboard](/guides/dashboard).
 
-For example, here we're flipping through pages of emilk's repos to find egui (the Rust frontend library that we use at Membrane):
+For example, here in the sidebar we're flipping through pages of emilk's repos to find egui (the Rust frontend library that we use at Membrane):
 
 <video src="/videos/pagination.mp4" muted autoplay controls></video>
 
 ### Filtering
 
-You may have noticed that the `repos.page` field accepts parameters for filtering. In the case of GitHub repos, you can optionally pass filters for `type`, `sort`, `direction`, `page`, and `pageSize`.
+You may have noticed that the `page` field accepts parameters for filtering. In the case of GitHub repos, you can optionally pass filters for `type`, `sort`, `direction`, `page`, and `pageSize`.
 
 Filtering options for a collection depend on the API itself. Membrane API [drivers](/concepts/drivers) implement pagination in a standard way as described above, but filtering options will vary from driver to driver.
 
-In the explorer sidebar (seen in the video above), you can select filters in the bottom right corner, below the paginated list.
+In the graph explorer sidebar (seen in the video above), you can select filters in the bottom right corner, below the paginated list.
 
 ## Querying from the CLI
 
