@@ -168,17 +168,10 @@ export async function run() {
   // Invoke it
   await action.$invoke()
 
-  // For convenience, you can just await the action to invoke it
+  // For convenience, omit .$invoke and simply await the action to invoke it
   await nodes.email.send({ subject: "Burritos", body: "are also okay" })
 }
 ```
-
-:::tip
-
-You can also simply `await` an action to invoke it, which is shorthand for
-calling `.$invoke()`.
-
-:::
 
 #### $invokeAt
 

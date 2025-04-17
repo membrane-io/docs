@@ -15,8 +15,7 @@ let's talk about how queries work.
 
 To illustrate this section, we'll assume that you have <Package name="github" />
 running on your workspace. We'll also assume that you have created a blank
-program with the following node as a [connection](/concepts/connections), and
-named the connection `user`:
+program with the following node as a [connection](/concepts/connections) named `user`:
 
 <table>
   <thead>
@@ -44,19 +43,18 @@ named the connection `user`:
   </tbody>
 </table>
 
-You can click on the type above to explore the entire schema of
+You can click on the `User` type in the table above to explore the entire schema of <Package name="github" />. We'll be querying data from the above Github User. Feel free to change it to your own GitHub username.
 
-<Package name="github" />.
-
-We'll be querying data from the above Github User. Feel free to change it to
-your own GitHub username.
+:::note
+You can install <Package name="pete/querying-docs-examples" /> to test out these examples in your own Membrane workspace.
+:::
 
 ## Querying a node
 
 Now that your program has access to a node named `user`, you can use `$query`
 and `$get` to read values from it.
 
-Here are some examples:
+Here are some examples.
 
 ```ts twoslash /= (await.*)/
 // @filename membrane.d.ts
@@ -66,43 +64,42 @@ Here are some examples:
 // ---cut---
 import { nodes } from "membrane"
 
-async function run() {
+export async function example() {
   // Using $get() to query a string
-  const bio = await nodes.user.bio.$get()
+  const email = await nodes.user.email.$get()
   // ---cut-start---
 }
 
-async function run1() {
+export async function example1() {
   // ---cut-end---
 
   // For convenience, you can omit the $get() when querying a scalar
-  const bio = await nodes.user.bio
+  const blog = await nodes.user.blog
   // ---cut-start---
 }
 
-async function run2() {
+export async function example2() {
   // ---cut-end---
 
   // Query a sub-node
-  const name = await nodes.user.repos.one({ name: "docs" }).description
+  const description = await nodes.user.repos.one({ name: "docs" }).description
   // ---cut-start---
 }
 
-async function run3() {
+export async function example3() {
   // ---cut-end---
 
   // Use graphQL to get multiple values
-  const { name, bio } = await nodes.user.$query("{ name bio }")
+  const { name, email, blog } = await nodes.user.$query("{ name email blog }")
   // ---cut-start---
 }
 
-async function run4() {
+export async function example4() {
   // ---cut-end---
 
   // Use $query() and graphQL to get all the data you need in one call
-  const { name, bio, repos } = await nodes.user.$query(`
+  const { name, repos } = await nodes.user.$query(`
     name
-    bio
     repos {
       page {
         items { name, description }
@@ -135,9 +132,87 @@ query.
 Finally, for convenience, you can omit the outer `{` and `}` when using
 `$query`. So instead of `"{ name bio }"` you can just write `"name bio"`.
 
-## Querying form the CLI
+## Querying a collection
 
-You can make queries from the command line by using
+Fields that return collections of data follow conventions for pagination. Let's take a look at that `repos` field we queried above for a GitHub user:
+
+| **Gref**                                                    | **Type**                                                                                                      |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| <Gref value="github:users.one(name:'membrane-io').repos" /> | <Type client:load type={{ type: `RepositoryCollection` }} packageName="github" memconfig={githubMemconfig} /> |
+
+Click the `RepositoryCollection` type in the table above to inspect its schema. You'll see that the collection contains fields for `one<Repository>` repo and a `page<RepositoryPage>` of repos. Take a look at those types as well.
+
+As a refresher on [querying a node](#querying-a-node), we can query fields on a single repo:
+
+```ts twoslash
+// @filename membrane.d.ts
+/// <reference path="docs-modules/github-user/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+
+export async function example() {
+  const docs = nodes.user.repos.one({ name: "docs" })
+  const { description, homepage } = await docs.$query(
+    "{ description homepage }",
+  )
+}
+```
+
+But how about querying a collection of repos and paginating through it? For that, we access the `page` field on our repository collection, which itself contains sub-fields for `items<List<Repository>>` and `next<Gref<RepositoryPage>>`.
+
+```ts twoslash
+// @filename membrane.d.ts
+/// <reference path="docs-modules/github-user/membrane.d.ts" />
+
+// @filename index.ts
+// ---cut---
+import { nodes } from "membrane"
+
+export async function example() {
+  // Get a reference to a RepositoryPage and paginate
+  let page = nodes.user.repos.page()
+
+  while (page) {
+    const repos = await page.items.$query("name")
+    page = await page.next()
+  }
+}
+
+export async function exampleGQL() {
+  // Or, use graphQL syntax to query all sub-fields at once
+  let { page } = await nodes.user.repos.$query(`
+    page {
+      items { name }
+      next
+    }
+  `)
+
+  while (page) {
+    const { items, next } = page
+    page = await next?.$query(`{ items { name } next }`)
+  }
+}
+```
+
+Pagination UI in the IDE relies on these conventions for a `page` with `items` and `next`. You've likely already come across it in the explorer sidebar or [dashboard](/guides/dashboard).
+
+For example, here in the sidebar we're flipping through pages of emilk's repos to find egui (the Rust frontend library that we use at Membrane):
+
+<video src="/videos/pagination.mp4" muted autoplay controls></video>
+
+### Filtering
+
+You may have noticed that the `page` field accepts parameters for filtering. In the case of GitHub repos, you can optionally pass filters for `type`, `sort`, `direction`, `page`, and `pageSize`.
+
+Filtering options for a collection depend on the API itself. Membrane API [drivers](/concepts/drivers) implement pagination in a standard way as described above, but filtering options will vary from driver to driver.
+
+In the graph explorer sidebar (seen in the video above), you can select filters in the bottom right corner, below the paginated list.
+
+## Querying from the CLI
+
+You can also make queries from the command line by using
 [mctl query](/reference/cli#query). For example:
 
 ```shellsession
@@ -150,13 +225,7 @@ $ mctl query 'github:users.one(name:"membrane-io")' '{ name bio }'
 
 ## Resolving queries
 
-## Pagination
-
-{/* TODO: */}
-
-_Documentation coming soon._
-
-## Query execution
+### Query execution
 
 This section explains how Membrane queries work by calling the functions
 exported from a program. You generally don't need to think about this, but it's

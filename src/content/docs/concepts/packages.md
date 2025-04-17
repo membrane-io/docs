@@ -17,7 +17,7 @@ changelog.
 
 ## Installing
 
-To install a package, select `🔎 SEARCH` in Navigator (top left), find the
+To install a package, select `📦 PACKAGES` in the top left of the IDE, find the
 package you want to install, and click `INSTALL`.
 
 ## Publishing

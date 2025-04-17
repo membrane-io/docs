@@ -2,75 +2,81 @@
 title: Events
 ---
 
-### Emitting an event
+import Action from "@components/Action"
+import Event from "@components/Event"
+import Package from "@components/Package"
 
-```ts twoslash
+Any Membrane program can _emit_ events on their nodes and _subscribe to_ events on nodes of other programs. In the [Schema](/concepts/schema) section we gave the example of a <Event name="closed" /> on a `PullRequest` node type.
+
+As another example, let's say you have a program that handles webhooks. A node in your program could emit a <Event name="webhookReceived" /> event, and another program could subscribe to that event.
+
+## Emitting events
+
+Here we are emitting that <Event name="webhookReceived" /> event from a program's root node.
+
+```ts twoslash "$emit()"
 // @module: esnext
 // @filename: membrane.d.ts
 declare module "membrane" {
   namespace resolvers {
     export interface Root {
       endpoint(req: {
-        method:
-          | "GET"
-          | "POST"
-          | "PUT"
-          | "PATCH"
-          | "DELETE"
-          | "HEAD"
-          | "OPTIONS";
-        path: string;
-        body?: string;
-        query?: string;
-        headers: string;
-      }): string;
+        method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS"
+        path: string
+        body?: string
+        query?: string
+        headers: string
+      }): string
     }
   }
   /**
    * A gref to the root of this program.
    */
-  export const root: Root;
+  export const root: Root
 }
 
 // ---cut---
-import type { root } from "membrane";
+import type { root } from "membrane"
 
 export function endpoint(req) {
   switch (`${req.method} ${req.path}`) {
-    case "POST /gh-webhook-path":
-      root.ghWebhookReceived.$emit();
-    //                      ^^^^^^^^
-    /* ... */
+    case "POST /webhook-path":
+      root.webhookReceived.$emit()
   }
-};
+}
 ```
 
-### Subscribing to an event
+Reference our [event API docs](/reference/typescript-api/#emit) for more on `.$emit()`.
+
+## Subscribing to events
 
 Programs can subscribe an action to handle an event. When an event is emitted, the action will be invoked with an additional parameter called `event`.
 
-```ts twoslash
+Here we are subscribing a program to the <Event name="webhookReceived" /> event with a <Action name="doSomething" /> action as its handler. Note that this subscribing program would have the emitting program as a [connection](/concepts/connections).
+
+```ts twoslash "$subscribe(doSomething)"
 // @module: esnext
 // @filename: membrane.d.ts
-type State = import("./index").State;
+type State = import("./index").State
 declare module "membrane" {
   /**
    * This object is automatically persisted by Membrane.
    * Its type is defined by the exported `State` interface
    * below.
    */
-  export const state: State;
+  export const state: State
 }
 
 // ---cut---
-import type { nodes } from "membrane";
+import type { nodes } from "membrane"
 
-export async function sendToSlack(_, { event }) {
-  await nodes.slack.channel(/* ... */).sendMessage(/* ... */);
+export async function doSomething(_, { event }) {
+  // Do something with the webhookReceived event
 }
 
 export async function configure() {
-  nodes.ghWebhookReceived.$subscribe(sendToSlack);
-  //                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  nodes.webhookReceived.$subscribe(doSomething)
 }
 ```
+
+Reference our [event API docs](/reference/typescript-api/#subscribe) for more on `.$subscribe()`.

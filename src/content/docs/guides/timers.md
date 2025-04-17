@@ -32,3 +32,5 @@ be chained to actions, corresponding to the three types of timers listed above:
 1. `.$invokeIn()`
 2. `.$invokeAt()`
 3. `.$cron()`
+
+See our [actions API reference](/reference/typescript-api/#actiont) for information on these methods.

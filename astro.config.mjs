@@ -90,12 +90,12 @@ export default defineConfig({
               link: "/concepts/programs/",
             },
             {
-              label: "The Graph",
-              link: "/concepts/the-graph/",
-            },
-            {
               label: "Observability",
               link: "/concepts/observability/",
+            },
+            {
+              label: "The Graph",
+              link: "/concepts/the-graph/",
             },
             {
               label: "Schema",
@@ -144,10 +144,6 @@ export default defineConfig({
               link: "/guides/state/",
             },
             {
-              label: "Brane",
-              link: "/guides/brane/",
-            },
-            {
               label: "HTTP endpoints",
               link: "/guides/endpoints/",
             },
@@ -160,16 +156,20 @@ export default defineConfig({
               link: "/guides/sms/",
             },
             {
+              label: "Brane",
+              link: "/guides/brane/",
+            },
+            {
+              label: "Dashboard",
+              link: "/guides/dashboard/",
+            },
+            {
               label: "Databases",
               link: "/guides/databases/",
             },
             {
               label: "Timers and Cronjobs",
               link: "/guides/timers/",
-            },
-            {
-              label: "Pagination",
-              link: "/guides/pagination/",
             },
             {
               label: "API drivers",
@@ -184,6 +184,10 @@ export default defineConfig({
             {
               label: "Typescript API",
               link: "/reference/typescript-api/",
+            },
+            {
+              label: "JSX (dashboard)",
+              link: "/reference/jsx/",
             },
             {
               label: "CLI (mctl)",
