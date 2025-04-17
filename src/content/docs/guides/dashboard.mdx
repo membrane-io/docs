@@ -2,19 +2,20 @@
 title: The Membrane Dashboard
 ---
 
+import Action from "@components/Action"
 import Package from "@components/Package"
 
 The dashboard is a customizable interface for viewing data and executing repetitive workflows. With the dashboard, you can quickly build utilitarian UIs on top of your Membrane programs.
 
-<video src="/videos/TODO:dashboard-demo.mp4" muted autoplay controls></video>
+{/* <video src="/videos/TODO:dashboard-demo.mp4" muted autoplay controls></video> */}
 
 ## Using the dashboard
 
 ### Opening
 
-The dashboard is the default view in your editor. You'll see it whenever you are not viewing other files (or settings, extensions, etc). To show the dashboard anytime, click `Dashboard` in the top right of your editor.
+To open the dashboard, click `DASHBOARD` in the top left of your editor.
 
-{/* ![Open Dashboard button](@assets/TODO:open-dashboard.png) */}
+![Open Dashboard button](@assets/open-dashboard.png)
 
 ### Installing
 
@@ -24,23 +25,13 @@ If you haven't already, [install](/concepts/packages/#installing) the <Package n
 
 To add a block to your dashboard, simply drag 'n drop a [gref](/concepts/the-graph/#grefs-graph-references) onto the dashboard. If the gref's node type does not have a custom view, the block will display the graph view for that gref, just as you would see in the left sidebar.
 
-<video
-  src="/videos/TODO:dashboard-drop-gref.mp4"
-  muted
-  autoplay
-  controls
-></video>
+{/* <video src="/videos/TODO:dashboard-drop-gref.mp4" muted autoplay controls></video> */}
 
 We cover [creating](#creating-views) and [generating](#generating-views) custom views below, but first let's discuss organizing and navigating around the dashboard.
 
 ### Moving
 
-<video
-  src="/videos/TODO:dashboard-movement.mp4"
-  muted
-  autoplay
-  controls
-></video>
+{/* <video src="/videos/TODO:dashboard-movement.mp4" muted autoplay controls></video> */}
 
 - **Move** a block by dragging and dropping. The dashboard grid is intentionally coarse. Blocks are sized and positioned in 128px increments.
 - **Resize** a block by dragging from its bottom right corner.
@@ -48,8 +39,6 @@ We cover [creating](#creating-views) and [generating](#generating-views) custom 
 - **Picker mode.** Press the `space` key to zoom out, then select a block to zoom in on it. Or press space again to zoom in on your mouse position.
 - **Fullscreen.** Toggle by pressing the `f` key or clicking the fullscreen icon button in the top right corner dashboard menu.
 - **Arrange** blocks by clicking the arrange icon button in the top right corner dashboard menu.
-
-{/* TODO: see dashboard.rs for all possibilities */}
 
 ### Creating views
 
@@ -85,7 +74,9 @@ export function User({ self }) {
 
 View functions receive an object parameter with a `self` property, which is a reference to the node. So this User view would have access to all fields, actions, and events on the User type.
 
-The dashboard uses a Membrane-specific flavor of JSX. For full coverage of valid elements and styles, read our [JSX reference](/reference/jsx). To learn about Membrane's custom JSX implementation, read [how the dashboard works](#how-the-dashboard-works).
+The dashboard uses a Membrane-specific flavor of JSX. For full coverage of valid elements and styles, read our [JSX reference](/reference/jsx).
+
+{/* To learn about Membrane's custom JSX implementation, read [how the dashboard works](#how-the-dashboard-works). */}
 
 :::tip
 While editing code in a _views.tsx_ file, corresponding blocks will be highlighted in the dashboard based on your cursor position. Or, press `cmd+shift` and hover over view code to highlight its corresponding blocks. You can also hold `cmd+shift` and click a block to go to its view code.
@@ -95,28 +86,30 @@ While editing code in a _views.tsx_ file, corresponding blocks will be highlight
 
 While you can always write views by hand, it's usually more practical to generate a view in a matter of seconds. Just ask Brane to generate a view for a particular type, or for many types in a program.
 
-<video src="/videos/TODO:brane-dashboard.mp4" muted autoplay controls></video>
+{/* <video src="/videos/TODO:brane-dashboard.mp4" muted autoplay controls></video> */}
 
 Once Brane spits out your view(s), use the generated code as a starting point or ask Brane to iterate. Or rely on inline editor completions as a middle ground between crafting by hand and full generation.
 
 ## How the dashboard works
 
-As you may have noticed, `dashboard` is itself a Membrane program! It has actions to `put`, `move`, `remove`, and `rename` blocks. It uses [state](/guides/state/) to store blocks you've added with some data and metadata for each block. You can even drag `dashboard` grefs...onto the dashboard!
+As you may have noticed, `dashboard` is itself a Membrane program! It has actions to <Action name="put" />, <Action name="move" />, <Action name="remove" />, and <Action name="rename" /> blocks. It uses [state](/guides/state/) to store blocks you've added with some data and metadata for each block. You can even drag `dashboard` grefs...onto the dashboard!
 
 The canvas-like dashboard UI is implemented using JSX and Rust compiled to WASM. If you inspect the page via browser devtools, you'll see an HTML `<canvas>` wherein we run the compiled Rust code. We use a frontend Rust framework called [`egui`](https://egui.rs) along with a flexbox layout crate [`taffy`](https://crates.io/crates/taffy).
 
-As for the code you write or generate in `views.tsx`, that uses a custom Membrane JSX implementation. See our [reference page](/reference/jsx/) if you want to know which elements and props are available to use. So how do we get from JSX to WASM via Rust?
+As for the code you write or generate in _views.tsx_, that uses a custom Membrane JSX implementation. See our [reference page](/reference/jsx/) if you want to know which elements and props are available to use.
 
-### JSX to WASM via Rust
+{/* TODO: */}
+
+{/* So how do we get from JSX to WASM via Rust? */}
+
+{/* ### JSX to WASM via Rust */}
 
 {/* See JSXElement and EguiElement */}
 {/* - JSX gets transpiled to JSON */}
 {/* - Rendered in Rust via egui, an immediate mode framework */}
 {/* - Uses taffy, an egui crate for flex layout */}
-{/* - TODO:WASM */}
+{/* - WASM */}
 
-...
+{/* ### Views, not components */}
 
-### Views, not components
-
-- You don't render components. Instead of components, you use \<embed\> with a referenced gref attr, and if that type has a view it'll render
+{/* - You don't render components. Instead of components, you use \<embed\> with a referenced gref attr, and if that type has a view it'll render */}

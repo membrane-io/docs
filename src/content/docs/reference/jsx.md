@@ -8,7 +8,7 @@ We use flex layout for styling, so your existing mental model from CSS Flexbox s
 
 ## Elements
 
-### `<col>`
+### \<col\>
 
 A vertical container element.
 
@@ -16,7 +16,7 @@ A vertical container element.
 
 - `style?`: accepts [container](#container-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
 
-### `<row>`
+### \<row\>
 
 A horizontal container element.
 
@@ -24,7 +24,7 @@ A horizontal container element.
 
 - `style?`: accepts [container](#container-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
 
-### `<text>`
+### \<text\>
 
 A text element.
 
@@ -33,7 +33,7 @@ A text element.
 - `style?`: accepts [text](#text-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
 - `numberOfLines?`: dictates maximum number of lines to display before truncating
 
-### `<string>`
+### \<string\>
 
 <!-- TODO: per Juan, how we read values from jsx is subject to change -->
 
@@ -43,7 +43,7 @@ A string element for rendering scalar values. Lower level than `<text>`.
 
 - `gref`: reference to the value to be rendered
 
-### `<button>`
+### \<button\>
 
 A clickable button element.
 
@@ -52,7 +52,7 @@ A clickable button element.
 - `style?`: accepts [container](#container-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
 - `action?`: reference (gref) to the action to invoke when clicked
 
-### `<image>`
+### \<image\>
 
 An image display element.
 
@@ -61,7 +61,7 @@ An image display element.
 - `style?`: accepts [container](#container-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
 - `source?`: reference (gref) to the image URL to display
 
-### `<embed>`
+### \<embed\>
 
 An element for embedding complex data structures.
 
