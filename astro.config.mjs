@@ -90,12 +90,12 @@ export default defineConfig({
               link: "/concepts/programs/",
             },
             {
-              label: "The Graph",
-              link: "/concepts/the-graph/",
-            },
-            {
               label: "Observability",
               link: "/concepts/observability/",
+            },
+            {
+              label: "The Graph",
+              link: "/concepts/the-graph/",
             },
             {
               label: "Schema",
