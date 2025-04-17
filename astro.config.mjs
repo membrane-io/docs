@@ -144,10 +144,6 @@ export default defineConfig({
               link: "/guides/state/",
             },
             {
-              label: "Brane",
-              link: "/guides/brane/",
-            },
-            {
               label: "HTTP endpoints",
               link: "/guides/endpoints/",
             },
@@ -158,6 +154,10 @@ export default defineConfig({
             {
               label: "SMS",
               link: "/guides/sms/",
+            },
+            {
+              label: "Brane",
+              link: "/guides/brane/",
             },
             {
               label: "Dashboard",
