@@ -7,7 +7,11 @@ import Package from "@components/Package"
 
 The dashboard is a customizable interface for viewing data and executing repetitive workflows. With the dashboard, you can quickly build utilitarian UIs on top of your Membrane programs.
 
-{/* <video src="/videos/TODO:dashboard-demo.mp4" muted autoplay controls></video> */}
+<video src="/videos/dashboard-demo.mp4" muted autoplay controls></video>
+
+In the video above, we add blocks to the dashboard representing a GitHub user, repo, and issue. Those particular views are defined in <Package name="juan/github" />, but you can create and compose your own views to solve your needs.
+
+We'll get to [that](#creating-views), but let's start with the basics of using the dashboard.
 
 ## Using the dashboard
 
@@ -21,24 +25,37 @@ To open the dashboard, click `DASHBOARD` in the top left of your editor.
 
 If you haven't already, [install](/concepts/packages/#installing) the <Package name="membrane/dashboard" /> package. This program will track the blocks you add to the dashboard and their position. Now you're ready to add stuff!
 
+<video src="/videos/install-dashboard.mp4" muted controls></video>
+
 ### Adding blocks
 
-To add a block to your dashboard, simply drag 'n drop a [gref](/concepts/the-graph/#grefs-graph-references) onto the dashboard. If the gref's node type does not have a custom view, the block will display the graph view for that gref, just as you would see in the left sidebar.
+To add a block to your dashboard, simply drag 'n drop a [gref](/concepts/the-graph/#grefs-graph-references) onto the dashboard.
 
-{/* <video src="/videos/TODO:dashboard-drop-gref.mp4" muted autoplay controls></video> */}
+<video src="/videos/dashboard-drop.mp4" muted controls></video>
+
+If the gref's node type does not yet have a custom view, you can display the node's fields, actions, and events by clicking the settings gear icon in the top right of the block and selecting "Show graph view."
 
 We cover [creating](#creating-views) and [generating](#generating-views) custom views below, but first let's discuss organizing and navigating around the dashboard.
 
 ### Moving
 
-{/* <video src="/videos/TODO:dashboard-movement.mp4" muted autoplay controls></video> */}
+To use the dashboard fluidly, run through this checklist:
 
 - **Move** a block by dragging and dropping. The dashboard grid is intentionally coarse. Blocks are sized and positioned in 128px increments.
 - **Resize** a block by dragging from its bottom right corner.
-- **Pan** by pressing the `command` key and dragging the dashboard background.
-- **Picker mode.** Press the `space` key to zoom out, then select a block to zoom in on it. Or press space again to zoom in on your mouse position.
-- **Fullscreen.** Toggle by pressing the `f` key or clicking the fullscreen icon button in the top right corner dashboard menu.
+- **Pan** by scrolling with your mouse or trackpad. Press `shift` to scroll horizontally. Alternatively, press `ctrl|command` and drag the dashboard background to pan.
+- **Picker mode.** Press `space` to zoom out, then click a block to focus it or press space again to zoom in on your mouse position. Or press `ctrl|command` and scroll to activate picker mode.
+- **Stacked mode.** Selecting a gref embedded in another view will activate a stacked view, allowing exploration of nested data. Drag a gref from a stack column to persist as its own block. Click outside of the columns or press escape to exit stacked mode.
+- **Fullscreen.** Toggle by clicking the fullscreen icon button in the top right corner dashboard menu.
 - **Arrange** blocks by clicking the arrange icon button in the top right corner dashboard menu.
+
+Here's a demo of each movement described above:
+
+<video src="/videos/dashboard-movement.mp4" muted controls></video>
+
+:::note
+If the dashboard is missing any of your preferred canvas-like interactions or shortcuts, [tell us](mailto:contact@membrane.io). While in beta we're experimenting with what feels best.
+:::
 
 ### Creating views
 
