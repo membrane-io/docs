@@ -113,8 +113,6 @@ Vertical overflow behavior. `"visible" | "hidden" | "scroll"`
 
 ## Text styles
 
-All [sizing](#sizing-styles) and [item](#item-styles) styles are valid for text elements. Plus:
-
 ### color
 
 Text color. `string`
