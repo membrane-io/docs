@@ -29,7 +29,7 @@ export async function run() {
   });
 
   // Iterate over the rows, each a list of values:
-  for (let [username] of rows) {
+  for (let {username} of rows) {
     console.log("username", username);
   }
 }
@@ -69,12 +69,12 @@ const [user] = await database.execute({
 Similarly, you can go even further to get one or more values from the row:
 ```js
 // Single column
-const [[name]] = await database.execute({
+const [{name}] = await database.execute({
   sql: "SELECT name FROM users WHERE id = 1"
 });
 
 // Multiple columns
-const [[name, created_at]] = await database.execute({
+const [{name, created_at}] = await database.execute({
   sql: "SELECT name, created_at FROM users WHERE id = 1"
 });
 ```
@@ -111,7 +111,7 @@ export async function run() {
     sql: "SELECT username FROM your_table"
   });
 
-  for (let [username] of rows) {
+  for (let {username} of rows) {
     console.log("username", username);
   }
 }
