@@ -8,13 +8,24 @@ We use flex layout for styling, so your existing mental model from CSS Flexbox s
 
 ## Elements
 
+### Base props
+
+All elements except for [string](#string) can accept these props:
+
+- `style?`: valid properties specific by element (see below)
+- `children?`: child element(s), can be `string | number | boolean | null | undefined` or another JSX element
+- `key?: string | number`: unique identifier for element in lists
+- `tooltip?: string`: Helpful text that appears when hovering over the element
+
 ### \<col\>
 
 A vertical container element.
 
 **Props**
 
-- `style?`: accepts [container](#container-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
+- `style?`: accepts [container](#container-styles), [flex](#flex-styles), [sizing](#sizing-styles), and [box](#box-styles) styles
+- `link?: Gref`: links element and all its descendents in the UI to a graph node
+- All [base props](#base-props)
 
 ### \<row\>
 
@@ -22,7 +33,9 @@ A horizontal container element.
 
 **Props**
 
-- `style?`: accepts [container](#container-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
+- `style?`: accepts [container](#container-styles), [flex](#flex-styles), [sizing](#sizing-styles), and [box](#box-styles) styles
+- `link?: Gref`: links element and all its descendents in the UI to a graph node
+- All [base props](#base-props)
 
 ### \<text\>
 
@@ -30,8 +43,10 @@ A text element.
 
 **Props**
 
-- `style?`: accepts [text](#text-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
+- `style?`: accepts [flex](#flex-styles), [sizing](#sizing-styles), and [box](#box-styles) styles
 - `numberOfLines?`: dictates maximum number of lines to display before truncating
+- `format?: "markdown" | string`: content format - "markdown" renders the content as markdown
+- All [base props](#base-props)
 
 ### \<string\>
 
@@ -42,6 +57,7 @@ A string element for rendering scalar values. Lower level than `<text>`.
 **Props**
 
 - `gref`: reference to the value to be rendered
+- `value?: Gref`: Text to be rendered
 
 ### \<button\>
 
@@ -49,8 +65,9 @@ A clickable button element.
 
 **Props**
 
-- `style?`: accepts [container](#container-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
+- `style?`: accepts [container](#container-styles), [flex](#flex-styles), [sizing](#sizing-styles), and [box](#box-styles) styles
 - `action?`: reference (gref) to the action to invoke when clicked
+- All [base props](#base-props)
 
 ### \<image\>
 
@@ -58,8 +75,9 @@ An image display element.
 
 **Props**
 
-- `style?`: accepts [container](#container-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
+- `style?`: accepts [container](#container-styles), [flex](#flex-styles), [sizing](#sizing-styles), and [box](#box-styles) styles
 - `source?`: reference (gref) to the image URL to display
+- All [base props](#base-props)
 
 ### \<embed\>
 
@@ -67,22 +85,47 @@ An element for embedding complex data structures.
 
 **Props**
 
-- `style`: accepts [container](#container-styles), [item](#item-styles), and [sizing](#sizing-styles) styles
+- `style`: accepts [container](#container-styles), [flex](#flex-styles), [sizing](#sizing-styles), and [box](#box-styles) styles
 - `gref`: reference (gref) to the data to be embedded
+- All [base props](#base-props)
 
-## Sizing styles
+## Container styles
 
-### width
+### gap
 
-Element width (px, %, or other CSS units). `string | number`
+Space between child elements. `string | number`
 
-### height
+### alignItems
 
-Element width (px, %, or other CSS units). `string | number`
+Alignment of children along the cross axis. `"start" | "end" | "flex-start" | "flex-end" | "center" | "stretch"`
 
-## Item styles
+### justifyContent
 
-Styles will apply when an element is an item (aka flex item/child) of a container (aka flex container/parent).
+Alignment of children along the main axis. `"start" | "end" | "flex-start" | "flex-end" | "center" | "space-around" | "space-between" | "stretch"`
+
+### overflowX
+
+Horizontal overflow behavior. `"visible" | "hidden" | "scroll"`
+
+### overflowY
+
+Vertical overflow behavior. `"visible" | "hidden" | "scroll"`
+
+## Text styles
+
+### color
+
+Text color. `string`
+
+### fontSize
+
+Text size - one of predefined sizes. `"small" | "medium" | "large" | "x-large"`
+
+### textAlign
+
+Horizontal text alignment. `"left" | "right" | "center"`
+
+## Flex styles
 
 ### flexShrink
 
@@ -104,7 +147,17 @@ Sets the direction of the flex container's main axis. `"row" | "row-reverse" | "
 
 Overrides the alignItems value for this specific element. `"start" | "end" | "flex-start" | "flex-end" | "center" | "stretch"`
 
-## Container styles
+## Sizing styles
+
+### width
+
+Element width (px, %, or other CSS units). `string | number`
+
+### height
+
+Element width (px, %, or other CSS units). `string | number`
+
+## Box styles
 
 ### background
 
@@ -146,38 +199,6 @@ Space inside the element between content and border. `string | number`
 
 Space outside the element between border and adjacent elements. `string | number`
 
-### gap
+### opacity
 
-Space between child elements. `string | number`
-
-### alignItems
-
-Alignment of children along the cross axis. `"start" | "end" | "flex-start" | "flex-end" | "center" | "stretch"`
-
-### justifyContent
-
-Alignment of children along the main axis. `"start" | "end" | "flex-start" | "flex-end" | "center" | "space-around" | "space-between" | "stretch"`
-
-### overflowX
-
-Horizontal overflow behavior. `"visible" | "hidden" | "scroll"`
-
-### overflowY
-
-Vertical overflow behavior. `"visible" | "hidden" | "scroll"`
-
-## Text styles
-
-All [sizing](#sizing-styles) and [item](#item-styles) styles are valid for text elements. Plus:
-
-### color
-
-Text color. `string`
-
-### fontSize
-
-Text size - one of predefined sizes. `"small" | "medium" | "large" | "x-large"`
-
-### textAlign
-
-Horizontal text alignment. `"left" | "right" | "center"`
+Opacity of the element and its descendants. Must be between 0.0 to 1.0. `string | number`
