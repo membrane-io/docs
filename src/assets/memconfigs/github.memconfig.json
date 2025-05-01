@@ -63,12 +63,12 @@
     "types": [
       {
         "name": "Root",
-        "description": "Driver for the Github API",
+        "description": "Package for the Github API",
         "fields": [
           {
             "name": "status",
             "type": "String",
-            "description": "Indicates whether this github driver is configured and ready"
+            "description": "Indicates whether this github package is configured and ready"
           },
           {
             "name": "users",
@@ -113,7 +113,7 @@
         "actions": [
           {
             "name": "configure",
-            "description": "Invoke with a valid Github access token to configure this driver",
+            "description": "Invoke with a valid Github access token to configure this package",
             "params": [
               {
                 "name": "token",
@@ -159,7 +159,7 @@
           {
             "name": "statusChanged",
             "type": "Void",
-            "description": "Triggered when the status of the Github API driver changes"
+            "description": "Triggered when the status of the Github API package changes"
           }
         ]
       },
@@ -2493,7 +2493,7 @@
             "ofType": "Release"
           }
         ],
-        "description": "Type representing a release event in the Github membrane driver."
+        "description": "Type representing a release event in the Github membrane package."
       },
       {
         "name": "ContentCollection",
@@ -2783,7 +2783,7 @@
             "description": "Test the functionality for the search action"
           }
         ],
-        "description": "Collection of tests for the Github driver"
+        "description": "Collection of tests for the Github package"
       }
     ]
   }

@@ -76,7 +76,7 @@ Example usage:
 import { nodes } from "membrane"
 
 async function run() {
-  // This program has a connection named `user` to the GitHub driver
+  // This program has a connection named `user` to the GitHub package
   // so we can query it, invoke actions, subscribe to events, etc.
   const bio = await nodes.user.bio
 
@@ -443,8 +443,7 @@ match the gref.
 
 This similar to using a regular expression on a URL to extract parts of it.
 
-This is useful when implementing API drivers to extract the arguments for an API
-call.
+This is useful when implementing API packages to extract the arguments for an API call.
 
 ```js
 $argsAt(pattern: Field<unknown>): Record<string, any>;

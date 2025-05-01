@@ -558,7 +558,7 @@ declare namespace github {
   namespace handles {
     interface Root extends Field<values.Root> {
       /**
-       * Indicates whether this github driver is configured and ready
+       * Indicates whether this github package is configured and ready
        */
       status: Scalar<string> & (() => Scalar<string>);
       /**
@@ -590,7 +590,7 @@ declare namespace github {
        */
       gref: Scalar<Root> & (() => Scalar<Root>);
       /**
-       * Invoke with a valid Github access token to configure this driver
+       * Invoke with a valid Github access token to configure this package
        *
        * Note: remember to `await` this action invocation. Or, chain another `Action` method: `.$invoke()`, `.$invokeAt()`, `.$invokeIn()`, `.$cron()`
        *
@@ -634,7 +634,7 @@ declare namespace github {
           attachments?: Json;
         }) => Action<string>);
       /**
-       * Triggered when the status of the Github API driver changes
+       * Triggered when the status of the Github API package changes
        */
       statusChanged: NodeEvent<void> & (() => NodeEvent<void>);
     }
