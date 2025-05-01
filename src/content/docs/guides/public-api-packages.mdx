@@ -1,0 +1,463 @@
+---
+title: Public API packages
+---
+
+import Action from "@components/Action"
+import Package from "@components/Package"
+
+This guide covers Membrane packages for public APIs. We explain how they work so that you can effectively consume them and even create your own.
+
+Our [packages docs](/concepts/packages/) include a section on [public API packages](/concepts/packages/#public-api-packages). If you haven't yet, read that to understand _what_ packages are before digging into the _how_ in this guide.
+
+We have Membrane packages for popular APIs like <Package name="membrane/github" /> and <Package name="membrane/slack" />. Check out the [full list here](https://www.membrane.io/share/membrane).
+
+For this guide, we'll walk through the <Package name="resend" /> package. Resend provides a modern email API for developers. For more details about their API, check out [Resend's documentation](https://resend.com/docs/api-reference/introduction).
+
+We'll demonstrate how to:
+
+- Create an interface for the API that uses Membrane [state](/guides/state/) to store the API key
+- Structure your code using common Membrane patterns (Collections, Resources, grefs)
+- Follow consistent design principles and best practices
+
+:::note
+We often use the terms _package_ and _program_ interchangeably in this guide. A package is static code published to Membrane's registry, and a program is deployed/running. When you install a package, it becomes a program.
+:::
+
+## 1. Anatomy of a package
+
+<br />
+
+### File Organization
+
+A typical public API package should have this structure:
+
+```
+resend/
+├── index.ts        # Main code and exports
+├── helpers.ts      # API helper and utilities
+├── tests.ts        # Test cases
+├── memconfig.json  # Schema
+└── README.md       # Documentation
+```
+
+### Schema
+
+Before we dive into the code, let's take a look at the package schema.
+
+The schema is defined in `memconfig.json`, but you won't generally edit it by hand (although you can!). Instead, you use the `SCHEMA` editor on the right sidebar of the IDE.
+
+![Resend's schema in the IDE schema editor](@assets/resend-schema.png)
+
+The schema for a program defines the shape of its graph. When writing packages for APIs, the schema should match the API as logically as possible.
+
+### Configuration
+
+Every API package should have basic configuration and status checks. Here's how we implement this for Resend:
+
+```js
+import { state } from "membrane";
+
+// Use Membrane's state to persist the API key between program runs
+export function status() {
+  return state.API_KEY
+    ? "Configured"
+    : "Please [configure](:configure) your [API key](https://resend.com/api-keys)";
+}
+
+export async function configure({ apiKey }: { apiKey: string }) {
+  if (!apiKey) {
+    throw new Error("Please provide a valid API key");
+  }
+  state.API_KEY = apiKey;
+}
+```
+
+The `[label](:action)` syntax in the status function renders an invocable action from the left sidebar, and the `[label](url)` markdown syntax creates clickable links.
+
+![Resend's status in the IDE sidebar](@assets/resend-status.png)
+
+Those functions for the status field and <Action name="configure" /> action live in a `helpers.ts` file along with other base code.
+
+### helper.ts
+
+As a convention, utility functions live in `helpers.ts`. For this package, we have an `api` function that calls `fetch` with the requisite authentication headers and the specified method, path, query string, body. It also handles parsing the response as JSON when appropriate.
+
+```js
+// helpers.ts
+const BASE_URL = "https://api.resend.com";
+
+type Method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+
+export async function api(
+  method: Method,
+  path: string,
+  query?: Record<string, any>,
+  body?: any
+) {
+  const url = new URL(`${BASE_URL}/${path}`);
+
+  // Add query parameters if they exist
+  if (query) {
+    Object.entries(query).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        url.searchParams.append(key, String(value));
+      }
+    });
+  }
+
+  const headers = {
+    Authorization: `Bearer ${state.API_KEY}`,
+    "Content-Type": "application/json",
+  };
+
+  const response = await fetch(url.toString(), {
+    method,
+    headers,
+    body,
+  });
+
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status} ${response.statusText}`);
+  }
+
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    return response.json();
+  } else {
+    return response.text();
+  }
+}
+```
+
+Most API packages will need a similar function to make the actual HTTP requests to the API. Response handling will vary by API, of course. It might make sense to always return JSON in some cases or return different content-types based on the response in others.
+
+Helper functions are imported in the program's `index.ts` entry file.
+
+### Root object
+
+Every program (not just public API packages) has a Root type in its schema which defines the top-level structure of the program's graph. Here it is for Resend:
+
+![Resend's root schema](@assets/resend-root.png)
+
+To expose that functionality via the Membrane graph, the program exports a `Root` object with field resolvers:
+
+```js
+// index.ts
+import { root } from "membrane"
+import { status, configure } from "./helpers"
+
+export const Root = {
+  // Status field for configuration
+  status,
+
+  // Configuration action
+  configure,
+
+  // Collection fields
+  emails: () => ({}), // EmailCollection
+  domains: () => ({}), // DomainCollection
+  apiKeys: () => ({}), // ApiKeyCollection,
+  audiences: () => ({}), // AudienceCollection,
+  contacts: () => ({}), // ContactCollection,
+
+  // Test fields
+  tests: () => ({}),
+}
+```
+
+Instead of exporting a `Root` object, you can also export each resolver at the top level of the file.
+
+Note that the resolvers don't do much—they simply return an empty object. This tells the GraphQL executor to continue the query by invoking the resolvers in `EmailCollection` and `DomainCollection` respectively (more on that below).
+
+### Resources, collections, and pages
+
+In public API packages, we organize our code around key resources. Resources are entities or objects, e.g. an `Email` or `Domain` in the case of Resend. Collections handle operations like listing and creating resources, while resources handle item-specific operations like updating or deleting.
+
+This Resource-Collection-Page pattern in Membrane provides a consistent interface where:
+
+- Collections have fields `one()` for getting a single resource and `page()` for listing
+  multiple, plus other collection-level operations like `create()` or `search()`
+- Resources implement item-specific operations like `update()` and `delete()`
+
+Collection and resource objects are typically exported from the top level of a program's `index.ts` file.
+
+### Email collection
+
+Collections typically implement `one()` for getting single resources and other methods for creating new resources:
+
+```js
+// index.ts
+export const EmailCollection = {
+  // Get a single email by ID
+  async one({ id }: { id: string }) {
+    const data = await api("GET", `emails/${id}`);
+    return { ...data };
+  },
+
+  // Send a new email
+  async send(args: {
+    from: string;
+    to: string[];
+    subject: string;
+    html?: string;
+    text?: string;
+  }) {
+    const data = await api("POST", "emails", undefined, args);
+    return { ...data };
+  }
+};
+
+```
+
+### Email resource
+
+Resources handle operations specific to a single item. They must implement a `gref` for referencing (more on this [below](#graph-references-grefs)):
+
+```js
+// index.ts
+export const Email = {
+  // Create a reference to this email
+  gref: function (_, { obj }) {
+    return root.emails.one({ id: obj.id });
+  },
+
+  // Update email (e.g., reschedule)
+  async update(args: { scheduled_at: string }, { self }) {
+    const { id } = self.$argsAt(root.emails.one);
+    return api("PATCH", `emails/${id}`, undefined, args);
+  },
+
+  // Cancel a scheduled email
+  async cancel(_, { self }) {
+    const { id } = self.$argsAt(root.emails.one);
+    return api("POST", `emails/${id}/cancel`);
+  }
+};
+
+```
+
+### Domain collection (with pagination)
+
+For resources that support listing, collections should implement a `page()` function for pagination:
+
+```js
+// index.ts
+export const DomainCollection = {
+  // Get a single domain
+  async one({ id }: { id: string }) {
+    return await api("GET", `domains/${id}`);
+  },
+
+  // List domains with pagination
+  async page() {
+    const result = await api("GET", "domains");
+    return {
+      items: result.data
+    };
+  },
+
+  // Create a new domain
+  async create(args: { name: string; region?: string }) {
+    return await api("POST", "domains", undefined, args);
+  }
+};
+```
+
+### Graph references (grefs)
+
+In Membrane, [grefs](/concepts/the-graph/#grefs-graph-references) (graph references) create a way to reference and track specific resources across your graph. Every resource should implement a `gref` function that returns a unique, consistent path to that resource.
+
+Think of a gref like a URL - it's a way to point to a specific resource that can be stored, passed around, and used later. For example:
+
+```js
+export const Email = {
+  // This creates references like:
+  // resend:emails.one(id:"12345")
+  gref: function (_, { obj }) {
+    return root.emails.one({ id: obj.id })
+  },
+}
+```
+
+Grefs serve several important purposes:
+
+1. **Resource identity**: They provide a standardized way to reference specific resources
+2. **Resource lookups**: Programs can use grefs to consistently find and access resources
+3. **Cross-program communication**: Programs can pass grefs to each other to reference the same resource
+4. **Action context**: When performing actions on a resource, the gref provides context about which resource to act on using `self.$argsAt()`
+
+### Testing
+
+Packages include a separate `tests.ts` file to organize tests. Here's an example from the Resend package:
+
+```js
+// tests.ts
+// Tests can cover not just single actions, but flows that combine multiple actions
+// This test demonstrates sending an email then checking its delivery status
+export const emailTests = {
+  async testEmailDelivered() {
+    const { id } = await root.emails.send({
+      from: "onboarding@resend.dev",
+      to: ["delivered@resend.dev"],
+      subject: "Test delivered email",
+      html: "<p>This is a test email.</p>",
+    })
+
+    await sleep(2) // wait for delivery
+
+    const { last_event } = await root.emails
+      .one({ id: String(id) })
+      .$query("{ last_event }")
+
+    if (last_event !== "delivered") {
+      throw new Error("Expected email to deliver")
+    }
+  },
+}
+
+export const domainTests = {
+  async testDomainList() {
+    const domains = await root.domains.page().items.$query("{ name }")
+    if (!domains.some((d) => d.name === "membrane.io")) {
+      throw new Error("Expected membrane.io in list of domains")
+    }
+  },
+}
+```
+
+These tests are then imported and exposed in your graph through the Root object in `index.ts`, making them invocable in the left sidebar of the IDE.
+
+```js
+// index.ts
+import { emailTests, domainTests } from "./tests"
+
+export const Root = {
+  // Expose tests in the graph
+  tests: () => Tests,
+}
+
+export const Tests = {
+  ...emailTests,
+  ...domainTests,
+}
+```
+
+### A note on types
+
+Program types are defined using the [schema editor](https://docs.membrane.io/concepts/schema/#_top). There you'll define:
+
+- Fields on the Root type (like `domains: DomainCollection`)
+- Collection types with their operations (`one`, `page`, `create`)
+- Resource types with their fields
+- Page types for pagination results
+
+For example, the Resend package's types are defined in the schema editor to establish:
+
+- Collection type `DomainCollection` with:
+  - `one`: returns type `Domain`
+  - `page`: returns type `DomainPage`
+  - `create`: returns type `Domain`
+- `DomainPage` type with field `items` of type `List<Domain>`
+- Resource type `Domain` with its fields
+
+The Schema Editor generates your `memconfig.json` based on these type definitions.
+
+## 3. Best Practices
+
+<br />
+
+### Collection methods
+
+Public API packages will almost always implement these core methods on collections:
+
+```js
+export const SomeCollection = {
+  // Get single resource - required for grefs
+  async one({ id }: { id: string }) {
+    return api("GET", `resource/${id}`);
+  },
+
+  // List resources with pagination when supported
+  async page({ cursor } = {}) {
+    const data = await api("GET", "resources", { page: cursor });
+    return {
+      items: data.items.map((item) => ({ ...item, ...Resource })),
+      next: data.hasNextPage ? { cursor: data.nextPage } : null
+    };
+  }
+};
+```
+
+### Error handling
+
+Packages should provide clear, actionable error messages:
+
+```js
+// Configuration errors
+if (!state.API_KEY) {
+  throw new Error("API key not configured")
+}
+
+// API errors
+if (!response.ok) {
+  throw new Error(`API error: ${response.status} ${response.statusText}`)
+}
+```
+
+### Resource references
+
+Every resource must implement `gref` for consistent referencing:
+
+```js
+export const Resource = {
+  gref: function (_, { obj }) {
+    return root.resources.one({ id: obj.id })
+  },
+}
+```
+
+### Testing
+
+- Write tests that combine multiple actions (like sending an email then checking
+  its status)
+- Test all exposed operations
+
+### Code organization
+
+- Keep collection operations on collections (listing, creating, searching)
+- Keep resource operations on resources (updating, deleting)
+- Use descriptive names for actions
+- Consider adding JSDoc comments for complex operations
+
+## 4. Publishing a package
+
+1. Include a README.md with:
+
+   - Configuration steps
+   - Basic usage examples
+   - Available methods
+
+2. Test before publishing:
+
+   ```js
+   // Run all tests
+   await root.tests.testEmailDelivered()
+   await root.tests.testDomainList()
+   ```
+
+3. Share your package in [discord](https://discord.gg/gBK9xP3z)!
+
+Remember: The best packages make complex APIs feel simple and intuitive to use within the Membrane ecosystem.
+
+As you build more programs and connect more services, you'll unlock increasingly powerful automation and integration possibilities.
+
+:::note
+We've been experimenting with generating packages for public APIs using LLMs and OpenAPI specs. Leaning on [Brane](/guides/brane/), our AI assistant, can drastically speed up package development.
+:::
+
+## 5. Missing a Driver?
+
+Missing a package for one of your favorite APIs?
+
+- Request it in our [Discord community](https://discord.gg/gBK9xP3z), or let us build it for you - just reach out at [contact@membrane.io](mailto:contact@membrane.io)
+- Contribute it! [Publish](/concepts/packages/#publishing) your package and share on Discord, email us, etc.

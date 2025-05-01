@@ -1,0 +1,67 @@
+---
+title: Packages
+---
+
+import Package from "@components/Package"
+
+Code sharing in Membrane happens through our package registry. You might've
+already used the registry to install an package like <Package name="github" /> or to
+[share your first program](/getting-started/hello-world/#sharing-your-code).
+
+Once you install a _package_, it is instantly deployed as a _program_ in your workspace. You can modify the program as you wish and even republish it. Packages are published as `<username>/<program>`.
+
+Explore and search for packages at [ide.membrane.io](https://ide.membrane.io) or [membrane.io/share](https://membrane.io/share).
+
+:::tip
+We're excited to see what you build! Post your share link on [Discord](https://discord.gg/4RHyJDV8kj), or
+[send us an email](mailto:contact@membrane.io). We'll share our favorites in the changelog.
+:::
+
+## Installing
+
+To install a package, select `📦 PACKAGES` in the top left of the IDE, find the
+package you want to install, and click `INSTALL`.
+
+## Publishing
+
+To share your code, you publish it as a package. Right-click a program and
+select "Publish Package". If the program you want to share relies on other programs as
+[connections](/concepts/connections), you'll have to publish those first.
+
+_Note that publishing a package only shares your code—not your program state nor logs._
+
+## Unpublishing
+
+To unpublish a package, right-click the program to select "Publish Package..." (same as publishing), click the triple dots menu, and select `UNPUBLISH`.
+
+If other packages point to the package you want to unpublish as a dependency, you'll have to unpublish those first, or re-publish them using a different connection.
+
+## Updating
+
+If the upstream package that you installed in your workspace has been modified since installation, you can view a diff of the changes and update it right in the IDE. Find the package the same way you initially [installed](#installing) it, select files to see diffs, and click `UPDATE` to merge the changes into your program.
+
+## Public API packages
+
+Many packages are what you might call SDKs, client libraries, or API wrappers for public APIs. For example, just as there's an `openai` npm package for the OpenAI API, there's also a <Package name="openai" /> package.
+
+:::note
+You can also [install npm packages](/faq/#do-npm-modules-work), but Membrane packages leverage [the graph](/concepts/the-graph/) to provide powerful composition and data reference. Some Membrane packages even use npm packages to create a useful abstraction.
+:::
+
+You'll find many such packages by selecting `📦 PACKAGES` in the top left of the IDE:
+
+- <Package name="github" />
+- <Package name="discord" />
+- <Package name="anthropic" />
+- <Package name="slack" />
+- _...and [many more](https://membrane.io/share)_
+
+Note that a package doesn't have to cover an entire API. It can expose a subset of an API, like our <Package name="stripe-subscriptions" /> package.
+
+We used to call these packages "drivers", but we ditched the extra name. While they tend to follow certain conventions, there’s nothing fundamentally different about them. They are packages—and become programs once installed and running—just like any other package you create. That means you can create your own programs to expose public APIs and publish them as packages for others to install. So if you’ve written some code on Membrane you’re already halfway there!
+
+Exposing API functionality as nodes in your Membrane graph makes it easy for your programs to interact with external services. Once you get the hang of it, you won’t have to worry much about the quirks of individual APIs since packages follow the same structure. To learn about the implementation details of public API packages in Membrane, read [our guide](/guides/public-api-packages).
+
+:::note
+If there's an API missing from our packages that you'd like, [email us](mailto:contact@membrane.io). We'd be happy to help you build it or even create it for you.
+:::

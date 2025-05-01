@@ -118,10 +118,6 @@ export default defineConfig({
               link: "/concepts/connections/",
             },
             {
-              label: "API Drivers",
-              link: "/concepts/drivers/",
-            },
-            {
               label: "Packages",
               link: "/concepts/packages/",
             },
@@ -172,8 +168,8 @@ export default defineConfig({
               link: "/guides/timers/",
             },
             {
-              label: "API drivers",
-              link: "/guides/driver-guide/",
+              label: "Public API packages",
+              link: "/guides/public-api-packages/",
             },
           ],
         },
