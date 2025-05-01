@@ -21,16 +21,16 @@ export async function run() {
   // Create a reference to a database by its connection string:
   const database = nodes.db.database({
     connection: "postgres://user:password@localhost:5432/database",
-  });
+  })
 
   // Query your database, returning a list of rows:
   const rows = await database.execute({
-    sql: "SELECT username FROM your_table"
-  });
+    sql: "SELECT username FROM your_table",
+  })
 
   // Iterate over the rows, each a list of values:
-  for (let {username} of rows) {
-    console.log("username", username);
+  for (let { username } of rows) {
+    console.log("username", username)
   }
 }
 ```
@@ -38,45 +38,49 @@ export async function run() {
 ## Binding query parameters
 
 You can bind parameters to your query by passing a list to `execute`'s `params`. The query syntax varies by database engine:
+
 ```js
 // PostgreSQL
 const users = await database.execute({
   sql: "SELECT * FROM users WHERE id = $1",
   params: [1],
-});
+})
 
 // MySQL
 const users = await database.execute({
   sql: "SELECT * FROM users WHERE id = ?",
   params: [1],
-});
+})
 
 // Microsoft SQL Server
 const users = await database.execute({
   sql: "SELECT * FROM users WHERE id = @P1",
   params: [1],
-});
+})
 ```
 
 ## Querying a single row
 
 To query a single row, you can simply destructure the query result:
+
 ```js
 const [user] = await database.execute({
-  sql: "SELECT * FROM users WHERE id = 1"
-});
+  sql: "SELECT * FROM users WHERE id = 1",
+})
 ```
+
 Similarly, you can go even further to get one or more values from the row:
+
 ```js
 // Single column
-const [{name}] = await database.execute({
-  sql: "SELECT name FROM users WHERE id = 1"
-});
+const [{ name }] = await database.execute({
+  sql: "SELECT name FROM users WHERE id = 1",
+})
 
 // Multiple columns
-const [{name, created_at}] = await database.execute({
-  sql: "SELECT name, created_at FROM users WHERE id = 1"
-});
+const [{ name, created_at }] = await database.execute({
+  sql: "SELECT name, created_at FROM users WHERE id = 1",
+})
 ```
 
 ## Configuring database credentials
@@ -116,3 +120,11 @@ export async function run() {
   }
 }
 ```
+
+## Database providers
+
+### Supabase
+
+If you have a [Supabase](https://supabase.com/database) PostgreSQL database, configure `sys-db` with the _session pooler_ connection string. As of May 2025, you can find this connection string in the Supabase dashboard by clicking "Connect" in the navigation bar and locating session pooler at the bottom of the modal.
+
+<video src="/videos/supabase-connection-string.mp4" muted controls></video>
