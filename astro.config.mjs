@@ -168,8 +168,8 @@ export default defineConfig({
               link: "/guides/timers/",
             },
             {
-              label: "Public API packages",
-              link: "/guides/public-api-packages/",
+              label: "Integrations",
+              link: "/guides/integrations/",
             },
           ],
         },

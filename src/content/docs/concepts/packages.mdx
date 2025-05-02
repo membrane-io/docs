@@ -40,15 +40,15 @@ If other packages point to the package you want to unpublish as a dependency, yo
 
 If the upstream package that you installed in your workspace has been modified since installation, you can view a diff of the changes and update it right in the IDE. Find the package the same way you initially [installed](#installing) it, select files to see diffs, and click `UPDATE` to merge the changes into your program.
 
-## Public API packages
+## API integrations
 
-Many packages are what you might call SDKs, client libraries, or API wrappers for public APIs. For example, just as there's an `openai` npm package for the OpenAI API, there's also a <Package name="openai" /> package.
+The Membrane team has published many packages that integrate third-party APIs. For example, just as there's an `openai` npm package for the OpenAI API, there's also a <Package name="openai" /> Membrane package.
 
 :::note
 You can also [install npm packages](/faq/#do-npm-modules-work), but Membrane packages leverage [the graph](/concepts/the-graph/) to provide powerful composition and data reference. Some Membrane packages even use npm packages to create a useful abstraction.
 :::
 
-You'll find many such packages by selecting `📦 PACKAGES` in the top left of the IDE:
+You can select `📦 PACKAGES` in the top left of the IDE and search "membrane" to see all packages published by our team. You'll find:
 
 - <Package name="github" />
 - <Package name="discord" />
@@ -56,11 +56,9 @@ You'll find many such packages by selecting `📦 PACKAGES` in the top left of t
 - <Package name="slack" />
 - _...and [many more](https://membrane.io/share)_
 
-Note that a package doesn't have to cover an entire API. It can expose a subset of an API, like our <Package name="stripe-subscriptions" /> package.
+We used to call these packages "drivers", but we ditched the extra name. While they tend to follow certain conventions, there’s nothing fundamentally different about them. They are packages—_and become programs once installed and running_—just like any other package. That means you can create your own programs to integrate APIs and publish for others to install. So if you’ve written some code on Membrane you’re already halfway there!
 
-We used to call these packages "drivers", but we ditched the extra name. While they tend to follow certain conventions, there’s nothing fundamentally different about them. They are packages—and become programs once installed and running—just like any other package you create. That means you can create your own programs to expose public APIs and publish them as packages for others to install. So if you’ve written some code on Membrane you’re already halfway there!
-
-Exposing API functionality as nodes in your Membrane graph makes it easy for your programs to interact with external services. Once you get the hang of it, you won’t have to worry much about the quirks of individual APIs since packages follow the same structure. To learn about the implementation details of public API packages in Membrane, read [our guide](/guides/public-api-packages).
+Surfacing API functionality as nodes in your Membrane graph makes it easy for your programs to interact with external services. Once you get the hang of it, you won’t have to worry much about the quirks of individual APIs since packages follow the same structure. To learn about the implementation details of public API packages in Membrane, read [our guide](/guides/integrations).
 
 :::note
 If there's an API missing from our packages that you'd like, [email us](mailto:contact@membrane.io). We'd be happy to help you build it or even create it for you.

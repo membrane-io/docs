@@ -1,40 +1,36 @@
 ---
-title: Public API packages
+title: Integrations
 ---
 
 import Action from "@components/Action"
 import Package from "@components/Package"
 
-This guide covers Membrane packages for public APIs. We explain how they work so that you can effectively consume them and even create your own.
+This guide covers Membrane integrations with third-party APIs. Our packages docs include a section on [integrations](/concepts/packages/#api-integrations). If you haven't yet, read that first to understand _what_ packages are before digging into the _how_ in this guide. After reading, you'll be ready to consume integrations and even create your own.
 
-Our [packages docs](/concepts/packages/) include a section on [public API packages](/concepts/packages/#public-api-packages). If you haven't yet, read that to understand _what_ packages are before digging into the _how_ in this guide.
+We have Membrane packages for popular APIs like <Package name="membrane/github" /> and <Package name="membrane/slack" />. Check out the [full list here](https://www.membrane.io/share/membrane). Note that integrations don't have to cover an entire API. They can expose only a subset of an API, like our <Package name="stripe-subscriptions" /> package does.
 
-We have Membrane packages for popular APIs like <Package name="membrane/github" /> and <Package name="membrane/slack" />. Check out the [full list here](https://www.membrane.io/share/membrane).
-
-For this guide, we'll walk through the <Package name="resend" /> package. Resend provides a modern email API for developers. For more details about their API, check out [Resend's documentation](https://resend.com/docs/api-reference/introduction).
-
-We'll demonstrate how to:
+For this guide, we'll walk through the <Package name="resend" /> program. Resend provides a modern email API for developers. For more details about their API, check out [Resend's documentation](https://resend.com/docs/api-reference/introduction). We'll demonstrate how to:
 
 - Create an interface for the API that uses Membrane [state](/guides/state/) to store the API key
-- Structure your code using common Membrane patterns (Collections, Resources, grefs)
+- Structure your code using common patterns (Collections, Resources, grefs)
 - Follow consistent design principles and best practices
 
 :::note
-We often use the terms _package_ and _program_ interchangeably in this guide. A package is static code published to Membrane's registry, and a program is deployed/running. When you install a package, it becomes a program.
+We often use the terms _package_ and _program_ interchangeably in this guide. A [package](/concepts/packages) is static code published to Membrane's registry, and a program is deployed/running. When you install a package, it becomes a program.
 :::
 
-## Anatomy of a package
+## Anatomy of an integration
 
 <br />
 
 ### File Organization
 
-A typical public API package should have this structure:
+A typical API integration should have this structure:
 
 ```
 resend/
 ├── index.ts        # Main code and exports
-├── helpers.ts      # API helper and utilities
+├── helpers.ts      # Fetch helper and utilities
 ├── tests.ts        # Test cases
 ├── memconfig.json  # Schema
 └── README.md       # Documentation
@@ -42,17 +38,17 @@ resend/
 
 ### Schema
 
-Before we dive into the code, let's take a look at the package schema.
+Before we dive into the code, let's take a look at the program schema.
 
-The schema is defined in `memconfig.json`, but you won't generally edit it by hand (although you can!). Instead, you use the `SCHEMA` editor on the right sidebar of the IDE.
+A program's schema is defined in `memconfig.json`. You generally won't edit it by hand (although you can). Instead, you'll use the SCHEMA editor on the right sidebar.
 
 ![Resend's schema in the IDE schema editor](@assets/resend-schema.png)
 
-The schema for a program defines the shape of its graph. When writing packages for APIs, the schema should match the API as logically as possible.
+The schema for a program defines the shape of its graph. When writing an integration, the schema should match the API as logically as possible.
 
 ### Configuration
 
-Every API package should have basic configuration and status checks. Here's how we implement this for Resend:
+Every integration should have basic configuration and status checks. Here's how we implement this for Resend:
 
 ```js
 import { state } from "membrane";
@@ -129,13 +125,13 @@ export async function api(
 }
 ```
 
-Most API packages will need a similar function to make the actual HTTP requests to the API. Response handling will vary by API, of course. It might make sense to always return JSON in some cases or return different content-types based on the response in others.
+Most integrations will need a similar function to make the actual HTTP requests to the API. Response handling will vary by API, of course. It might make sense to always return JSON in some cases or return different content-types based on the response in others.
 
 Helper functions are imported in the program's `index.ts` entry file.
 
 ### Root object
 
-Every program (not just public API packages) has a Root type in its schema which defines the top-level structure of the program's graph. Here it is for Resend:
+Every program (not just integrations) has a Root type in its schema which defines the top-level structure of the program's graph. Here it is for Resend:
 
 ![Resend's root schema](@assets/resend-root.png)
 
@@ -171,7 +167,7 @@ Note that the resolvers don't do much—they simply return an empty object. This
 
 ### Resources, collections, and pages
 
-In public API packages, we organize our code around key resources. Resources are entities or objects, e.g. an `Email` or `Domain` in the case of Resend. Collections handle operations like listing and creating resources, while resources handle item-specific operations like updating or deleting.
+Integrations organize code around key _resources_. Resources are entities or objects, e.g. an `Email` or `Domain` in the case of Resend. Resources handle item-specific operations like updating or deleting, while _collections_ handle operations like listing/paginating and creating resources.
 
 This Resource-Collection-Page pattern in Membrane provides a consistent interface where:
 
@@ -288,7 +284,7 @@ Grefs serve several important purposes:
 
 ### Testing
 
-Packages include a separate `tests.ts` file to organize tests. Here's an example from the Resend package:
+Integrations should include a separate `tests.ts` file to organize tests. Here's an example from the Resend package:
 
 ```js
 // tests.ts
@@ -360,7 +356,7 @@ For example, the Resend package's types are defined in the schema editor to esta
 - `DomainPage` type with field `items` of type `List<Domain>`
 - Resource type `Domain` with its fields
 
-The Schema Editor generates your `memconfig.json` based on these type definitions.
+The schema editor generates your `memconfig.json` based on these type definitions.
 
 ## Best Practices
 
@@ -368,7 +364,7 @@ The Schema Editor generates your `memconfig.json` based on these type definition
 
 ### Collection methods
 
-Public API packages will almost always implement these core methods on collections:
+Integrations will almost always implement these core methods on collections:
 
 ```js
 export const SomeCollection = {
@@ -418,8 +414,7 @@ export const Resource = {
 
 ### Testing
 
-- Write tests that combine multiple actions (like sending an email then checking
-  its status)
+- Write tests that combine multiple actions (like sending an email then checking its status)
 - Test all exposed operations
 
 ### Code organization
@@ -429,7 +424,7 @@ export const Resource = {
 - Use descriptive names for actions
 - Consider adding JSDoc comments for complex operations
 
-## Publishing a package
+## Publishing an integration package
 
 1. Include a README.md with:
 
@@ -437,7 +432,7 @@ export const Resource = {
    - Basic usage examples
    - Available methods
 
-2. Test before publishing:
+2. Test before publishing, e.g.:
 
    ```js
    // Run all tests
@@ -447,9 +442,7 @@ export const Resource = {
 
 3. Share your package in [discord](https://discord.gg/gBK9xP3z)!
 
-Remember: The best packages make complex APIs feel simple and intuitive to use within the Membrane ecosystem.
-
-As you build more programs and connect more services, you'll unlock increasingly powerful automation and integration possibilities.
+The best packages make complex APIs feel simple and intuitive to use within the Membrane ecosystem. As you build more programs and connect more services, you'll unlock increasingly powerful automation and integration possibilities.
 
 :::note
 We've been experimenting with generating packages for public APIs using LLMs and OpenAPI specs. Leaning on [Brane](/guides/brane/), our AI assistant, can drastically speed up package development.
