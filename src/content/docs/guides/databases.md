@@ -116,3 +116,12 @@ export async function run() {
   }
 }
 ```
+
+
+## Database providers
+
+### Supabase
+
+If you have a [Supabase](https://supabase.com/database) PostgreSQL database, configure `sys-db` with the _session pooler_ connection string. As of May 2025, you can find this connection string in the Supabase dashboard by clicking "Connect" in the navigation bar and locating session pooler at the bottom of the modal.
+
+<video src="/videos/supabase-connection-string.mp4" muted controls></video>
