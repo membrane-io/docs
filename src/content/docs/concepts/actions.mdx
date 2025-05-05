@@ -107,7 +107,7 @@ export const Root = {
 
 And what about actions on graph nodes more deeply nested in a program's schema? Let's return to the pull request example.
 
-The <Package name="membrane/github" /> defines a `PullRequest` type with a <Action name="merge" /> action in its schema. To implement the merge action, the driver exports a PR object with a `merge` method:
+The <Package name="membrane/github" /> defines a `PullRequest` type with a <Action name="merge" /> action in its schema. To implement the merge action, the program exports a PR object with a `merge` method:
 
 ```ts twoslash
 export const PullRequest = {
@@ -117,4 +117,4 @@ export const PullRequest = {
 }
 ```
 
-Refer back to the [Schema](/concepts/schema/#object-types) section for more detail on that PullRequest type, and view the <Package name="membrane/github" /> driver to see the source code (`index.ts`).
+Refer back to the [Schema](/concepts/schema/#object-types) section for more detail on that PullRequest type, and view the <Package name="membrane/github" /> package to see the source code (`index.ts`).
