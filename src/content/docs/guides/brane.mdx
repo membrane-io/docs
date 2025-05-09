@@ -53,15 +53,24 @@ Explain how grefs work in Membrane
 Brane understands your workspace through:
 
 - Active program you're editing
-- Code fragments highlighted with Cmd+K
+- Cursor selections in your files
 - Program schemas and structure
 - Program connections
+
+You can add some contexts manually to Brane by:
+
+- Right-clicking on [log entries](https://docs.membrane.io/concepts/observability#_top) and selecting "Add to Brane"
+  - Adding log entries helps Brane better understand errors and program behavior
+- Clicking the settings icon on [dashboard blocks](https://docs.membrane.io/guides/dashboard#adding-blocks) and selecting "Add to Brane" to share the block's [gref](https://docs.membrane.io/concepts/the-graph#grefs-graph-references)
+  - Adding grefs to Brane's context is especially helpful when building or modifying [views](https://docs.membrane.io/guides/dashboard#creating-views)
+
+`Program`, `Delta` (changes to a program), and `Selection` contexts are enabled by default but can be disabled when sending messages.
 
 ## Code operations
 
 When suggesting changes, Brane can:
 
-- Update selected code sections
+- Update selected code
 - Intelligently modify functions while preserving surrounding code
 - Add new code to existing files
 - Generate complete files
@@ -72,13 +81,18 @@ All changes require your approval before being applied.
 
 Brane uses specialized tools to interact with your Membrane environment. When you make a request, Brane automatically determines which tool is most appropriate without requiring you to specify it explicitly. You can ask to use a specific tool if needed.
 
-| Tool               | Purpose                                 |
-| ------------------ | --------------------------------------- |
-| **RetrieveSchema** | Fetches program structure details       |
-| **QueryGraph**     | Retrieves live data from your graph     |
-| **AddConnection**  | Creates connections between programs    |
-| **InvokeAction**   | Executes actions on graph nodes         |
-| **CreateProgram**  | Builds new programs with generated code |
+| Tool               | Purpose                                       |
+| ------------------ | --------------------------------------------- |
+| **QueryGraph**     | Retrieves live data from your graph           |
+| **AddConnection**  | Creates connections between programs          |
+| **InvokeAction**   | Executes actions from your programs           |
+| **RetrieveSchema** | Fetches program structure and schema details  |
+| **CreateProgram**  | Builds new programs with generated code       |
+| **Eval**           | Evaluates code in a program's runtime context |
+| **FetchUrl**       | Retrieves data from external URLs             |
+| **CreateFile**     | Adds new files to existing programs           |
+| **PackageSearch**  | Searches for packages in the registry         |
+| **PackageInstall** | Installs packages from the registry           |
 
 For example, when you ask "Show me my GitHub repositories," Brane knows to use **RetrieveSchema** and **QueryGraph** to fetch this data.
 
