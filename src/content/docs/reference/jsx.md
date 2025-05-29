@@ -76,7 +76,7 @@ An image display element.
 **Props**
 
 - `style?`: accepts [container](#container-styles), [flex](#flex-styles), [sizing](#sizing-styles), and [box](#box-styles) styles
-- `source?`: reference (gref) to the image URL to display
+- `source?`: reference (gref) to the image URL to display, or string literal URL
 - All [base props](#base-props)
 
 ### \<embed\>
@@ -110,6 +110,10 @@ Horizontal overflow behavior. `"visible" | "hidden" | "scroll"`
 ### overflowY
 
 Vertical overflow behavior. `"visible" | "hidden" | "scroll"`
+
+### dividers
+
+Control the appearance of dividers (lines/separators), which containers render between items by default. `"none" | "thin" | "medium" | "thick"`
 
 ## Text styles
 
