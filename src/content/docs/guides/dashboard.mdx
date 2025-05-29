@@ -83,7 +83,11 @@ Custom views correspond to node types in a program. So if your program has a `Us
 First, create a _views.tsx_ file in any Membrane program (_views.jsx_ works, too). To create a view for a type, export a function (or arrow function——dealer's choice) by the same name from _views.tsx_. E.g. for a `User` type, we export a `User` view:
 
 ```tsx
-export function User({ self }) {
+export function User({ self, compact }) {
+  if (compact) {
+    return <row>{self.email}</row>
+  }
+
   return (
     <col>
       <row>
@@ -100,7 +104,7 @@ export function User({ self }) {
 }
 ```
 
-View functions receive an object parameter with a `self` property, which is a reference to the node. So this User view would have access to all fields, actions, and events on the User type.
+View functions receive an object parameter with a `self` property, which is a reference to the node. So this User view would have access to all fields, actions, and events on the User type. Views also receive a `compact` prop, which defaults to true when rendering collections and can be passed manually to [embeds](/reference/jsx/#embed).
 
 The dashboard uses a Membrane-specific flavor of JSX. For full coverage of valid elements and styles, read our [JSX reference](/reference/jsx).
 
