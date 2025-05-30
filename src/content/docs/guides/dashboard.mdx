@@ -37,17 +37,18 @@ If the gref's node type does not yet have a custom view, you can display the nod
 
 We cover [creating](#creating-views) and [generating](#generating-views) custom views below, but first let's discuss organizing and navigating around the dashboard.
 
-### Moving
+### Moving around
 
 To use the dashboard fluidly, run through this checklist:
 
 - **Move** a block by dragging and dropping. The dashboard grid is intentionally coarse. Blocks are sized and positioned in 128px increments.
 - **Resize** a block by dragging from its bottom right corner.
-- **Pan** by scrolling with your mouse or trackpad. Press `shift` to scroll horizontally. Alternatively, press `ctrl|command` and drag the dashboard background to pan.
-- **Picker mode.** Press `space` to zoom out, then click a block to focus it or press space again to zoom in on your mouse position. Or press `ctrl|command` and scroll to activate picker mode.
-- **Stacked mode.** Selecting a gref embedded in another view will activate a breadcrumb-like horizontally stacked view, allowing exploration of nested data. Drag a gref from a stack column to persist as its own block. Click outside of the columns or press escape to exit stacked mode.
+- **Pan** by scrolling with your mouse or trackpad. Press `shift` to scroll horizontally. Alternatively, middle click (scroll wheel) with your mouse and drag the dashboard background to pan.
 - **Fullscreen.** Toggle by clicking the fullscreen icon button in the top right corner dashboard menu.
 - **Arrange** blocks by clicking the arrange icon button in the top right corner dashboard menu.
+- **Picker mode.** Press `space` or click the dashboard background to zoom out, then click a block to focus it or press space again to zoom in on your mouse position. Or press `ctrl|command` and scroll to activate picker mode.
+- **Stacked mode.** Selecting a gref embedded in another view will activate a breadcrumb-like horizontally stacked view, allowing exploration of nested data. Drag a gref from a stack column to persist as its own block. Click outside of the columns or press escape to exit stacked mode. Hold `shift` to see all elements with an explorable gref, `shift+click` to open stacked mode, and `shift+rightclick` for more options (copy gref, copy value, etc).
+- **Inspect elements** by holding `cmd+shift` and hovering to see the corresponding code in [_views.tsx_](#creating-views). Click the element while holding `cmd+shift` to move your cursor to the relevant code in _views.tsx_.
 
 Here's a demo of each movement described above:
 
@@ -56,6 +57,16 @@ Here's a demo of each movement described above:
 :::note
 If the dashboard is missing any of your preferred canvas-like interactions or shortcuts, [tell us](mailto:contact@membrane.io). While in beta we're experimenting with what feels best.
 :::
+
+### Managing boards
+
+Boards are dashboard pages for organizing your blocks. Just as _spreadsheets_ have _sheets_, the _dashboard_ has _boards_. You might have a board for customer support and another for ad hoc Stripe actions, for example.
+
+When the dashboard is open, you'll see the name of the current board in the top left corner of the dashboard. Click on it to view, switch, and create new boards:
+
+<video src="/videos/view-switch-create-boards.mp4" muted controls></video>
+
+Boards and blocks are persisted in the `dashboard` program's [state](/guides/state). See <Package name="membrane/dashboard" />'s readme to learn more about how boards and blocks are implemented.
 
 ### Creating views
 
@@ -72,7 +83,11 @@ Custom views correspond to node types in a program. So if your program has a `Us
 First, create a _views.tsx_ file in any Membrane program (_views.jsx_ works, too). To create a view for a type, export a function (or arrow function——dealer's choice) by the same name from _views.tsx_. E.g. for a `User` type, we export a `User` view:
 
 ```tsx
-export function User({ self }) {
+export function User({ self, compact }) {
+  if (compact) {
+    return <row>{self.email}</row>
+  }
+
   return (
     <col>
       <row>
@@ -89,7 +104,7 @@ export function User({ self }) {
 }
 ```
 
-View functions receive an object parameter with a `self` property, which is a reference to the node. So this User view would have access to all fields, actions, and events on the User type.
+View functions receive an object parameter with a `self` property, which is a reference to the node. So this User view would have access to all fields, actions, and events on the User type. Views also receive a `compact` prop, which defaults to true when rendering collections and can be passed manually to [embeds](/reference/jsx/#embed).
 
 The dashboard uses a Membrane-specific flavor of JSX. For full coverage of valid elements and styles, read our [JSX reference](/reference/jsx).
 
