@@ -87,6 +87,7 @@ An element for embedding complex data structures.
 
 - `style`: accepts [container](#container-styles), [flex](#flex-styles), [sizing](#sizing-styles), and [box](#box-styles) styles
 - `gref`: reference (gref) to the data to be embedded
+- `compact?`: renders a compact view for a block, if there is one
 - All [base props](#base-props)
 
 ## Container styles
