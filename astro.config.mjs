@@ -202,6 +202,10 @@ export default defineConfig({
               label: "Slack + GitHub issue watcher in 10m",
               link: "/videos/issue-watcher/",
             },
+            {
+              label: "PostgreSQL admin dashboard in 4m",
+              link: "/videos/staff-picks/",
+            },
           ],
         },
         {
