@@ -51,7 +51,9 @@ To use the dashboard fluidly, run through this checklist:
 - **Picker mode.** Press `space` or click the dashboard background to zoom out, then click a block to focus it or press space/click again to zoom in on your mouse position. You can also hold `ctrl|command` and scroll to activate picker mode.
 - **Stacked mode.** Selecting a gref embedded in another view will activate a breadcrumb-like horizontally stacked view, allowing exploration of nested data. Drag a gref from a stack column to persist as its own block. Click outside of the columns or press escape to exit stacked mode. Hold `shift` to see all elements with an explorable gref, `shift+click` to open stacked mode, and `shift+rightclick` for more options (copy gref, copy value, etc).
 - **Explore mode.** Click "EXPLORE" in the top left corner of the dashboard, or right-click on the dashboard background and select "Explore Graph" to explore your program graph. Explore mode works like stack mode, allowing you to view nested nodes and peel/drag one off to place it on your board.
-- **Inspect elements** by holding `cmd+shift` and hovering to see the corresponding code in [_views.tsx_](#creating-views). Click the element while holding `cmd+shift` to move your cursor to the relevant code in _views.tsx_.
+- **Inspect elements** by holding `cmd+shift` and hovering to see the corresponding code in [_views.tsx_](#creating-views). Click the element while holding `cmd+shift` to:
+  - Select the relevant code in _views.tsx_
+  - Set the fragment context for Brane, allowing you to ask about or modify that specific code element without having to manually select it
 
 Here's a demo of each movement described above:
 
