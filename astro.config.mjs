@@ -2,14 +2,218 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLinksValidator from "starlight-links-validator";
 import react from "@astrojs/react";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 import ecTwoSlash from "expressive-code-twoslash";
 import cliHelpLang from "./cli-help.tmLanguage.json";
+import * as fs from "fs/promises";
+import * as path from "path";
+
+function llmsTxtGenerator() {
+  return {
+    name: "llms-txt-generator",
+    hooks: {
+      "astro:build:done": async ({ dir }) => {
+        const contentDir = path.join(process.cwd(), "src/content/docs");
+        const baseUrl = "https://docs.membrane.io";
+
+        // Section order
+        const sectionOrder = [
+          "Getting Started",
+          "Concepts",
+          "Guides",
+          "Reference",
+          "Videos",
+          "Root",
+        ];
+
+        const sections = new Map();
+        const fullContent = [];
+
+        function stripFrontmatter(content) {
+          return content.replace(/^---\n[\s\S]*?\n---\n/, "");
+        }
+
+        function formatTitle(slug) {
+          const parts = slug.split("/");
+          if (parts.length === 1) {
+            return parts[0]
+              .split("-")
+              .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+              .join(" ");
+          }
+          const dir = parts[0]
+            .split("-")
+            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(" ");
+          const file = parts[parts.length - 1]
+            .split("-")
+            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(" ");
+          return `${dir} - ${file}`;
+        }
+
+        async function collectFiles(sourceDir, currentPath = "") {
+          const entries = await fs.readdir(sourceDir, { withFileTypes: true });
+
+          for (const entry of entries) {
+            const fullPath = path.join(sourceDir, entry.name);
+            const relativePath = currentPath
+              ? `${currentPath}/${entry.name}`
+              : entry.name;
+
+            if (entry.isDirectory()) {
+              await collectFiles(fullPath, relativePath);
+            } else if (
+              entry.name.endsWith(".md") ||
+              entry.name.endsWith(".mdx")
+            ) {
+              const slug = relativePath.replace(/\.mdx?$/, "");
+              const url = `${baseUrl}/${slug}.md`;
+              const rawContent = await fs.readFile(fullPath, "utf-8");
+              const cleanContent = stripFrontmatter(rawContent);
+
+              fullContent.push({
+                slug,
+                title: formatTitle(slug),
+                content: cleanContent,
+              });
+
+              const section = slug.includes("/") ? slug.split("/")[0] : "Root";
+              const sectionName = section
+                .split("-")
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ");
+
+              if (!sections.has(sectionName)) {
+                sections.set(sectionName, []);
+              }
+              sections.get(sectionName).push(url);
+            }
+          }
+        }
+
+        await collectFiles(contentDir);
+
+        // Sort fullContent by section order
+        const sectionOrderMap = new Map(
+          sectionOrder.map((name, index) => [name, index]),
+        );
+
+        fullContent.sort((a, b) => {
+          const getSectionName = (slug) => {
+            const section = slug.includes("/") ? slug.split("/")[0] : "Root";
+            return section
+              .split("-")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ");
+          };
+
+          const aSectionName = getSectionName(a.slug);
+          const bSectionName = getSectionName(b.slug);
+
+          const aOrder = sectionOrderMap.get(aSectionName) ?? 999;
+          const bOrder = sectionOrderMap.get(bSectionName) ?? 999;
+
+          if (aOrder !== bOrder) {
+            return aOrder - bOrder;
+          }
+
+          return a.slug.localeCompare(b.slug);
+        });
+
+        // Generate llms.txt (index)
+        // Acts as an index, guiding LLMs to our docs' markdown files.
+        let llmsContent = "# Membrane Documentation\n\n";
+        for (const sectionName of sectionOrder) {
+          if (sections.has(sectionName)) {
+            const urls = sections.get(sectionName);
+            llmsContent += `## ${sectionName}\n\n`;
+            for (const url of urls) {
+              llmsContent += `- ${url}\n`;
+            }
+            llmsContent += "\n";
+          }
+        }
+
+        // Note about full documentation
+        llmsContent += "---\n\n";
+        llmsContent +=
+          "The complete Membrane documentation is also available as a single file at:\n";
+        llmsContent += `${baseUrl}/llms-full.txt\n`;
+
+        await fs.writeFile(
+          path.join(dir.pathname, "llms.txt"),
+          llmsContent,
+          "utf-8",
+        );
+        console.log("Generated llms.txt");
+
+        // Generate llms-full.txt (all docs pages combined)
+        const fullText = `# Full Membrane Documentation\n\n${fullContent
+          .map(({ title, content }) => `# ${title}\n\n${content}`)
+          .join("\n\n---\n\n")}`;
+
+        await fs.writeFile(
+          path.join(dir.pathname, "llms-full.txt"),
+          fullText,
+          "utf-8",
+        );
+
+        console.log("Generated llms-full.txt");
+      },
+    },
+  };
+}
+
+function markdownExporter() {
+  return {
+    name: "markdown-exporter",
+    hooks: {
+      "astro:build:done": async ({ dir }) => {
+        const contentDir = path.join(process.cwd(), "src/content/docs");
+
+        console.log("Copying markdown files...");
+
+        async function copyMarkdownFiles(sourceDir, destDir) {
+          const entries = await fs.readdir(sourceDir, { withFileTypes: true });
+
+          for (const entry of entries) {
+            const sourcePath = path.join(sourceDir, entry.name);
+            const relativePath = path.relative(contentDir, sourcePath);
+
+            if (entry.isDirectory()) {
+              const destPath = path.join(destDir, relativePath);
+              await fs.mkdir(destPath, { recursive: true });
+              await copyMarkdownFiles(sourcePath, destDir);
+            } else if (
+              entry.name.endsWith(".md") ||
+              entry.name.endsWith(".mdx")
+            ) {
+              // Change extension to .md for all files
+              const destPath = path.join(
+                destDir,
+                relativePath.replace(/\.mdx?$/, ".md"),
+              );
+              await fs.mkdir(path.dirname(destPath), { recursive: true });
+              await fs.copyFile(sourcePath, destPath);
+              console.log(
+                `✓ ${relativePath} → ${relativePath.replace(/\.mdx?$/, ".md")}`,
+              );
+            }
+          }
+        }
+
+        await copyMarkdownFiles(contentDir, dir.pathname);
+        console.log("Markdown copy complete!");
+      },
+    },
+  };
+}
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://docs.membrane.io",
-  output: "hybrid", // default to static, but allow SSR opt-in per page
+  output: "server",
   adapter: vercel({
     isr: {
       // cache server rendered pages on first request and save for 1 hour
@@ -61,11 +265,23 @@ export default defineConfig({
         dark: "./src/assets/title-light.svg",
         replacesTitle: true,
       },
-      social: {
-        discord: "https://discord.gg/4RHyJDV8kj",
-        github: "https://github.com/membrane-io/docs",
-        twitter: "https://twitter.com/membraneio",
-      },
+      social: [
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/4RHyJDV8kj",
+        },
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/membrane-io/docs",
+        },
+        {
+          icon: "twitter",
+          label: "Twitter",
+          href: "https://twitter.com/membraneio",
+        },
+      ],
       plugins: [starlightLinksValidator()],
       sidebar: [
         {
@@ -224,5 +440,7 @@ export default defineConfig({
       ],
     }),
     react(),
+    markdownExporter(),
+    llmsTxtGenerator(),
   ],
 });

@@ -11,6 +11,7 @@ const Feedback = ({ children, id }: FeedbackProps) => {
     <a
       href={`${PUBLIC_ROADMAP_ENDPOINT}/feedback/${id}`}
       target="_blank"
+      rel="noreferrer"
       className={styles.feedback}
     >
       Feedback

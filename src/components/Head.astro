@@ -1,11 +1,11 @@
 ---
-import type { Props } from '@astrojs/starlight/props'
 import Default from '@astrojs/starlight/components/Head.astro'
 
-const { title } = Astro.props.entry.data;
-
+const title = Astro.props.entry?.data?.title || 'Membrane Docs';
 // Get the current path and clean it up for use as the slug
-const slug = Astro.props.slug.replace(/^\//, '').replace(/\/$/, '');
+
+// Use the new id property instead of deprecated slug
+const slug = Astro.props.id?.replace(/^\//, '').replace(/\/$/, '') || '';
 
 // Construct the OG image URL
 const ogImageUrl = new URL('https://www.membrane.io/api/og-image/docs');
