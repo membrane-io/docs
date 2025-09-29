@@ -37,6 +37,7 @@
     "@clack/prompts": "^0.7.0",
     "eslint": "^8.57.1",
     "eslint-config-react-app": "^7.0.1",
+    "next": "^15.5.4",
     "prettier": "^3.4.2",
     "typescript": "^5.4.5",
     "wrangler": "^3.53.0"
