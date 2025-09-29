@@ -1,19 +1,23 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-
-export function middleware(request: NextRequest) {
+export default function middleware(request: Request) {
+  const url = new URL(request.url);
   const accept = request.headers.get("accept") || "";
-  const pathname = request.nextUrl.pathname;
 
-  const acceptsMarkdown = /text\/markdown/.test(accept);
+  if (
+    /text\/markdown/.test(accept) &&
+    !url.pathname.endsWith(".md") &&
+    url.pathname !== "/"
+  ) {
+    url.pathname = url.pathname.replace(/\/$/, "") + ".md";
 
-  if (acceptsMarkdown && !pathname.endsWith(".md") && pathname !== "/") {
-    const url = request.nextUrl.clone();
-    url.pathname = pathname.replace(/\/$/, "") + ".md";
-    return NextResponse.rewrite(url);
+    return new Response(null, {
+      status: 200,
+      headers: {
+        "x-middleware-rewrite": url.toString(),
+      },
+    });
   }
 
-  return NextResponse.next();
+  return new Response(null, { status: 200 });
 }
 
 export const config = {
