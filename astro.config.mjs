@@ -213,7 +213,7 @@ function markdownExporter() {
 // https://astro.build/config
 export default defineConfig({
   site: "https://docs.membrane.io",
-  output: "server",
+  output: "static",
   adapter: vercel({
     isr: {
       // cache server rendered pages on first request and save for 1 hour
