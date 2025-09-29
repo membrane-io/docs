@@ -10,14 +10,11 @@ export default function middleware(request: Request) {
     url.pathname = url.pathname.replace(/\/$/, "") + ".md";
 
     return new Response(null, {
-      status: 200,
       headers: {
         "x-middleware-rewrite": url.toString(),
       },
     });
   }
-
-  return new Response(null, { status: 200 });
 }
 
 export const config = {
