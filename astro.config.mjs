@@ -8,6 +8,117 @@ import cliHelpLang from "./cli-help.tmLanguage.json";
 import * as fs from "fs/promises";
 import * as path from "path";
 
+function processMarkdown(content) {
+  // Remove (---)
+  let cleanContent = content.replace(/^---\n[\s\S]*?\n---\n/, "");
+
+  // Temporarily replace code blocks with placeholders to protect them
+  const codeBlocks = [];
+  let codeBlockIndex = 0;
+
+  // Handle fenced code blocks (```...```)
+  cleanContent = cleanContent.replace(/```[\s\S]*?```/g, (match) => {
+    const placeholder = `__CODE_BLOCK_${codeBlockIndex}__`;
+    codeBlocks[codeBlockIndex] = match;
+    codeBlockIndex++;
+    return placeholder;
+  });
+
+  // Handle inline code (`...`)
+  cleanContent = cleanContent.replace(/`[^`]+`/g, (match) => {
+    const placeholder = `__INLINE_CODE_${codeBlockIndex}__`;
+    codeBlocks[codeBlockIndex] = match;
+    codeBlockIndex++;
+    return placeholder;
+  });
+
+  // Remove import statements (only those outside of code blocks)
+  cleanContent = cleanContent.replace(/^import\s+.+$/gm, "");
+
+  // Replacement for Package components - extract package name
+  cleanContent = cleanContent.replace(
+    /<Package\s+name\s*=\s*['"]([^'"]+)['"]\s*\/>/g,
+    "`$1` package",
+  );
+
+  // Replacement for Action components - extract action name
+  // Handle case where "action" already follows to avoid duplication
+  cleanContent = cleanContent.replace(
+    /<Action\s+name\s*=\s*['"]([^'"]+)['"]\s*\/>\s*action/g,
+    "`$1()` action",
+  );
+  cleanContent = cleanContent.replace(
+    /<Action\s+name\s*=\s*['"]([^'"]+)['"]\s*\/>/g,
+    "`$1()` action",
+  );
+
+  // Replacement for Event components - extract event name
+  cleanContent = cleanContent.replace(
+    /<Event\s+name\s*=\s*['"]([^'"]+)['"]\s*\/>\s*event/g,
+    "`$1` event",
+  );
+  cleanContent = cleanContent.replace(
+    /<Event\s+name\s*=\s*['"]([^'"]+)['"]\s*\/>/g,
+    "`$1` event",
+  );
+
+  // NOTE: Doesn't handle Gref components in tables.
+  // Replacement for Gref components - handle both quote types
+  cleanContent = cleanContent.replace(
+    /<Gref\s+value\s*=\s*['"]([^'"]+)['"]\s*\/>/g,
+    "`$1`",
+  );
+
+  // NOTE: Doesn't handle Type components in tables.
+  // Replacement for Type components - Format 1: <Type type="Root"/>
+  cleanContent = cleanContent.replace(
+    /<Type\s+type\s*=\s*['"]([^'"]+)['"]\s*\/>/g,
+    "`$1` type",
+  );
+  // Replacement for Type components - Format 2: <Type ... type={{ type: `RepositoryCollection` }} ... />
+  cleanContent = cleanContent.replace(
+    /<Type[^>]*type\s*=\s*\{\{\s*type:\s*[`'"]([^`'"]+)[`'"]\s*\}\}[^>]*\/>/g,
+    "`$1` type",
+  );
+
+  // Handle component blocks like <Steps>...</Steps> - keep content, remove tags
+  cleanContent = cleanContent.replace(
+    /<(Steps|Tabs|TabItem|CodeTabs)[^>]*>([\s\S]*?)<\/\1>/g,
+    "$2",
+  );
+
+  // Restore code blocks
+  for (let i = 0; i < codeBlocks.length; i++) {
+    cleanContent = cleanContent.replace(`__CODE_BLOCK_${i}__`, codeBlocks[i]);
+    cleanContent = cleanContent.replace(`__INLINE_CODE_${i}__`, codeBlocks[i]);
+  }
+
+  // Clean up multiple empty lines
+  cleanContent = cleanContent.replace(/\n\s*\n\s*\n/g, "\n\n");
+  cleanContent = cleanContent.trim();
+
+  return cleanContent;
+}
+
+function formatTitle(slug) {
+  const parts = slug.split("/");
+  if (parts.length === 1) {
+    return parts[0]
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+  }
+  const dir = parts[0]
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+  const file = parts[parts.length - 1]
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+  return `${dir} - ${file}`;
+}
+
 function llmsTxtGenerator() {
   return {
     name: "llms-txt-generator",
@@ -29,29 +140,6 @@ function llmsTxtGenerator() {
         const sections = new Map();
         const fullContent = [];
 
-        function stripFrontmatter(content) {
-          return content.replace(/^---\n[\s\S]*?\n---\n/, "");
-        }
-
-        function formatTitle(slug) {
-          const parts = slug.split("/");
-          if (parts.length === 1) {
-            return parts[0]
-              .split("-")
-              .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-              .join(" ");
-          }
-          const dir = parts[0]
-            .split("-")
-            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-            .join(" ");
-          const file = parts[parts.length - 1]
-            .split("-")
-            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-            .join(" ");
-          return `${dir} - ${file}`;
-        }
-
         async function collectFiles(sourceDir, currentPath = "") {
           const entries = await fs.readdir(sourceDir, { withFileTypes: true });
 
@@ -70,7 +158,7 @@ function llmsTxtGenerator() {
               const slug = relativePath.replace(/\.mdx?$/, "");
               const url = `${baseUrl}/${slug}.md`;
               const rawContent = await fs.readFile(fullPath, "utf-8");
-              const cleanContent = stripFrontmatter(rawContent);
+              const cleanContent = processMarkdown(rawContent);
 
               fullContent.push({
                 slug,
@@ -189,13 +277,23 @@ function markdownExporter() {
               entry.name.endsWith(".md") ||
               entry.name.endsWith(".mdx")
             ) {
-              // Change extension to .md for all files
+              // Read, process, and format the content
+              const rawContent = await fs.readFile(sourcePath, "utf-8");
+              const cleanContent = processMarkdown(rawContent);
+
+              // Get the slug and format title like we do for LLM files
+              const slug = relativePath.replace(/\.mdx?$/, "");
+              const title = formatTitle(slug);
+
+              // Format the content with title header like the full LLM documentation
+              const formattedContent = `# ${title}\n\n${cleanContent}`;
+
               const destPath = path.join(
                 destDir,
                 relativePath.replace(/\.mdx?$/, ".md"),
               );
               await fs.mkdir(path.dirname(destPath), { recursive: true });
-              await fs.copyFile(sourcePath, destPath);
+              await fs.writeFile(destPath, formattedContent, "utf-8");
               console.log(
                 `✓ ${relativePath} → ${relativePath.replace(/\.mdx?$/, ".md")}`,
               );
