@@ -21,7 +21,7 @@
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "x-vercel-protection-bypass, Accept, Content-Type, Authorization"
+          "value": "Accept, Content-Type, Authorization"
         }
       ]
     }
