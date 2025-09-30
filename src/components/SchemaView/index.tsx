@@ -68,18 +68,6 @@ const SchemaView = ({ memconfig, defaultOpen }: SchemaViewProps) => {
     [openSet, setOpenSet],
   );
 
-  // Handles clicking on a member type to scroll and expand the corresponding schema type
-  const handleClick = React.useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      const target = e.target as HTMLElement;
-      const memberInnerType = target.dataset.innerType;
-      if (memberInnerType) {
-        revealType(memberInnerType);
-      }
-    },
-    [setOpen, refs],
-  );
-
   // Scrolls and highlights a type by nane
   const revealType = React.useCallback(
     (type: string, immediate?: boolean) => {
@@ -123,7 +111,19 @@ const SchemaView = ({ memconfig, defaultOpen }: SchemaViewProps) => {
         }, 0);
       }
     },
-    [refs],
+    [refs, setOpen],
+  );
+
+  // Handles clicking on a member type to scroll and expand the corresponding schema type
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement;
+      const memberInnerType = target.dataset.innerType;
+      if (memberInnerType) {
+        revealType(memberInnerType);
+      }
+    },
+    [revealType],
   );
 
   // Update inner shadows
@@ -141,12 +141,12 @@ const SchemaView = ({ memconfig, defaultOpen }: SchemaViewProps) => {
     );
     setTopShadow(topShadow);
     setBottomShadow(bottomShadow);
-  }, [scrollRef]);
+  }, []);
 
   // Update inner shadows on mount
   React.useEffect(() => {
     handleScroll();
-  }, []);
+  }, [handleScroll]);
 
   // Reveal the default type
   React.useEffect(() => {

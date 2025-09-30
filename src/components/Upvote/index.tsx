@@ -22,7 +22,7 @@ const Upvote = ({ children, id }: UpvoteProps) => {
     }
 
     fetchUpvotes();
-  }, []);
+  }, [id]);
 
   async function handleUpvote() {
     if (upvotes === null) return;
@@ -35,7 +35,7 @@ const Upvote = ({ children, id }: UpvoteProps) => {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 
