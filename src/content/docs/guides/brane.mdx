@@ -83,18 +83,27 @@ All changes require your approval before being applied.
 
 Brane uses specialized tools to interact with your Membrane environment. When you make a request, Brane automatically determines which tool is most appropriate without requiring you to specify it explicitly. You can ask to use a specific tool if needed.
 
-| Tool               | Purpose                                       |
-| ------------------ | --------------------------------------------- |
-| **QueryGraph**     | Retrieves live data from your graph           |
-| **AddConnection**  | Creates connections between programs          |
-| **InvokeAction**   | Executes actions from your programs           |
-| **RetrieveSchema** | Fetches program structure and schema details  |
-| **CreateProgram**  | Builds new programs with generated code       |
-| **Eval**           | Evaluates code in a program's runtime context |
-| **FetchUrl**       | Retrieves data from external URLs             |
-| **CreateFile**     | Adds new files to existing programs           |
-| **PackageSearch**  | Searches for packages in the registry         |
-| **PackageInstall** | Installs packages from the registry           |
+| Tool               | Purpose                                                     |
+| ------------------ | ----------------------------------------------------------- |
+| **QueryGraph**     | Retrieves live data from your graph                         |
+| **AddConnection**  | Creates connections between programs                        |
+| **InvokeAction**   | Executes actions from your programs                         |
+| **RetrieveSchema** | Fetches program structure and schema details                |
+| **CreateProgram**  | Builds new programs with generated code                     |
+| **Eval**           | Evaluates code in a program's runtime context               |
+| **PackageSearch**  | Searches for packages in the registry                       |
+| **PackageInstall** | Installs packages from the registry                         |
+| **Edit**           | Creates, modifies, and views files in programs              |
+| **MultiEdit**      | Applies multiple edits to a file at once                    |
+| **Read**           | Reads file contents with optional line ranges               |
+| **Write**          | Writes content to files in programs                         |
+| **List**           | Lists programs in workspace or files in a program           |
+| **SearchText**     | Searches for text patterns across program files             |
+| **SearchGraph**    | Searches across all programs, types, and data in your graph |
+| **GetDiagnostics** | Retrieves error and warning information for programs        |
+| **TodoWrite**      | Manages todo items and task lists                           |
+| **Task**           | Delegates complex tasks to specialized sub-agents           |
+| **MembraneManual** | Accesses Membrane documentation                             |
 
 For example, when you ask "Show me my GitHub repositories," Brane knows to use **RetrieveSchema** and **QueryGraph** to fetch this data.
 
@@ -118,11 +127,11 @@ Absolutely! Ask it to explain Membrane concepts and it will provide clear explan
 
 **How does Brane access my code?**
 
-Brane accesses your active program and any highlighted code fragments. It respects your workspace structure.
+Brane accesses your active program and any highlighted code fragments.
 
 **Can Brane execute actions in my Membrane graph?**
 
-Yes, with your permission. Brane will ask for approval before executing any actions.
+Yes, with your permission. Brane will ask for approval before executing any actions, unless explicitly always allowed.
 
 **Is there a limit to how much I can use Brane?**
 
